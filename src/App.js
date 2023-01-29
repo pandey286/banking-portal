@@ -11,7 +11,7 @@ function App(props) {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route path="/Home" element={<Home />}/>
+            <Route path="/" element={<Home />}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="*" element={<Error />}/>
             </Route>
