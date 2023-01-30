@@ -1,50 +1,88 @@
-import React from "react";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { GiRotaryPhone } from "react-icons/gi";
 import { IoMdHelpCircle } from "react-icons/io";
-import {ImPhone} from "react-icons/im";
-import {IoMdMailOpen} from "react-icons/io";
+import { ImPhone } from "react-icons/im";
+import { IoMdMailOpen } from "react-icons/io";
 import { GiLotus } from "react-icons/gi";
-import { Link } from "react-router-dom";
 
 
-
-const Home = () => {
+const Services = () => {
     return (
         <>
-            <div>
-                {/* carousel-section-start*/}
-                <section className="carousel-section">
-                    <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
-                        <div className="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
-                        <div className="carousel-inner">
-                            <div className="carousel-item active">
-                                <img src="https://www.csb.co.in/sites/default/files/CSB-FD-Website-Banner-750px-383px-CSB_02_02_11_22.jpg" className="d-block w-100" alt="..." />
-                            </div>
-                            <div className="carousel-item">
-                                <img src="https://www.csb.co.in/sites/default/files/CSB_One_Card_Web_Banner_7500x383.png" className="d-block w-100" alt="..." />
-                            </div>
-                            <div className="carousel-item">
-                                <img src="https://www.csb.co.in/sites/default/files/CSB-NRE-&-FCNR-Banner-750-px-X-383-px-CSB_06_05_11_22.png" className="d-block w-100" alt="..." />
-                            </div>
-                        </div>
-                        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span className="visually-hidden">Previous</span>
-                        </button>
-                        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span className="visually-hidden">Next</span>
-                        </button>
+            <div className='services-pages'>
+                <section className='section section-lg banner-services'>
+                    <div className='services-banner d-flex justify-content-center pt-5'>
+                        <img src='https://www.csb.co.in/sites/default/files/recruitement-of-the-officer.jpg' alt='bannner' placeholder='Services' />
                     </div>
                 </section>
-            </div>
-            {/* carousel-section-end */}
 
-            {/* Footer Section-start */}
+                <div className='shadow mb-5'>
+                    <section className="section section-lg p-5 bg-white">
+                        <div className="container text-center">
+                            <div className="row justify-content-center">
+                                <div className="col-md-12 col-xl-10 p-3">
+                                    <h2>A Wide Range of Banking &amp; Financial Services</h2>
+                                    <div className="heading-6 block-lg">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum sapiente sit,
+                                        assumenda doloribus culpa laudantium reprehenderit esse accusamus quae rerum expedita blanditiis placeat
+                                        lorem  Lorem ipsum dolor sit amet, qui tollit laoreet ocurreret id, ne vis melius offendit appetere,
+                                        ius timeam percipit argumentum id. His mutat nostrum ad, ei qui nostro aeterno recteque, aperiam quaerendum id has et.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+
+                <section className="section section-lg bg-gray-100 p-5">
+                    <div className="container">
+                        <div className="service-list">
+                            <div className="row row-20 service-item">
+                                <div className="col-md-6 shadow mb-5 p-3">
+                                    <img src="https://livedemo00.template-help.com/wt_prod-8755/images/services-1-540x327.jpg" alt="" width="540" height="327" />
+                                </div>
+                                <div className="col-md-6 p-5">
+                                    <h3 className="title">Personal Banking</h3>
+                                    <p className="exeption">Lorem ipsum dolor sit amet, qui tollit laoreet ocurreret id, ne vis melius offendit appetere, ius
+                                        timeam percipit argumentum id. His mutat nostrum ad, ei qui nostro aeterno recteque, aperiam quaerendum id has. Quod tantas
+                                        volumus eu eum, mei.</p>
+                                    <button type="" className="btn btn-primary shadow p-1 mb-5 rounded-1"><a href='/contactForm'></a>Learn More</button>
+                                </div>
+                            </div>
+                            <div className="row row-20 service-item">
+                                <div className="col-md-6 shadow mb-5 p-3">
+                                    <img src="https://livedemo00.template-help.com/wt_prod-8755/images/services-2-540x327.jpg" alt="" width="540" height="327" />
+                                </div>
+                                <div className="col-md-6 p-5">
+                                    <h3 className="title">Private Banking</h3>
+                                    <p className="exeption">Lorem ipsum dolor sit amet, qui tollit laoreet ocurreret id, ne vis melius offendit appetere, ius
+                                        timeam percipit argumentum id. His mutat nostrum ad, ei qui nostro aeterno recteque, aperiam quaerendum id has. Quod tantas
+                                        volumus eu eum, mei.</p>
+                                    <button type="" className="btn btn-primary shadow p-1 mb-5 rounded-1"><a href='/contactForm'></a>Learn More</button>
+                                </div>
+                            </div>
+                            <div className="row row-20 service-item">
+                                <div className="col-md-6 shadow mb-5 p-3">
+                                    <img src="https://livedemo00.template-help.com/wt_prod-8755/images/services-3-540x327.jpg" alt="" width="540" height="327" />
+                                </div>
+                                <div className="col-md-6 p-5">
+                                    <h3 className="title">Business Banking</h3>
+                                    <p className="exeption">Lorem ipsum dolor sit amet, qui tollit laoreet ocurreret id, ne vis melius offendit appetere, ius
+                                        timeam percipit argumentum id. His mutat nostrum ad, ei qui nostro aeterno recteque, aperiam quaerendum id has. Quod tantas
+                                        volumus eu eum, mei</p>
+                                    <button type="" className="btn btn-primary shadow p-1 mb-5 rounded-1"><a href='/contactForm'></a>Learn More</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+            </div>
+
+            {/* Footer start */}
             <div id='footer' className="bg-white shadow p-3 mt-5 bg-body-tertiary"  >
                 <div className="footer-blue ">
                     <div className="container">
@@ -135,10 +173,11 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            {/* Footer Section send */}
 
+            {/* footer-ended */}
         </>
+
     )
 }
 
-export default Home;
+export default Services;
