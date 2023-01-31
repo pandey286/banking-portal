@@ -2,11 +2,13 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Error from "./pages/Error";
-import Home from "./pages/Home";
-import Login from "./component/Login";
-import Services from "./component/Services";
-import ContactForm from "./component/ContactForm";
+import Home from "./components/HomeComponent/Home";
+import Login from "./components/Logins/Login";
+import Services from "./components/Services";
+import ContactForm from "./components/ContactForm";
+import AboutUs from "./components/AboutUs";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import '../src/css/style.css';
 
 
 function App(props) {
@@ -19,6 +21,7 @@ function App(props) {
             <Route path="/login" element={<Login/>}/>
             <Route path="/services" element={<Services/>}/>
             <Route path="/contactform" element={<ContactForm/>}/>
+            <Route path="/aboutUs" element={<AboutUs/>}></Route>
             <Route path="*" element={<Error />}/>
             </Route>
         </Routes>

@@ -17,7 +17,7 @@ function Login() {
                 <h2 className='text-center p-3 '> Please Login Here </h2>
                 <form onSubmit={handleSubmit}>
                     <div className="p-3 mb-3 col align-self-center">
-                        <input type="number" className="form-control shadow-sm  " id="userId" aria-describedby="UserId"
+                        <input type="text" className="form-control shadow-sm  " id="userId" aria-describedby="UserId"
                             value={username} onChange={event => setUsername(event.target.value)} placeholder="User Id" />
                     </div>
                     <div className="p-3 col align-self-center">
