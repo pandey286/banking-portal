@@ -10,7 +10,7 @@ const Footer = () => {
     return (
         <>
             {/* Footer Section-start */}
-            <div id='footer' className="section-footer"  >
+            <div id='footer' className="section-footer mt-1"  >
                 <div className="footer-blue ">
                     <div className="container">
                         <div className="row">
@@ -41,11 +41,11 @@ const Footer = () => {
                                                 <div className="content">
                                                     <div className="menu-block-wrapper menu-block-1 menu-name-menu-clone-main-menu parent-mlid-0 menu-level-1">
                                                         <ul className="menu">
-                                                            <li className="leaf menu-mlid-688"><Link className="Link" to="https://www.csb.co.in/application-forms" title="Application Forms" style={{ textDecoration: "none" }}>Application Forms</Link></li>
-                                                            <li className="leaf menu-mlid-821"><Link className="Link" to="https://www.csb.co.in/careers" title="Careers" style={{ textDecoration: "none" }}>Careers</Link></li>
-                                                            <li className="leaf menu-mlid-483"><Link className="Link" to="https://www.csb.co.in/contact-us" title="Contact Us" style={{ textDecoration: "none" }}>Contact Us</Link></li>
-                                                            <li className="leaf menu-mlid-879"><Link className="Link" to="https://www.csb.co.in/COVID-19" title="COVID-19" style={{ textDecoration: "none" }}>COVID-19</Link></li>
-                                                            <li className="leaf menu-mlid-898"><Link className="Link" to="https://online.fliphtml5.com/qasrw/tidw/?1635162501701#p=1" title="Cyber Security" style={{ textDecoration: "none" }}>Cyber Security</Link></li>
+                                                            <li className="leaf menu-mlid-688"><Link className="Link" target="_blank" to="https://www.csb.co.in/application-forms" title="Application Forms" style={{ textDecoration: "none" }}>Application For New Account</Link></li>
+                                                            <li className="leaf menu-mlid-821"><Link className="Link" target="_blank" to="https://www.csb.co.in/careers" title="Careers" style={{ textDecoration: "none" }}>Careers</Link></li>
+                                                            <li className="leaf menu-mlid-483"><Link className="Link" target="_blank" to="/ContactForm" title="Contact Us" style={{ textDecoration: "none" }}>Contact Us</Link></li>
+                                                            <li className="leaf menu-mlid-879"><Link className="Link" target="_blank" to="https://www.csb.co.in/COVID-19" title="COVID-19" style={{ textDecoration: "none" }}>COVID-19</Link></li>
+                                                            <li className="leaf menu-mlid-898"><Link className="Link" target="_blank" to="https://rbidocs.rbi.org.in/rdocs/PressRelease/PDFs/PR163037E920A47573411FBC7D79B058FED34A.PDF" title="Cyber Security"  style={{ textDecoration: "none" }}>Cyber Security</Link></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -58,14 +58,11 @@ const Footer = () => {
                                             <div className="content">
                                                 <h6>About Us</h6>
                                                 <ul>
-                                                    <li><Link  className="Link" to="https://www.csb.co.in/pdf/List-of-Sub-Committees-of-the-Board_wef-17112022.pdf" title="Board Committees" style={{ textDecoration: "none" }}>Board Committees</Link></li>
-                                                    <li><Link  className="Link" to="https://www.csb.co.in/about-us#board" title="Board of Directors" style={{ textDecoration: "none" }}>Board of Directors</Link></li>
-                                                    <li><Link  className="Link" to="https://www.csb.co.in/about-us#vision" title="Key Managerial Personnel" style={{ textDecoration: "none" }}>Key Managerial Personnel</Link></li>
-                                                    <li><Link  className="Link" to="https://www.csb.co.in/about-us#sm" title="Senior Management Team" style={{ textDecoration: "none" }}>Senior Management Team</Link></li>
-                                                    <li><Link  className="Link" to="https://www.csb.co.in/investor-relations" title="Investor relations" style={{ textDecoration: "none" }}>Investor Relations</Link></li>
-                                                    <li><Link  className="Link" to="https://www.csb.co.in/ipo" title="IPO" style={{ textDecoration: "none" }}>IPO</Link></li>
-                                                    <li><Link  className="Link" to="https://www.csb.co.in/corporate-social-responsibility" title="Corporate Social Responsibility" style={{ textDecoration: "none" }}>Corporate Social Responsibility</Link></li>
-                                                    <li><Link  className="Link" to="https://www.csb.co.in/atm" title="Social responsibility" style={{ textDecoration: "none" }}>Search IFSC/Branch/ATM</Link></li>
+                                                    <li><Link  className="Link" target="_blank" to="/aboutUs" title="Board Committees" style={{ textDecoration: "none" }}>Our Team</Link></li>
+                                                    <li><Link  className="Link" target="_blank" to="/aboutUs" title="Senior Management Team" style={{ textDecoration: "none" }}>Senior Management Team</Link></li>
+                                                    <li><Link  className="Link" target="_blank" to="/aboutUs" title="Investor relations" style={{ textDecoration: "none" }}>Investor Relations</Link></li>
+                                                    <li><Link  className="Link" target="_blank" to="https://www.csb.co.in/corporate-social-responsibility" title="Corporate Social Responsibility" style={{ textDecoration: "none" }}>Corporate Social Responsibility</Link></li>
+                                                    <li><Link  className="Link" target="_blank" to="https://www.csb.co.in/atm" title="Social responsibility" style={{ textDecoration: "none" }}>Search IFSC/Branch/ATM</Link></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -77,14 +74,14 @@ const Footer = () => {
                                                 <div className="content">
                                                     <div className="menu-block-wrapper menu-block-4 menu-name-menu-insurance parent-mlid-0 menu-level-1">
                                                         <ul className="menu">
-                                                            <li className="first leaf menu-mlid-519"><Link className="Link" to="https://www.csb.co.in/bank-policies" title="Bank Policies" style={{ textDecoration: "none" }}>Bank Policies</Link></li>
-                                                            <li className="leaf menu-mlid-518"><Link  className="Link" to="https://www.csb.co.in/kyc-notice" title="Know Your Customer Norms" style={{ textDecoration: "none" }}>Know Your Customer Norms</Link></li>
-                                                            <li className="leaf menu-mlid-562"><Link  className="Link" to="https://www.csb.co.in/sale-property" title="Sale of Property" style={{ textDecoration: "none" }}>Sale of Property</Link></li>
-                                                            <li className="leaf menu-mlid-692"><Link  className="Link" to="https://www.rbi.org.in/" title="Reserve Bank of IndLinka" target="_blank" style={{ textDecoration: "none" }}>Reserve Bank of India</Link></li>
-                                                            <li className="leaf menu-mlid-691"><Link  className="Link" to="https://www.csb.co.in/bcsbi" style={{ textDecoration: "none" }}>BCSBI</Link></li>
-                                                            <li className="leaf menu-mlid-835"><Link  className="Link" to="https://www.csb.co.in/general-safety-tips" style={{ textDecoration: "none" }}>Safe Banking</Link></li>
-                                                            <li className="leaf menu-mlid-901"><Link  className="Link" to="https://www.csb.co.in/pdf/BEAWARE.pdf" title="RBI - Customer Education on Frauds" style={{ textDecoration: "none" }}>RBI - Customer Education on Frauds</Link></li>
-                                                            <li className="last leaf menu-mlid-903"><Link  className="Link" to="https://www.csb.co.in/pdf/MITC_CASA.pdf" style={{ textDecoration: "none" }}>Most Important Terms &amp; Conditions – Savings Bank/ Current Account</Link></li>
+                                                            <li className="first leaf menu-mlid-519"><Link target="_blank" className="Link" to="https://www.csb.co.in/bank-policies" title="Bank Policies" style={{ textDecoration: "none" }}>Bank Policies</Link></li>
+                                                            <li className="leaf menu-mlid-518"><Link target="_blank"  className="Link" to="https://www.csb.co.in/kyc-notice" title="Know Your Customer Norms" style={{ textDecoration: "none" }}>Know Your Customer Norms</Link></li>
+                                                            <li className="leaf menu-mlid-562"><Link  target="_blank" className="Link" to="https://www.csb.co.in/sale-property" title="Sale of Property" style={{ textDecoration: "none" }}>Sale of Property</Link></li>
+                                                            <li className="leaf menu-mlid-692"><Link target="_blank"  className="Link" to="https://www.rbi.org.in/" title="Reserve Bank of IndLinka"  style={{ textDecoration: "none" }}>Reserve Bank of India</Link></li>
+                                                            <li className="leaf menu-mlid-691"><Link  target="_blank" className="Link" to="https://www.csb.co.in/bcsbi" style={{ textDecoration: "none" }}>BCSBI</Link></li>
+                                                            <li className="leaf menu-mlid-835"><Link target="_blank"  className="Link" to="https://www.csb.co.in/general-safety-tips" style={{ textDecoration: "none" }}>Safe Banking</Link></li>
+                                                            <li className="leaf menu-mlid-901"><Link target="_blank"  className="Link" to="https://www.csb.co.in/pdf/BEAWARE.pdf" title="RBI - Customer Education on Frauds" style={{ textDecoration: "none" }}>RBI - Customer Education on Frauds</Link></li>
+                                                            <li className="last leaf menu-mlid-903"><Link target="_blank"  className="Link" to="https://www.csb.co.in/pdf/MITC_CASA.pdf" style={{ textDecoration: "none" }}>Most Important Terms &amp; Conditions – Savings Bank/ Current Account</Link></li>
                                                         </ul>
                                                     </div>
                                                 </div>

@@ -1,91 +1,86 @@
 import React from 'react';
-import { Card, CardBody, CardTitle, CardText } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AboutUs = () => {
   return (
+    <>
+      <div className='About-Us mt-5'>
 
-    <section id="team" class="team section-bg mt-5 pt-3">
-      <div class="container aos-init aos-animate" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Team</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        {/* <!-- For demo purpose --> */}
+        <div className="container p-5">
+          <div className="row text-center text-white">
+            <div className="col-lg-8 mx-auto">
+              <h1 className="display-4 fs-1">Our Team</h1>
+              <p className="lead mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ratione voluptas error sunt soluta voluptate similique voluptatem. Magni sunt natus voluptas ipsum explicabo, unde suscipit libero placeat non. Fugiat, soluta!</p>
+              <p className="lead fs-4"> – Andrew Carnegie</p>
+            </div>
+          </div>
         </div>
-        <div class="row">
+        {/* <!-- End --> */}
 
-          <div class="col-lg-6">
-            <div class="member d-flex align-items-start aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
-              <div class="pic"></div>
-              <div class="member-info">
-                <h4>Prashant Pandey</h4>
-                <span>Chief Executive Officer</span>
-                <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
+
+        <div className="container">
+          <div className="row text-center">
+
+            {/* <!-- Team item --> */}
+            <div className="col-xl-3 col-sm-6 mb-5">
+              <div className="bg-white rounded shadow mb-5 py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-team/teacher-4.jpg" alt="" width="100" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" />
+                <h5 className="mb-0">Sayeri Samanta</h5><span className="small text-uppercase text-muted">CEO - Founder</span>
+                <ul className="social mb-0 list-inline mt-3">
+                  <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-facebook-f"></i></a></li>
+                  <li className="list-inline-item"><a href="#" className="social-link" ><i className="fa fa-twitter"></i></a></li>
+                  <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-instagram"></i></a></li>
+                  <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-linkedin"></i></a></li>
+                </ul>
               </div>
             </div>
-          </div>
+            {/* <!-- End --> */}
 
-          <div class="col-lg-6 mt-4 mt-lg-0">
-            <div class="member d-flex align-items-start aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
-              <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt="" /></div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
-                <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
+            {/* <!-- Team item --> */}
+            <div className="col-xl-3 col-sm-6 mb-5">
+              <div className="bg-white rounded shadow mb-5 py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-team/teacher-2.jpg" alt="" width="100" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" />
+                <h5 className="mb-0">Prashant Pandey</h5><span className="small text-uppercase text-muted">CEO - Founder</span>
+                <ul className="social mb-0 list-inline mt-3">
+                  <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-facebook-f"></i></a></li>
+                  <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-twitter"></i></a></li>
+                  <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-instagram"></i></a></li>
+                  <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-linkedin"></i></a></li>
+                </ul>
               </div>
             </div>
-          </div>
+            {/* <!-- End --> */}
 
-          <div class="col-lg-6 mt-4">
-            <div class="member d-flex align-items-start aos-init aos-animate" data-aos="zoom-in" data-aos-delay="300">
-              <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt="" /></div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
-                <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
+            {/* <!-- Team item --> */}
+            <div className="col-xl-3 col-sm-6 mb-5">
+              <div className="bg-white rounded shadow mb-5 py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-team/teacher-4.jpg" alt="" width="100" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" />
+                <h5 className="mb-0">J Lasya</h5><span className="small text-uppercase text-muted">CEO - Founder</span>
+                <ul className="social mb-0 list-inline mt-3">
+                  <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-facebook-f"></i></a></li>
+                  <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-twitter"></i></a></li>
+                  <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-instagram"></i></a></li>
+                  <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-linkedin"></i></a></li>
+                </ul>
               </div>
             </div>
-          </div>
+            {/* <!-- End --> */}
 
-          <div class="col-lg-6 mt-4">
-            <div class="member d-flex align-items-start aos-init aos-animate" data-aos="zoom-in" data-aos-delay="400">
-              <div class="pic"><img src="assets/img/team/team-4.jpg" class="img-fluid" alt="" /></div>
-              <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Accountant</span>
-                <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
+            {/* <!-- Team item --> */}
+            <div className="col-xl-3 col-sm-6 mb-5">
+              <div className="bg-white rounded shadow mb-5 py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-team/teacher-7.jpg" alt="" width="100" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" />
+                <h5 className="mb-0">John Tarly</h5><span className="small text-uppercase text-muted">CEO - Founder</span>
+                <ul className="social mb-0 list-inline mt-3">
+                  <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-facebook-f"></i></a></li>
+                  <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-twitter"></i></a></li>
+                  <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-instagram"></i></a></li>
+                  <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-linkedin"></i></a></li>
+                </ul>
               </div>
             </div>
+            {/* <!-- End --> */}
           </div>
-
         </div>
-
       </div>
-    </section>
+    </>
 
   );
 };
