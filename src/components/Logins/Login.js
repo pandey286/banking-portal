@@ -31,11 +31,11 @@ function Login() {
                         <div className="text-center p-3">
                             <button type="submit" className="btn btn-outline-primary shadow p-1 mb-5 rounded-1">
                                 <Link to="/userdash" className="text-dark p-3" style={{ textDecoration: "none"}}>Login</Link></button><br />
-                            <Link className="text-muted" to="/">Forgot password?</Link> 
+                            <Link className="text-danger fs-6" to="/">Forgot password?</Link> 
                         </div>
                         <div className="text-center p-3">
-                            <p className="text-muted" href="/">Don't have an Account?.</p>  
-                            <Link className="text-muted" to="/register">Register.</Link> 
+                            <p className="text-muted fs-5" href="/">Don't have an Account?.</p>  
+                            <Link className="text-primary fs-5" to="/register">Register.</Link> 
                         </div>
                     </form>
                 </div>
