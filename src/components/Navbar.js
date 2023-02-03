@@ -30,11 +30,14 @@ const Navbar = () => {
                                 <NavLink className="nav-link fs-5 " to="/aboutUs">About Us</NavLink>
                             </li>
                         </ul>
-                        <button className="btn btn-outline-primary me-3" type="button"><NavLink className="nav-link text-dark " to="/login">Login</NavLink></button>
+                        <button className="btn btn-outline-primary shadow  me-3" type="button"><NavLink className="nav-link text-dark " to="/login">Login</NavLink></button>
+                        <button className="btn btn-outline-primary shadow me-3" type="button"><NavLink className="nav-link text-dark " to="/admindash">Admin</NavLink></button>
                     </div>
                 </div>
             </nav>
         </header>
+
+
 
     );
 }

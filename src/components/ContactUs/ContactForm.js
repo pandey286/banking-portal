@@ -72,6 +72,7 @@ const ContactForm = () => {
               <select className="form-control" id="query"
                 name="query" value={formData.query} onChange={handleInputChange}>
                 <option>Account Opening</option>
+                <option>New Card</option>
                 <option>Regarding Transaction</option>
                 <option>Regarding Loan</option>
                 <option>Other</option>

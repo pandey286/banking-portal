@@ -16,7 +16,7 @@ function Login() {
     return (
         <>
             <Nav />
-            <div className='login-container d-flex justify-content-center m-5 p-3 col '>
+            <div className='login-container d-flex justify-content-center m-5 p-5 col '>
                 <div className='row shadow-lg p-3 mb-5 bg-body-tertiary rounded-3 p-3'>
                     <h2 className='text-center p-3 '> Please Login Here </h2>
                     <form onSubmit={handleSubmit}>
@@ -29,12 +29,13 @@ function Login() {
                                 value={password} onChange={event => setPassword(event.target.value)} placeholder="Password" />
                         </div>
                         <div className="text-center p-3">
-                            <button type="submit" className="btn btn-outline-primary shadow p-1 mb-5 rounded-1"><Link to="/userdash" className="text-dark p-3" style={{ textDecoration: "none"}}>Login</Link></button><br />
-                            <a className="text-muted" href="/">Forgot password?</a> 
+                            <button type="submit" className="btn btn-outline-primary shadow p-1 mb-5 rounded-1">
+                                <Link to="/userdash" className="text-dark p-3" style={{ textDecoration: "none"}}>Login</Link></button><br />
+                            <Link className="text-muted" to="/">Forgot password?</Link> 
                         </div>
                         <div className="text-center p-3">
                             <p className="text-muted" href="/">Don't have an Account?.</p>  
-                            <a className="text-muted" href="/register">Register.</a> 
+                            <Link className="text-muted" to="/register">Register.</Link> 
                         </div>
                     </form>
                 </div>

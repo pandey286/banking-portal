@@ -23,7 +23,7 @@ const Footer = () => {
                                                 <div className="toll col-md-14 d-flex "><span className="fs-1 p-2"><ImPhone /></span><p className='mt-3'>National Cyber Crime Helpline Number:<b>1930</b> </p></div>
                                                 <div className="corporate col-md-14 d-flex "><span className="fs-1 p-2">< IoMdHelpCircle /></span><span className='mt-3 text-center'><b>DigiSaathi 24x7 Toll Free Helpline No.s</b><br /> 1800-891-3333 / 14431<br /><small>Managed by NPCI, on behalf of Indian payment ecosystem</small></span></div>
                                                 <div className="toll col-md-14 d-flex"><span className="fs-1 p-1"><IoMdMailOpen /></span><p className='m-4'><b>support@psl.co.in</b></p></div>
-                                                <div className="location col-md-14"><span className="fs-1 p-1"><img className='mb-1' src={Kakashi} width="30px"/></span><strong>PSL Bank Ltd.,</strong>
+                                                <div className="location col-md-14"><span className="fs-1 p-1"><img className='mt-1' src={Kakashi} width="30px"/></span><strong className="fs-5">PSL Bank Ltd.,</strong>
                                                     <div className="db">Head Office, PSL Bhavan,</div>
                                                     <div className="db">Bangalore, India</div>
 

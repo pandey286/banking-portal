@@ -10,8 +10,8 @@ import Car from ".././Shared/Carousel"
 const Home = () => {
     return (
         <>
-            <Car />
 
+            <Car />
             {/* Services-Card */}
             <section className="shadow p-3 service-section">
                 <div className="content">
@@ -19,7 +19,7 @@ const Home = () => {
                         <div className="row">
                             <div className="col-xs-12 col-sm-4 p-1">
                                 <div className="card h-100 ">
-                                    <div className="p-4">
+                                    <div className="h-50">
                                         <img className="img-fluid flex-shrink-0" src={Card} alt="" />
                                     </div>
                                     <div className="card-content">
@@ -28,50 +28,37 @@ const Home = () => {
                                         <p className="">
                                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem quam dolorum voluptates neque non qui voluptatum, veritatis soluta a voluptatem eveniet ut cumque repellat sapiente!
                                         </p>
-                                    </div>
-                                    <div className="card-read-more">
-                                        <a href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html" className="btn btn-link btn-block">
-                                            Read More<i className="fas fa-angle-double-right"></i>
-                                        </a>
+                                        <button className="btn btn-outline-info shadow me-3" type="button"><Link className="nav-link text-dark " to="/contactUs">Learn More</Link></button>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-xs-12 col-sm-4 p-1">
                                 <div className="card h-100 ">
-                                    <div className="">
+                                    <div className="h-50">
                                         <img className="img-fluid flex-shrink-0" src={Loanspic} alt="" />
                                     </div>
-                                    <div className="card-content">
+                                    <div className="card-content h-50">
                                         <h4 className="card-title">
                                             Loans
                                         </h4>
                                         <p className="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas porro totam et praesentium, cupiditate repellat, pariatur dicta at voluptatem assumenda mollitia ratione commodi? Delectus, voluptatibus.</p>
-
-                                    </div>
-                                    <div className="card-read-more">
-                                        <Link to="/loans" className="btn btn-link btn-block">
-                                            Read More
-                                        </Link>
+                                        <button className="btn btn-outline-info shadow me-3" type="button"><Link className="nav-link text-dark " to="/services">Learn More</Link></button>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-xs-12 col-sm-4 p-1">
                                 <div className="card h-100 ">
-                                    <div className="">
+                                    <div className="h-50">
                                         <img className="img-fluid flex-shrink-0" src={Cyber} alt="" />
                                     </div>
-                                    <div className="card-content">
+                                    <div className="card-content h-50">
                                         <h4 className="card-title">
                                             Cyber Security
                                         </h4>
                                         <p className="">
                                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum inventore libero impedit est facere molestiae iure corrupti animi, quis nostrum repudiandae rerum, expedita itaque tenetur!
                                         </p>
-                                    </div>
-                                    <div className="card-read-more">
-                                        <a href="https://rbidocs.rbi.org.in/rdocs/PressRelease/PDFs/PR163037E920A47573411FBC7D79B058FED34A.PDF" className="btn btn-link btn-block" target="_blank">
-                                            Read More
-                                        </a>
+                                        <button className="btn btn-outline-info shadow me-3" type="button"><Link className="nav-link text-dark " to="https://rbidocs.rbi.org.in/rdocs/PressRelease/PDFs/PR163037E920A47573411FBC7D79B058FED34A.PDF">Learn More</Link></button>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +68,7 @@ const Home = () => {
             </section>
 
             {/* About-Us Start */}
-            <div className='shadow mb-1 pb-1'>
+            <div className=' pb-1'>
                 <section className="section section-lg p-5 bg-white">
                     <div className="container text-center">
                         <div className="row justify-content-center">

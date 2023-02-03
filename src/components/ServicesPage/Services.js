@@ -36,27 +36,27 @@ const Services = () => {
                             <div className="row">
                                 <div className="col-xs-12 col-sm-4 p-1">
                                     <div className="card h-100 ">
-                                        <div className="p-4">
-                                            <img className="img-fluid flex-shrink-0" src="https://images.livemint.com/rf/Image-621x414/LiveMint/Period2/2018/11/26/Photos/Processed/homeloaniStock-kCrG--621x414@LiveMint.jpg" alt="" />
+                                        <div className="h-50">
+                                            <img className="img-fluid flex-shrink-0" src={Service2} alt="" />
                                         </div>
                                         <div className="card-content">
-                                            <h4 className="card-title"> Personal Banking
+                                            <h4 className="card-title"> Open Account
                                             </h4>
                                             <p className="">
                                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem quam dolorum voluptates neque non qui voluptatum, veritatis soluta a voluptatem eveniet ut cumque repellat sapiente!
                                             </p>
                                         </div>
                                         <div className="card-read-more">
-                                            <a href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html" className="btn btn-link btn-block">
-                                                Read More<i className="fas fa-angle-double-right"></i>
+                                            <a href="/register" className="btn btn-link btn-block">
+                                                Read More
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-xs-12 col-sm-4 p-1">
                                     <div className="card h-100 ">
-                                        <div className="">
-                                            <img className="img-fluid flex-shrink-0" src={Service2} alt="" />
+                                        <div className="h-50">
+                                            <img className="img-fluid flex-shrink-0" src="https://images.livemint.com/rf/Image-621x414/LiveMint/Period2/2018/11/26/Photos/Processed/homeloaniStock-kCrG--621x414@LiveMint.jpg" alt="" />
                                         </div>
                                         <div className="card-content">
                                             <h4 className="card-title">
@@ -74,7 +74,7 @@ const Services = () => {
                                 </div>
                                 <div className="col-xs-12 col-sm-4 p-1">
                                     <div className="card h-100 ">
-                                        <div className="">
+                                        <div className="h-50">
                                             <img className="img-fluid flex-shrink-0" src={Service3} alt="" />
                                         </div>
                                         <div className="card-content">
@@ -86,9 +86,9 @@ const Services = () => {
                                             </p>
                                         </div>
                                         <div className="card-read-more">
-                                            <a href="/education-loan">
+                                        <Link to="/eduction-loan" className="btn btn-link btn-block">
                                                 Read More
-                                            </a>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@ const Services = () => {
                             <div className="row">
                                 <div className="col-xs-12 col-sm-4 p-1">
                                     <div className="card h-100 ">
-                                        <div className="p-4">
+                                        <div className="h-50">
                                             <img className="img-fluid flex-shrink-0" src={Service1} alt="" />
                                         </div>
                                         <div className="card-content">
@@ -115,14 +115,14 @@ const Services = () => {
                                         </div>
                                         <div className="card-read-more">
                                             <a href="/gold-loan" className="btn btn-link btn-block">
-                                                Read More<i className="fas fa-angle-double-right"></i>
+                                                Read More
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-xs-12 col-sm-4 p-1">
                                     <div className="card h-100 ">
-                                        <div className="">
+                                        <div className="h-50">
                                             <img className="img-fluid flex-shrink-0" src={Service1} alt="" />
                                         </div>
                                         <div className="card-content">
@@ -141,7 +141,7 @@ const Services = () => {
                                 </div>
                                 <div className="col-xs-12 col-sm-4 p-1">
                                     <div className="card h-100 ">
-                                        <div className="">
+                                        <div className="h-50">
                                             <img className="img-fluid flex-shrink-0" src={Service1} alt="" />
                                         </div>
                                         <div className="card-content">

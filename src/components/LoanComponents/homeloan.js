@@ -3,7 +3,7 @@ import React from "react";
 const HomeLoan = () => {
     return (
         <>
-            <section className="container-fluid col-lg-10 text-white">
+            <section className="container-fluid col-lg-10 text-dark">
                 <div className="mt-5 pt-5">
                     <p className="title fs-1">Home Loan</p>
                 </div>
