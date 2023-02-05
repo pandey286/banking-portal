@@ -66,26 +66,31 @@ const Register = () => {
                       </div>
                       <div className='row'>
                         <div className="form-outline col-md-6 mb-4">
-                          <input type="num" id="form3Example8" className="form-control form-control-lg" placeholder='Aadhaar Number' />
+                          <input type="text" id="form3Example8" className="form-control form-control-lg" placeholder='Aadhaar Number' />
                         </div>
                         <div className="form-outline col-md-6 mb-4">
-                          <input type="num" id="form3Example8" className="form-control form-control-lg" placeholder='PAN Number' />
+                          <input type="text" id="form3Example8" className="form-control form-control-lg" placeholder='PAN Number' />
                         </div>
                         <div className="form-outline col-md-6 mb-4">
-                          <input type="num" id="form3Example8" className="form-control form-control-lg" placeholder='Driving License' />
+                          <input type="text" id="form3Example8" className="form-control form-control-lg" placeholder='Driving License' />
                         </div>
                         <div className="form-outline col-md-6 mb-4">
-                          <input type="num" id="form3Example8" className="form-control form-control-lg" placeholder='PassPort' />
+                          <input type="text" id="form3Example8" className="form-control form-control-lg" placeholder='PassPort' />
                         </div>
                       </div>
-                      <div className="col-md-6 mb-4">
-                        <div className="form-outline">
-                          <select id="form3Example1n" className="select form-control form-control-lg" placeholder='Gender'>
-                            <option value="">Gender</option>
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
-                            <option value="3">Others</option>
-                          </select>
+                      <div className='row'>
+                        <div className="col-md-6 mb-4">
+                          <div className="form-outline">
+                            <select id="form3Example1n" className="select form-control form-control-lg" placeholder='Gender'>
+                              <option value="">Gender</option>
+                              <option value="1">Male</option>
+                              <option value="2">Female</option>
+                              <option value="3">Others</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div className="form-outline col-md-6 mb-4">
+                          <input type="email" id="form3Example8" className="form-control form-control-lg" placeholder='Email' />
                         </div>
                       </div>
                       <div className='row'>
@@ -107,7 +112,7 @@ const Register = () => {
             </div>
           </div>
         </div>
-    </section>
+      </section>
     </>
   )
 }
