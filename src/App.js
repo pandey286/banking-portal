@@ -19,6 +19,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import ViewTrans from "./components/Dashboard/User/UserDashBoardFunction/ViewTransaction";
 import "../node_modules/@fortawesome/free-solid-svg-icons/faBars"
 import '../src/css/style.css';
+import ForgetPass from "./components/Logins/ForgetPassword/ForgetPassword";
 
 
 function App(props) {
@@ -39,6 +40,7 @@ function App(props) {
             <Route path="*" element={<Error />} />
           </Route>
           <Route path="/login" element={<Login />} />
+          <Route path="/forgetpass" element={<ForgetPass/>}/>
           <Route path="/userdash" element={<UserDashBoard />} />
           <Route path='/register' element={<Register />} />
           <Route path="/admindash" element={<AdminDashBoard />} />

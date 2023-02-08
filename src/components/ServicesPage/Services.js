@@ -86,7 +86,7 @@ const Services = () => {
                                             </p>
                                         </div>
                                         <div className="card-read-more">
-                                        <Link to="/eduction-loan" className="btn btn-link btn-block">
+                                        <Link to="/education-loan" className="btn btn-link btn-block">
                                                 Read More
                                             </Link>
                                         </div>
@@ -97,7 +97,7 @@ const Services = () => {
                     </div>
                 </section>
 
-                <section className="shadow p-3 service-section">
+                <section className="p-3 service-section">
                     <div className="content">
                         <div className="container">
                             <div className="row">

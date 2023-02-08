@@ -43,7 +43,7 @@ const Footer = () => {
                                                         <ul className="menu">
                                                             <li className="leaf menu-mlid-688"><Link className="Link" target="_blank" to="https://www.csb.co.in/application-forms" title="Application Forms" style={{ textDecoration: "none" }}>Application For New Account</Link></li>
                                                             <li className="leaf menu-mlid-821"><Link className="Link" target="_blank" to="https://www.csb.co.in/careers" title="Careers" style={{ textDecoration: "none" }}>Careers</Link></li>
-                                                            <li className="leaf menu-mlid-483"><Link className="Link" target="_blank" to="/ContactForm" title="Contact Us" style={{ textDecoration: "none" }}>Contact Us</Link></li>
+                                                            <li className="leaf menu-mlid-483"><Link className="Link" target="_blank" to="/ContactUs" title="Contact Us" style={{ textDecoration: "none" }}>Contact Us</Link></li>
                                                             <li className="leaf menu-mlid-879"><Link className="Link" target="_blank" to="https://www.csb.co.in/COVID-19" title="COVID-19" style={{ textDecoration: "none" }}>COVID-19</Link></li>
                                                             <li className="leaf menu-mlid-898"><Link className="Link" target="_blank" to="https://rbidocs.rbi.org.in/rdocs/PressRelease/PDFs/PR163037E920A47573411FBC7D79B058FED34A.PDF" title="Cyber Security"  style={{ textDecoration: "none" }}>Cyber Security</Link></li>
                                                         </ul>

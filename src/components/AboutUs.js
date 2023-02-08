@@ -11,8 +11,8 @@ const AboutUs = () => {
           <div className="row text-center text-dark">
             <div className="col-lg-8 mx-auto">
               <h1 className="display-4 fs-1">Our Team</h1>
-              <p className="lead mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ratione voluptas error sunt soluta voluptate similique voluptatem. Magni sunt natus voluptas ipsum explicabo, unde suscipit libero placeat non. Fugiat, soluta!</p>
-              <p className="lead fs-4"> – Andrew Carnegie</p>
+              <p className="lead mb-0">The Indian banking industry has always been full of competition, and there is enough room for growth</p>
+              <p className="lead fs-4">-Chanda Kochhar</p>
             </div>
           </div>
         </div>
