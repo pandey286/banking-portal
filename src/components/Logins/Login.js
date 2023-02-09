@@ -1,18 +1,36 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../Navbar';
-import LogImg from './images/LogImg.jpeg';
+import LogImg from './images/LogImg1.gif';
+import axios from 'axios';
+
 
 function Login() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
 
-    function handleSubmit(event) {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+    });
+
+    const handleChange = event => {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value
+        });
+    };
+
+    const url = "http://localhost:8080/api/customers/login"
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('username:', username);
-        console.log('password:', password);
-        // Send a request to the server to check the login credentials
-    }
+        try {
+          const response = await axios.post(url, formData);
+          console.log(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
 
     return (
         <>
@@ -24,18 +42,17 @@ function Login() {
                 <div className='login-container d-flex justify-content-center m-5 p-5 col '>
                     <div className='row shadow-lg p-3 mb-5 bg-body-tertiary rounded-3 p-3'>
                         <h2 className='text-center p-3 '>Please Login Here</h2>
-                        <form onSubmit={handleSubmit}>
+                        <form>
                             <div className="p-3 mb-3 col align-self-center">
-                                <input type="email" className="form-control shadow-sm  " id="userId" aria-describedby="UserId"
-                                    value={username} onChange={event => setUsername(event.target.value)} placeholder="Enter Your Registered Email" />
+                                <input type="email" className="form-control shadow-sm  " id="userId" aria-describedby="EmailId" name='email' onChange={handleChange}
+                                    placeholder="Enter Your Registered Email" />
                             </div>
                             <div className="p-3 col align-self-center">
-                                <input type="password" className="form-control  shadow-sm " id="InputPassword1"
-                                    value={password} onChange={event => setPassword(event.target.value)} placeholder="Enter Registered Password" />
+                                <input type="password" className="form-control  shadow-sm " id="InputPassword1" name='password' onChange={handleChange}
+                                     placeholder="Enter Registered Password" />
                             </div>
                             <div className="text-center p-3">
-                                <button type="submit" className="btn btn-outline-primary shadow p-1 mb-5 rounded-1">
-                                    <Link to="/userdash" className="text-dark p-3" style={{ textDecoration: "none" }}>Login</Link></button><br />
+                                <button type="submit" onClick={handleSubmit} className="btn btn-outline-primary shadow p-1 mb-5 rounded-1">Login</button><br />
                                 <Link className="text-danger fs-5" to="/forgetpass">Forgot password?</Link>
                             </div>
                             <div className="text-center p-3">

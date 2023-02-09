@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "../.././Navbar"
 import { Link } from "react-router-dom";
-import Fgp from '../images/ForgPass.jpeg'
+import Fgp from '../images/ForgPass1.gif'
 
 
 const ForgetPass = () => {
@@ -10,7 +10,7 @@ const ForgetPass = () => {
         <>
             <Nav />
             <div className="row">
-                <div className="col-xl-5 h-100  d-flex d-xl-block justify-content-center">
+                <div className="col-xl-5 h-100  d-flex justify-content-center">
                     <img src={Fgp} alt="Sample photo" className="img-fluid register-photo mt-5 pt-5" />
                 </div>
                 <div className='frgp-container d-flex justify-content-center m-5 p-5 col '>

@@ -59,7 +59,7 @@ const Services = () => {
                                             <img className="img-fluid flex-shrink-0" src="https://images.livemint.com/rf/Image-621x414/LiveMint/Period2/2018/11/26/Photos/Processed/homeloaniStock-kCrG--621x414@LiveMint.jpg" alt="" />
                                         </div>
                                         <div className="card-content">
-                                            <h4 className="card-title">
+                                            <h4 className="card-title mt-1">
                                                 Personal Loan
                                             </h4>
                                             <p className="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas porro totam et praesentium, cupiditate repellat, pariatur dicta at voluptatem assumenda mollitia ratione commodi? Delectus, voluptatibus.</p>

@@ -1,21 +1,12 @@
 import React, { useState } from 'react';
 import Nav from '../Navbar';
 import './style.css'
-import RegPho from "./image/RegImage.webp"
+import RegPho from "./image/RegImage1.gif"
 import axios from 'axios';
 
 
 
 const Register = () => {
-
-    // const ChangeDateForm = () => {
-    //   document.getElementById("datepicker").addEventListener("change", function () {
-    //     let date = new Date(this.value);
-    //     let formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1).toString().padStart(2, "0") + "-" + date.getDate().toString().padStart(2, "0");
-    //     this.value = formattedDate;
-    //   });
-
-    // }
 
     const [formData, setFormData] = useState({
 
@@ -62,7 +53,7 @@ const Register = () => {
   return (
     <>
       <Nav />
-      <section className="h-100 bg-dark">
+      <section className="h-100 bg-white">
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center mt-3 h-100">
             <div className="col">
