@@ -1,23 +1,22 @@
 import React from "react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import "./user.css"
+import { useState } from "react";
+import "../user.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
-import { FaRupeeSign, FaHome, FaUserAlt, FaRegCreditCard } from "react-icons/fa";
-import Kakashi from "../../../images/NavbarImages/kakashi.ico"
+import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign } from "react-icons/fa";
+import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 
-
-const UserDashBoard = () => {
-
+const AccountInfo = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
-    };
+    }
 
     return (
         <>
+
             <div className="wrapper">
                 {/* <!-- Sidebar  --> */}
                 <nav id="sidebar" className={sidebarOpen ? "active" : ""}>
@@ -74,60 +73,46 @@ const UserDashBoard = () => {
                         </div>
                     </nav>
 
-                    <div className="card ">
-                        <div className="card-header d-flex col bg-secondary text-dark fs-2">
-                            <div className="col-9">Account Number :-</div>
-                            <div className="col-3 text-end"> 4561237890</div>
-                        </div>
-                        <div className="card-body d-flex col text-end">
-                            <div className="col-9 text-start fs-3">Account Number :-</div>
-                            <p className="col-3 card-text fs-3"><FaRupeeSign />500.0</p>
-                        </div>
-                    </div>
-
-                    <div className="card">
-                        <div className="card-header">
-                            <b>Pay new Beneficiary - Enter new Beneficiary details</b>
-                        </div>
-                        <div className="card-body">
-                            <div className="row">
-                                <div className="col-md-6 mb-4">
-                                    <div className="form-outline">
-                                        <input type="text" id="form3Example1m" className="form-control form-control-lg" placeholder='Payee Name' />
+                    <div className="m-5" id="page-content">
+                        <div className="row">
+                            <div className="col-lg-12 grid-margin stretch-card align-middle">
+                                <div className="card">
+                                    <div className="card-header bg-secondary fs-1">
+                                        Account Information
+                                    </div>
+                                    <div className="card-body">
+                                        <span className="fs-4">FirstName: Prashant</span><br/>
+                                        <span className="fs-4">userMiddleName: Vinod </span><br/>
+                                        <span className="fs-4">userLastName: Pandey</span><br/>
+                                        <span className="fs-4">userDOB: 4/11/2000 </span><br/>
+                                        <span className="fs-4">userPhoneNo: 8291571956</span><br/>
+                                        <span className="fs-4">userAltPhoneNo: 9224310983</span><br/>
+                                        <span className="fs-4">userAddress: Vikhroli</span><br/>
+                                        <span className="fs-4">userAadharNo: 4561237890 </span><br/>
+                                        <span className="fs-4">userPAN: FSDPP5243Q</span><br/>
+                                        <span className="fs-4">userGender: MALE </span><br/>
+                                        <span className="fs-4">userNationality: Indian </span><br/>
+                                        <span className="fs-4">email: pandeyprashant9532gamil.com </span><br/>
+                                        <span className="fs-4">userAccType: Saveing </span><br/>
+                                        <span className="fs-4">userBranchName: Vikhroli </span><br/>
+                                        <span className="fs-4">userIFSC: PSL00001</span><br/>
+                                        <span className="fs-4">accountNumber: 4512369870 </span><br/>
+                                        <span className="fs-4">createAt: 08/02/2023 </span><br/>
+                                    </div>
+                                    <div className="card-footer d-flex justify-content-center">
+                                    <button type="submit" className="btn btn-outline-warning shadow p-1 mt-3 mb-3 rounded-1">
+                                    <Link to="/userdash" className="text-dark p-3" style={{ textDecoration: "none" }}>Update</Link></button><br />
                                     </div>
                                 </div>
-                                <div className="col-md-6 mb-4">
-                                    <div className="form-outline">
-                                        <input type="text" id="form3Example1m" className="form-control form-control-lg" placeholder='IFSC Code' required />
-                                    </div>
-                                </div>
-                                <div className="col-md-6 mb-4">
-                                    <div className="form-outline">
-                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Account Number' required />
-                                    </div>
-                                </div>
-                                <div className="col-md-6 mb-4">
-                                    <div className="form-outline">
-                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Re-Enter Account Number' required />
-                                    </div>
-                                </div>
-                                <div className="col-md-12 mb-4 ">
-                                    <div className="form-outline">
-                                    </div>
-                                    <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Enter Amount' required />
-                                </div>
-                                <div className="row ">
-                                    <button type="button" className="btn btn-success btn-lg ms-2">Transfer</button>
-                                </div>
+                                <button type="submit" className="btn btn-outline-primary shadow p-1 mb-5 rounded-1">
+                                    <Link to="/userdash" className="text-dark p-3" style={{ textDecoration: "none" }}>Back To Home</Link></button><br />
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </>
-
     )
 }
 
-export default UserDashBoard;
+export default AccountInfo;

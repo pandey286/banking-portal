@@ -6,7 +6,7 @@ import { useState } from "react";
 import "../user.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
-import { FaRupeeSign } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 
 
@@ -22,38 +22,47 @@ const ViewTrans = () => {
 
     return (
         <>
-
-            <div className="wrapper">
+<div className="wrapper">
                 {/* <!-- Sidebar  --> */}
                 <nav id="sidebar" className={sidebarOpen ? "active" : ""}>
-                    <div className="sidebar-header">
-                        <h3><span><img className='mb-1' src={Kakashi} width="30px" /></span><strong>PSL Bank Ltd.</strong></h3>
+                    <div className="sidebar-header fs-5">
+                        <Link className="list-item d-flex" to="/userdash">
+                            <FaUserAlt className="me-3 mt-1" />
+                            <span >UserEmail</span>
+                        </Link>
                     </div>
-
                     <ul className="list-unstyled components">
                         <li>
-                            <a className="list-item" href="#">
-                                <i className="fa fa-user-circle me-2"></i>
+                            <Link className="list-item d-flex" to="/userdash">
+                                <FaHome className="me-3 mt-1" />
+                                <span >Home</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/userdash/accountInfo">
+                                <FaUserAlt className="me-3 mt-1" />
                                 <span>Account Information</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a className="list-item" href="#">
-                                <i className="fa fa-credit-card me-2"></i>
+                            <Link className="list-item d-flex" to="/userdash/card">
+                                <FaRegCreditCard className="me-3 mt-1" />
                                 <span>Card's Management </span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a className="list-item" href="/userdash/viewtrans">
-                                <i className="fa fa-inr me-2"></i>
+                            <Link className="list-item d-flex" to="/userdash/viewtrans">
+                                <FaRupeeSign className="me-3 mt-1" />
                                 <span>View Transactions</span>
-                            </a>
+                            </Link>
                         </li>
                     </ul>
 
                     <ul className="list-unstyled CTAs">
                         <li>
-                            <a href="/" className="download "><BiLogOut />Logout</a>
+                            <Link to="/" className="logout d-flex col"><BiLogOut className="me-3 mt-1 col-3" />
+                                <span className="col-4">Logout</span>
+                            </Link>
                         </li>
                     </ul>
                 </nav>
@@ -65,6 +74,7 @@ const ViewTrans = () => {
                             <button type="button" onClick={toggleSidebar} id="sidebarCollapse" className="btn btn-outline-dark align-middle">
                                 <GiHamburgerMenu />
                             </button>
+                            <h3><span><img className='mb-1' src={Kakashi} width="30px" /></span><strong>PSL Bank Ltd.</strong></h3>
                         </div>
                     </nav>
 
@@ -72,8 +82,8 @@ const ViewTrans = () => {
                         <div className="row">
                             <div className="col-lg-12 grid-margin stretch-card align-middle">
                                 <div className="card">
-                                    <div className="card-header bg-info fs-1">
-                                        All Transactions <GrTransaction />
+                                    <div className="card-header bg-secondary fs-1">
+                                        All Transaction <GrTransaction />
                                     </div>
                                     <div className="card-body">
                                         <div className="table-responsive">
@@ -128,7 +138,7 @@ const ViewTrans = () => {
                                                         <td>4/11/2056</td>
                                                         <td>Joe Doe</td>
                                                         <td>$1200</td>
-                                                        <td><AiFillCloseCircle /></td>
+                                                        <td><AiFillCheckCircle style={SuccessIcon} /></td>
                                                     </tr>
                                                     <tr>
                                                         <td>TRANS0000012</td>
@@ -154,11 +164,6 @@ const ViewTrans = () => {
                             </div>
                         </div>
                     </div>
-
-
-
-
-
                 </div>
             </div>
         </>

@@ -20,6 +20,8 @@ import ViewTrans from "./components/Dashboard/User/UserDashBoardFunction/ViewTra
 import "../node_modules/@fortawesome/free-solid-svg-icons/faBars"
 import '../src/css/style.css';
 import ForgetPass from "./components/Logins/ForgetPassword/ForgetPassword";
+import AccountInfo from "./components/Dashboard/User/UserDashBoardFunction/AccountInfo";
+import CardMan from "./components/Dashboard/User/UserDashBoardFunction/CardManage";
 
 
 function App(props) {
@@ -45,6 +47,8 @@ function App(props) {
           <Route path='/register' element={<Register />} />
           <Route path="/admindash" element={<AdminDashBoard />} />
           <Route path="/userdash/viewtrans" element={<ViewTrans/>}/>
+          <Route path="/userdash/accountInfo" element={<AccountInfo/>}/>
+          <Route path="/userdash/card" element={<CardMan/>}/>
         </Routes>
       </BrowserRouter>
     </>
