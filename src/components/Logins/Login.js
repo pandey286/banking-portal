@@ -50,7 +50,7 @@ function Login() {
             try {
                 const response = await axios.post(url, formData);
                 swal({
-                    title: "Login Succesful",
+                    title: "Login Succesfully!! ",
                     text: "Your Login Was Successful",
                     icon: "success",
                 });
@@ -58,7 +58,7 @@ function Login() {
             } catch (error) {
                 console.error(error);
                 swal({
-                    title: "Login UnSuccessFul !",
+                    title: "Login Failed SuccessFully !",
                     text: "Please Check Your Credential",
                     icon: "warning",
                 });
