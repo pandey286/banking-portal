@@ -84,7 +84,7 @@ const Register = () => {
                           </div>
                           <div className="col-md-6 mb-4">
                             <div className="form-outline">
-                              <input type="date" id="datepicker" name='userDOB'  onChange={handleChange}  className="form-control form-control-lg" placeholder='Date Of Birth' required />
+                              <input type="date" aria-label='dob  ' id="datepicker" name='userDOB'  onChange={handleChange}  className="form-control form-control-lg" placeholder='Date Of Birth' required />
                             </div>
                           </div>
                           <div className="col-md-6 mb-4">
@@ -113,7 +113,7 @@ const Register = () => {
                           <div className="col-md-6 mb-4">
                             <div className="form-outline">
                               <select id="form3Example1n" name='userGender' onChange={handleChange} className="select form-control form-control-lg" placeholder='Gender'>
-                                <option value="">Gender</option>
+                                <option selected>Gender</option>
                                 <option value="MALE">MALE</option>
                                 <option value="FEMALE">FEMALE</option>
                                 <option value="OTHERS">OTHER</option>
@@ -123,7 +123,7 @@ const Register = () => {
                           <div className="col-md-6 mb-4">
                             <div className="form-outline">
                               <select id="form3Example1n" name='userNationality' onChange={handleChange} className="select form-control form-control-lg" placeholder='Nationality'>
-                                <option value="">Nationality</option>
+                                <option selected>Nationality</option>
                                 <option value="INDIAN">Indian</option>
                                 <option value="NRI">NRI</option>
                               </select>
@@ -135,7 +135,7 @@ const Register = () => {
                             <input type="email" id="form3Example8"  name='email'  onChange={handleChange} className="form-control form-control-lg" placeholder='Email' />
                           </div>
                           <div className="form-outline col-md-6 mb-4">
-                            <input type="num" id="form3Example8" name='password'  onChange={handleChange}  className="form-control form-control-lg" placeholder='Password' />
+                            <input type="text" id="form3Example8" name='password'  onChange={handleChange}  className="form-control form-control-lg" placeholder='Password' />
                           </div>
                           <div className="form-outline col-md-6 mb-4">
                             <input type="text" id="form3Example8"  name='userAccType' onChange={handleChange} className="form-control form-control-lg" placeholder='Account Type' />

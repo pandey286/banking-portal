@@ -4,7 +4,7 @@ import { useState } from "react";
 import "../user.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
-import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionCircle } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 
 const CardMan = () => {
@@ -16,8 +16,8 @@ const CardMan = () => {
 
     return (
         <>
-<div className="wrapper">
-                {/* <!-- Sidebar  --> */}
+           <div className="wrapper">
+                 {/* <!-- Sidebar  --> */}
                 <nav id="sidebar" className={sidebarOpen ? "active" : ""}>
                     <div className="sidebar-header fs-5">
                         <Link className="list-item d-flex" to="/userdash">
@@ -48,6 +48,18 @@ const CardMan = () => {
                             <Link className="list-item d-flex" to="/userdash/viewtrans">
                                 <FaRupeeSign className="me-3 mt-1" />
                                 <span>View Transactions</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/userdash/loanApp">
+                                <FaWpforms className="me-3 mt-1" />
+                                <span>Loan Application</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/userdash/loanApp">
+                                <FaQuestionCircle className="me-3 mt-1" />
+                                <span>FAQ</span>
                             </Link>
                         </li>
                     </ul>

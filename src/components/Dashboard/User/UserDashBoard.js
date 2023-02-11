@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./user.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
-import { FaRupeeSign, FaHome, FaUserAlt, FaRegCreditCard } from "react-icons/fa";
+import { FaRupeeSign, FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle} from "react-icons/fa";
 import Kakashi from "../../../images/NavbarImages/kakashi.ico"
 
 
@@ -50,6 +50,18 @@ const UserDashBoard = () => {
                             <Link className="list-item d-flex" to="/userdash/viewtrans">
                                 <FaRupeeSign className="me-3 mt-1" />
                                 <span>View Transactions</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/userdash/loanApp">
+                                <FaWpforms className="me-3 mt-1" />
+                                <span>Loan Application</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/userdash/loanApp">
+                                <FaQuestionCircle className="me-3 mt-1" />
+                                <span>FAQ</span>
                             </Link>
                         </li>
                     </ul>
