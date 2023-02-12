@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Prash from '../images/AboutImg/Prashant.jpg'
 import Say from '../images/AboutImg/SayeriImg1.jpeg'
 import JL from '../images/AboutImg/JL_img.jpeg';
+import Apo from '../images/AboutImg/Apoorava.jpeg'
 
 const AboutUs = () => {
   return (
@@ -69,7 +70,7 @@ const AboutUs = () => {
 
             {/* <!-- Team item --> */}
             <div className="col-xl-3 col-sm-6 mb-5">
-              <div className="bg-white rounded shadow mb-5 py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-team/teacher-4.jpg" alt="" width="100" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" />
+              <div className="bg-white rounded shadow mb-5 py-5 px-4"><img src={Apo} alt="" width="100" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" />
                 <h5 className="mb-0">Apoorva Laddipirla</h5><span className="small text-uppercase text-muted">CEO - Founder</span>
                 <ul className="social mb-0 list-inline mt-3">
                   <li className="list-inline-item"><a href="#" className="social-link"><i className="fa fa-facebook-f"></i></a></li>
