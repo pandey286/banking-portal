@@ -24,6 +24,9 @@ import AccountInfo from "./components/Dashboard/User/UserDashBoardFunction/Accou
 import CardMan from "./components/Dashboard/User/UserDashBoardFunction/CardManage";
 import LoanApp from "./components/Dashboard/User/UserDashBoardFunction/LoanApp";
 import Faq from "./components/Dashboard/User/UserDashBoardFunction/Faq";
+import AllCustomer from "./components/Dashboard/Admin/AdminFunction/SeeAllCustomer";
+import CustomerLoan from "./components/Dashboard/Admin/AdminFunction/CustomerLoanApp";
+import CustomerCard from "./components/Dashboard/Admin/AdminFunction/CustomerCardApp";
 
 
 function App(props) {
@@ -48,6 +51,9 @@ function App(props) {
           <Route path="/userdash" element={<UserDashBoard />} />
           <Route path='/register' element={<Register />} />
           <Route path="/admindash" element={<AdminDashBoard />} />
+          <Route path="/admindash/allcustomer" element={<AllCustomer />} />
+          <Route path="/admindash/customer-loan" element={<CustomerLoan />} />
+          <Route path="/admindash/customer-card" element={<CustomerCard />} />
           <Route path="/userdash/viewtrans" element={<ViewTrans/>}/>
           <Route path="/userdash/accountInfo" element={<AccountInfo/>}/>
           <Route path="/userdash/card" element={<CardMan/>}/>

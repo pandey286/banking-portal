@@ -32,6 +32,7 @@ const Navbar = () => {
                         </ul>
                         <button className="btn btn-outline-primary shadow  me-3" type="button"><NavLink className="nav-link text-dark " to="/login">Login</NavLink></button>
                         <button className="btn btn-outline-primary shadow me-3" type="button"><NavLink className="nav-link text-dark " to="/admindash">Admin</NavLink></button>
+                        <button className="btn btn-outline-primary shadow me-3" type="button"><NavLink className="nav-link text-dark " to="/userdash">userdash</NavLink></button>
                     </div>
                 </div>
             </nav>

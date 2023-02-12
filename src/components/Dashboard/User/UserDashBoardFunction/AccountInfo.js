@@ -13,6 +13,27 @@ const AccountInfo = () => {
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     }
+    const [editMode, setEditMode] = useState(false);
+
+    const [phone, setPhone] = useState(" ");
+
+    const [altPhone, setAltPhone] = useState(" ");
+
+    const [address, setAddress] = useState(" ");
+
+    const updateData = () => {
+        setEditMode(true);
+    }
+
+    const handlePhone = (event) => {
+        setPhone(event.target.value);
+    };
+    const handleAddress = (event) => {
+        setAddress(event.target.value);
+    };
+    const handleAltPhone = (event) => {
+        setAltPhone(event.target.value);
+    };
 
     return (
         <>
@@ -42,7 +63,7 @@ const AccountInfo = () => {
                         <li>
                             <Link className="list-item d-flex" to="/userdash/card">
                                 <FaRegCreditCard className="me-3 mt-1" />
-                                <span>Card's Management </span>
+                                <span>Card's Application </span>
                             </Link>
                         </li>
                         <li>
@@ -54,7 +75,7 @@ const AccountInfo = () => {
                         <li>
                             <Link className="list-item d-flex" to="/userdash/loanApp">
                                 <FaWpforms className="me-3 mt-1" />
-                                <span>Loan Application</span>
+                                <span>Apply For Loan's</span>
                             </Link>
                         </li>
                         <li>
@@ -94,26 +115,55 @@ const AccountInfo = () => {
                                     </div>
                                     <div className="card-body row  d-flex ">
                                         <div className="col-md-6"><p>First Name :-</p></div><div className="col-md-6 justify-content-end"><p>Prashant</p></div>
+
                                         <div className="col-md-6"><p>Middle Name :-</p></div><div className="col-md-6 justify-content-end"><p>Vinod</p></div>
+
                                         <div className="col-md-6"><p>Last Name :-</p></div><div className="col-md-6 justify-content-end"><p>Pandey</p></div>
+
                                         <div className="col-md-6"><p>Date Of Birth :-</p></div><div className="col-md-6 justify-content-end"><p>04-11-2000</p></div>
-                                        <div className="col-md-6"><p>Phone Number :-</p></div><div className="col-md-6 justify-content-end"><p>8291571956</p></div>
-                                        <div className="col-md-6"><p>Alternate Phone Number :-</p></div><div className="col-md-6 justify-content-end"><p>7458961205</p></div>
-                                        <div className="col-md-6"><p>Address :-</p></div><div className="col-md-6 justify-content-end"><p>Vikhroli</p></div>
+
+                                        <div className="col-md-6"><p>Phone Number :-</p></div>{editMode ? (<input type="text" value={phone} onChange={handlePhone} />) : (
+                                            <div className="col-md-6 justify-content-end"><p>8291571956</p></div>)}
+
+                                        <div className="col-md-6"><p> Alternate Phone Number :-</p></div>{editMode ? (<input type="text" value={altPhone} onChange={handleAltPhone} />) : (
+                                            <div className="col-md-6 justify-content-end"><p>7845963210</p></div>)}
+
+                                        <div className="col-md-6"><p> Address :-</p></div>{editMode ? (<input type="text" value={address} onChange={handleAddress} />) : (
+                                            <div className="col-md-6 justify-content-end"><p>Vikhroli</p></div>)}
+
                                         <div className="col-md-6"><p>Aadhar-Card Number :-</p></div><div className="col-md-6 justify-content-end"><p>656303335855</p></div>
+
                                         <div className="col-md-6"><p>PAN Number :-</p></div><div className="col-md-6 justify-content-end"><p>FDWPP6214F</p></div>
+
                                         <div className="col-md-6"><p>Gender :-</p></div><div className="col-md-6 justify-content-end"><p>MALE</p></div>
+
                                         <div className="col-md-6"><p>Nationality :-</p></div><div className="col-md-6 justify-content-end"><p>INDIAN</p></div>
+
                                         <div className="col-md-6"><p>Email :-</p></div><div className="col-md-6 justify-content-end"><p>pandeyprashant953@gmail.com</p></div>
+
                                         <div className="col-md-6"><p>Account-Type :-</p></div><div className="col-md-6 justify-content-end"><p>Saving</p></div>
+
                                         <div className="col-md-6"><p>Branch-Name :-</p></div><div className="col-md-6 justify-content-end"><p>Vikhroli</p></div>
-                                        <div className="col-md-6"><p>IFSC Code :-</p></div><div className="col-md-6 justify-content-end"><p>PSL00001</p></div>
+
                                         <div className="col-md-6"><p>Account Nummber :-</p></div><div className="col-md-6 justify-content-end"><p>1101</p></div>
+
                                         <div className="col-md-6"><p>Creation Date :-</p></div><div className="col-md-6 justify-content-end"><p>08/02/2023</p></div>
                                     </div>
                                     <div className="card-footer d-flex justify-content-center">
-                                        <button type="submit" className="btn btn-outline-warning shadow p-1 mt-3 mb-3 rounded-1">
-                                            <Link to="/userdash" className="text-dark p-3" style={{ textDecoration: "none" }}>Update</Link></button><br />
+                                        <button type="submit" className="btn btn-outline-warning shadow p-1 mt-3 mb-3 rounded-1" onClick={updateData}>
+                                            <Link to="" className="text-dark p-3" style={{ textDecoration: "none" }}>Update</Link></button><br />
+                                        <button type="submit" className="btn btn-outline-primary shadow p-1 mt-3 ms-3 mb-3 rounded-1" onClick={updateData}>
+                                            <Link to="" className="text-dark p-3" style={{ textDecoration: "none" }}>Save</Link></button><br />
+                                    </div>
+                                </div>
+                                <div className="card">
+                                    <div className="card-body">
+                                        <ul>
+                                            <p className="text-danger fw-bold">Please Note That Right Now You Can Only Update</p>
+                                            <li>Your Phone Number</li>
+                                            <li>Your Alternate Phone Number</li>
+                                            <li>And, Your Address for Now</li>
+                                        </ul>
                                     </div>
                                 </div>
                                 <button type="submit" className="btn btn-outline-primary shadow p-1 mb-5 rounded-1">

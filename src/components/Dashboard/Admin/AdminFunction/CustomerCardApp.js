@@ -1,15 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "./admindash.css"
+import "../.././Admin/admindash.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms} from "react-icons/fa";
-import Kakashi from "../../../images/NavbarImages/kakashi.ico"
+import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 
 
-const AdminDashboard = () => {
+const CustomerCard = () => {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -74,7 +74,7 @@ const AdminDashboard = () => {
                             <h3><span><img className='mb-1' src={Kakashi} width="30px" /></span><strong>PSL Bank Ltd.</strong></h3>
                         </div>
                     </nav>
-                    <div className="text-center fs-1"> Welcome PSL  Admin, Hope You Are Having A Great Day. Let's See What Work We Have Today. </div>
+                    
                 </div>
             </div>
         </>
@@ -82,4 +82,4 @@ const AdminDashboard = () => {
     )
 }
 
-export default AdminDashboard;
+export default CustomerCard;

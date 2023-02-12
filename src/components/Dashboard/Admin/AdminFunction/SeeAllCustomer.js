@@ -1,15 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "./admindash.css"
+import "../.././Admin/admindash.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms} from "react-icons/fa";
-import Kakashi from "../../../images/NavbarImages/kakashi.ico"
+import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 
 
-const AdminDashboard = () => {
+const AllCustomer = () => {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -82,4 +82,4 @@ const AdminDashboard = () => {
     )
 }
 
-export default AdminDashboard;
+export default AllCustomer;

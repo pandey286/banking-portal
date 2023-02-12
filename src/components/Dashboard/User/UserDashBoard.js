@@ -43,7 +43,7 @@ const UserDashBoard = () => {
                         <li>
                             <Link className="list-item d-flex" to="/userdash/card">
                                 <FaRegCreditCard className="me-3 mt-1" />
-                                <span>Card's Management </span>
+                                <span>Card's Application </span>
                             </Link>
                         </li>
                         <li>
@@ -55,7 +55,7 @@ const UserDashBoard = () => {
                         <li>
                             <Link className="list-item d-flex" to="/userdash/loanApp">
                                 <FaWpforms className="me-3 mt-1" />
-                                <span>Loan Application</span>
+                                <span>Apply For Loan's</span>
                             </Link>
                         </li>
                         <li>

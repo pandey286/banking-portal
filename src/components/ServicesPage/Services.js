@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import Car from ".././Shared/Carousel"
 import Service1 from "./images/services1.jpg"
-import Service2 from "./images/services2.jpg"
 import Service3 from "./images/services3.jpg"
 import CM from "./images/cm.jpeg"
 import GL from "./images/gl.jpeg"

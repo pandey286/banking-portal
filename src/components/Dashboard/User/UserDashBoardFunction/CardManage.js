@@ -41,7 +41,7 @@ const CardMan = () => {
                         <li>
                             <Link className="list-item d-flex" to="/userdash/card">
                                 <FaRegCreditCard className="me-3 mt-1" />
-                                <span>Card's Management </span>
+                                <span>Card's Application </span>
                             </Link>
                         </li>
                         <li>
@@ -53,7 +53,7 @@ const CardMan = () => {
                         <li>
                             <Link className="list-item d-flex" to="/userdash/loanApp">
                                 <FaWpforms className="me-3 mt-1" />
-                                <span>Loan Application</span>
+                                <span>Apply For Loan's</span>
                             </Link>
                         </li>
                         <li>
@@ -85,7 +85,77 @@ const CardMan = () => {
                     </nav>
 
                     <div className="m-5" id="page-content">
-                        <h1>Card Mangement</h1>
+                    <div className="card">
+                            <div className="card-header fs-2 "> Apply For Card</div>
+                            <div className="card-body d-flex col">
+                                <div className="row">
+                                    <div className="col-xl-5">
+                                        <img src="https://images.samsung.com/is/image/samsung/assets/in/samsung-card/slider-mob-31.jpg?$ORIGIN_JPG$" className="img-fluid" />
+                                    </div>
+                                    <div className="col-xl-7">
+                                        <div className="row">
+                                            <div className="col-md-3 mb-4">
+                                                <div className="form-outline">
+                                                    <select id="Loan" className="select form-control form-control-lg" placeholder='Loan'>
+                                                        <option selected>Title</option>
+                                                        <option value="Mr">Mr.</option>
+                                                        <option value="Mrs">Mrs.</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div className="form-outline col-md-9 mb-4">
+                                                <input type="text" id="name" className="form-control form-control-lg" placeholder='Full-Name' />
+                                            </div>
+                                            <div className="form-outline col-md-6 mb-4">
+                                               <span className="fs-4">Date Of Birth:- </span>
+                                            </div>
+                                            <div className="form-outline col-md-6 mb-4">
+                                                <input type="date" id="monthlyIncome" className="form-control form-control-lg"  />
+                                            </div>
+                                            <div className="form-outline col-md-6 mb-4">
+                                                <input type="text" id="mobileNo" className="form-control form-control-lg" placeholder='Phone No' />
+                                            </div>
+                                            <div className="col-md-6 mb-4">
+                                                <div className="form-outline">
+                                                    <select id="gender" className="select form-control form-control-lg" placeholder='Gender'>
+                                                        <option selected>Gender</option>
+                                                        <option value="male">Male</option>
+                                                        <option value="female">Female</option>
+                                                        <option value="other">Others</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6 mb-4">
+                                                <div className="form-outline">
+                                                    <select id="profession" className="select form-control form-control-lg" placeholder='profession'>
+                                                        <option selected>Profession</option>
+                                                        <option value="self">Self-Employeed</option>
+                                                        <option value="salary">Salaried</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6 mb-4">
+                                                <div className="form-outline">
+                                                    <select id="cardtype" className="select form-control form-control-lg" placeholder='Card Type'>
+                                                        <option selected>Card Type</option>
+                                                        <option value="platinum">Platinum</option>
+                                                        <option value="gold">Gold</option>
+                                                        <option value="silver">Silver</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="form-outline col-md-12 mb-4">
+                                                <input type="text" id="address" className="form-control form-control-lg" placeholder='Address' />
+                                            </div>
+                                            <div className="row d-flex justify-content-center">
+                                                <button className="btn btn-outline-primary col-md-4 mt-3" type="submit">Apply</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

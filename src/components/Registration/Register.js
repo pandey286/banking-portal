@@ -8,7 +8,30 @@ import axios from 'axios';
 
 const Register = () => {
 
-    const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
+
+    userFirstName: '',
+    userMiddleName: '',
+    userLastName: '',
+    userDOB: '',
+    userPhoneNo: '',
+    userAltPhoneNo: '',
+    userAddress: '',
+    userAadharNo: '',
+    userPAN: '',
+    userGender: '',
+    userNationality: '',
+    email: '',
+    password: '',
+    userAccType: '',
+    userBranchName: '',
+    userIFSC: '',
+    accountNumber: '',
+    createAt: '',
+  });
+
+  const resetFormData = () => {
+    setFormData({
       userFirstName: '',
       userMiddleName: '',
       userLastName: '',
@@ -28,26 +51,27 @@ const Register = () => {
       accountNumber: '',
       createAt: '',
     });
+  };
 
-    const handleChange = event => {
-      setFormData({
-        ...formData,
-        [event.target.name]: event.target.value
-      });
-    };
+  const handleChange = event => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value
+    });
+  };
 
-    const url = "http://localhost:8080/api/customers/register"
+  const url = "http://localhost:8080/api/customers/register"
 
-    const handleSubmit = async (event) => {
-      event.preventDefault();
-      try {
-        const response = await axios.post(url, formData);
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-  
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(url, formData);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   return (
     <>
@@ -73,39 +97,34 @@ const Register = () => {
                           </div>
                           <div className="col-md-6 mb-4">
                             <div className="form-outline">
-                              <input type="text" name="userMiddleName"  onChange={handleChange} id="form3Example1m" className="form-control form-control-lg" placeholder='Middle Name' required />
+                              <input type="text" name="userMiddleName" onChange={handleChange} id="form3Example1m" className="form-control form-control-lg" placeholder='Middle Name' required />
                             </div>
                           </div>
                           <div className="col-md-6 mb-4">
                             <div className="form-outline">
-                              <input type="text" id="lastname" name='userLastName'  onChange={handleChange}  className="form-control form-control-lg" placeholder='Last Name' required />
+                              <input type="text" id="lastname" name='userLastName' onChange={handleChange} className="form-control form-control-lg" placeholder='Last Name' required />
                             </div>
                           </div>
                           <div className="col-md-6 mb-4">
                             <div className="form-outline">
-                              <input type="date" aria-label='dob  ' id="datepicker" name='userDOB'  onChange={handleChange}  className="form-control form-control-lg" placeholder='Date Of Birth' required />
+                              <input type="text" id="phoneno" name='userPhoneNo' onChange={handleChange} className="form-control form-control-lg" placeholder='Phone No.' required />
                             </div>
                           </div>
                           <div className="col-md-6 mb-4">
                             <div className="form-outline">
-                              <input type="text" id="phoneno" name='userPhoneNo'  onChange={handleChange}  className="form-control form-control-lg" placeholder='Phone No.' required />
-                            </div>
-                          </div>
-                          <div className="col-md-6 mb-4">
-                            <div className="form-outline">
-                              <input type="text" id="form3Example1n" name='userAltPhoneNo'  onChange={handleChange} className="form-control form-control-lg" placeholder='Alternate Phone No.' required />
+                              <input type="text" id="form3Example1n" name='userAltPhoneNo' onChange={handleChange} className="form-control form-control-lg" placeholder='Alternate Phone No.' required />
                             </div>
                           </div>
                         </div>
                         <div className="form-outline mb-4">
-                          <input type="text" id="form3Example9" name='userAddress'   onChange={handleChange} className="form-control form-control-lg" placeholder='Address' />
+                          <input type="text" id="form3Example9" name='userAddress' onChange={handleChange} className="form-control form-control-lg" placeholder='Address' />
                         </div>
                         <div className='row'>
                           <div className="form-outline col-md-6 mb-4">
-                            <input type="text" id="form3Example8" name='userAadharNo'  onChange={handleChange}  className="form-control form-control-lg" placeholder='Aadhaar Number' />
+                            <input type="text" id="form3Example8" name='userAadharNo' onChange={handleChange} className="form-control form-control-lg" placeholder='Aadhaar Number' />
                           </div>
                           <div className="form-outline col-md-6 mb-4">
-                            <input type="text" id="form3Example8" name='userPAN' onChange={handleChange}  className="form-control form-control-lg" placeholder='PAN Number' />
+                            <input type="text" id="form3Example8" name='userPAN' onChange={handleChange} className="form-control form-control-lg" placeholder='PAN Number' />
                           </div>
                         </div>
                         <div className='row'>
@@ -131,30 +150,41 @@ const Register = () => {
                         </div>
                         <div className='row'>
                           <div className="form-outline col-md-6 mb-4">
-                            <input type="email" id="form3Example8"  name='email'  onChange={handleChange} className="form-control form-control-lg" placeholder='Email' />
+                            <input type="email" id="form3Example8" name='email' onChange={handleChange} className="form-control form-control-lg" placeholder='Email' />
                           </div>
                           <div className="form-outline col-md-6 mb-4">
-                            <input type="text" id="form3Example8" name='password'  onChange={handleChange}  className="form-control form-control-lg" placeholder='Password' />
+                            <input type="text" id="form3Example8" name='password' onChange={handleChange} className="form-control form-control-lg" placeholder='Password' />
                           </div>
                           <div className="form-outline col-md-6 mb-4">
-                            <input type="text" id="form3Example8"  name='userAccType' onChange={handleChange} className="form-control form-control-lg" placeholder='Account Type' />
+                            <input type="text" id="form3Example8" name='userAccType' onChange={handleChange} className="form-control form-control-lg" placeholder='Account Type' />
                           </div>
                           <div className="form-outline col-md-6 mb-4">
-                            <input type="text" id="form3Example8"  name='userBranchName' onChange={handleChange} className="form-control form-control-lg" placeholder='Branch Name' />
+                            <input type="text" id="form3Example8" name='userBranchName' onChange={handleChange} className="form-control form-control-lg" placeholder='Branch Name' />
                           </div>
                           <div className="form-outline col-md-6 mb-4">
                             <input type="text" id="form3Example8" name='userIFSC' onChange={handleChange} className="form-control form-control-lg" placeholder='IFSC Code' />
                           </div>
                           <div className="form-outline col-md-6 mb-4">
-                            <input type="number" id="form3Example8"  name='accountNumber'  onChange={handleChange} className="form-control form-control-lg" placeholder='Account Number' />
+                            <input type="number" id="form3Example8" name='accountNumber' onChange={handleChange} className="form-control form-control-lg" placeholder='Account Number' />
                           </div>
-                          <div className="form-outline col-md-6 mb-4">
-                            <input type="date" id="form3Example8"  name='createAt'  onChange={handleChange} className="form-control form-control-lg" placeholder='Creation Date' />
+                          <div className="col-md-6 mb-4">
+                            <span className='fs-4'>Date Of Birth :-</span>
+                          </div>
+                          <div className='col-md-6 mb-4'>
+                            <div className="form-outline">
+                              <input type="date" aria-label='dob' id="datepicker" name='userDOB' onChange={handleChange} className="form-control form-control-lg " placeholder='Date Of Birth' required />
+                            </div>
+                          </div>
+                          <div className="col-md-6 mb-4">
+                            <span className='fs-4'>Account Creation Date:-</span>
+                          </div>
+                          <div className="form-outline col-md-6 mb-4 d-flex justify-content-left">
+                            <input type="date" id="form3Example8" name='createAt' onChange={handleChange} className="form-control form-control-lg" placeholder='Creation Date' />
                           </div>
                         </div>
                         <div className="d-flex justify-content-center pt-3">
-                          <button type="button" className="btn btn-warning btn-lg">Reset all</button>
-                          <button type="button" className="btn btn-success btn-lg ms-2" onClick={handleSubmit}>Register</button>
+                          <button type="reset" onClick={resetFormData} className="btn btn-warning btn-lg mt-3">Reset All</button>
+                          <button type="button" className="btn btn-success btn-lg mt-3 ms-3" onClick={handleSubmit}>Register</button>
                         </div>
                       </form>
                     </div>
