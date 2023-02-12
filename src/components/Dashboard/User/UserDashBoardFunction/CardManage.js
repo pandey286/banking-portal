@@ -92,7 +92,7 @@ const CardMan = () => {
                                     <div className="col-xl-5">
                                         <img src="https://images.samsung.com/is/image/samsung/assets/in/samsung-card/slider-mob-31.jpg?$ORIGIN_JPG$" className="img-fluid" />
                                     </div>
-                                    <div className="col-xl-7">
+                                    <div className="col-xl-7 mt-3 ">
                                         <div className="row">
                                             <div className="col-md-3 mb-4">
                                                 <div className="form-outline">

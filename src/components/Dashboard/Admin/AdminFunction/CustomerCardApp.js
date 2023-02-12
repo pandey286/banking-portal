@@ -5,7 +5,7 @@ import "../.././Admin/admindash.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
-import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms} from "react-icons/fa";
+import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 
 
@@ -74,7 +74,28 @@ const CustomerCard = () => {
                             <h3><span><img className='mb-1' src={Kakashi} width="30px" /></span><strong>PSL Bank Ltd.</strong></h3>
                         </div>
                     </nav>
-                    
+
+                    <div className="container">
+                        <h2 className="text-center">Application For Card</h2>
+                        <div className="card mt-5">
+                            <div className="card-body fs-4">
+                                <div className="card-body row  d-flex ">
+                                    <div className="col-md-6"><p>Title:-</p></div><div className="col-md-6 justify-content-end"><p>Mr.</p></div>
+                                    <div className="col-md-6"><p>FullName :-</p></div><div className="col-md-6 justify-content-end"><p>John Doe</p></div>
+                                    <div className="col-md-6"><p>Date Of Birth :-</p></div><div className="col-md-6 justify-content-end"><p>07/05/1997</p></div>
+                                    <div className="col-md-6"><p>Phone Number :-</p></div><div className="col-md-6 justify-content-end"><p>9974567890</p></div>
+                                    <div className="col-md-6"><p>Gender :-</p></div><div className="col-md-6 justify-content-end"><p>Male</p></div>
+                                    <div className="col-md-6"><p>Profession :-</p></div><div className="col-md-6 justify-content-end"><p>Self-Employee</p></div>
+                                    <div className="col-md-6"><p>Card Type :-</p></div><div className="col-md-6 justify-content-end"><p>Gold</p></div>
+                                    <div className="col-md-6"><p>Address :-</p></div><div className="col-md-6 justify-content-end"><p>Thane</p></div>
+                                </div>
+                            </div>
+                            <div className="card-footer">
+                            <button className="btn btn-outline-success col-md-4 m-3" type="submit">Approve</button> 
+                            <button className="btn btn-outline-danger col-md-4 m-3" type="submit">Decline</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

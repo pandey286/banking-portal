@@ -94,7 +94,7 @@ const LoanApp = () => {
                                     <div className="col-xl-5">
                                         <img src="https://www.hdbfs.com/themes/custom/hdbfs/images/new-img/Business-Loan.webp" className="img-fluid" />
                                     </div>
-                                    <div className="col-xl-7">
+                                    <div className="col-xl-7 mt-3">
                                         <div className="row">
                                             <div className="col-md-6 mb-4">
                                                 <div className="form-outline">
@@ -131,6 +131,9 @@ const LoanApp = () => {
                                                         <option value="salary">Salaried</option>
                                                     </select>
                                                 </div>
+                                            </div>
+                                            <div className="form-outline col-md-6 mb-4">
+                                                <input type="text" id="annualIncome" className="form-control form-control-lg" placeholder='Address' />
                                             </div>
                                             <div className="row d-flex justify-content-center">
                                                 <button className="btn btn-outline-primary col-md-4 mt-3" type="submit">Apply</button>
