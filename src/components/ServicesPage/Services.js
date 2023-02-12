@@ -4,7 +4,10 @@ import Car from ".././Shared/Carousel"
 import Service1 from "./images/services1.jpg"
 import Service2 from "./images/services2.jpg"
 import Service3 from "./images/services3.jpg"
-
+import CM from "./images/cm.jpeg"
+import GL from "./images/gl.jpeg"
+import HL from "./images/homel.jpg"
+import PB from "./images/pb.jpeg"
 
 const Services = () => {
     return (
@@ -37,7 +40,7 @@ const Services = () => {
                                 <div className="col-xs-12 col-sm-4 p-1">
                                     <div className="card h-100 m-3 ">
                                         <div className="h-50">
-                                            <img className="img-fluid flex-shrink-0" src={Service2} alt="" />
+                                            <img className="img-fluid flex-shrink-0" src={PB} alt="" />
                                         </div>
                                         <div className="card-content">
                                             <h4 className="card-title"> Open Account
@@ -56,7 +59,7 @@ const Services = () => {
                                 <div className="col-xs-12 col-sm-4 p-1">
                                     <div className="card h-100 m-3">
                                         <div className="h-50">
-                                            <img className="img-fluid flex-shrink-0" src="https://images.livemint.com/rf/Image-621x414/LiveMint/Period2/2018/11/26/Photos/Processed/homeloaniStock-kCrG--621x414@LiveMint.jpg" alt="" />
+                                            <img className="img-fluid flex-shrink-0" src={Service1} alt="" />
                                         </div>
                                         <div className="card-content">
                                             <h4 className="card-title mt-1">
@@ -97,7 +100,7 @@ const Services = () => {
                                 <div className="col-xs-12 col-sm-4 p-1">
                                     <div className="card h-100 m-3">
                                         <div className="h-50">
-                                            <img className="img-fluid flex-shrink-0" src={Service1} alt="" />
+                                            <img className="img-fluid flex-shrink-0" src={GL} alt="" />
                                         </div>
                                         <div className="card-content">
                                             <h4 className="card-title"> Gold Loan
@@ -116,7 +119,7 @@ const Services = () => {
                                 <div className="col-xs-12 col-sm-4 p-1">
                                     <div className="card h-100 m-3 ">
                                         <div className="h-50">
-                                            <img className="img-fluid flex-shrink-0" src={Service1} alt="" />
+                                            <img className="img-fluid flex-shrink-0" src={HL} alt="" />
                                         </div>
                                         <div className="card-content">
                                             <h4 className="card-title">
@@ -136,7 +139,7 @@ const Services = () => {
                                 <div className="col-xs-12 col-sm-4 p-1">
                                     <div className="card h-100 m-3">
                                         <div className="h-50">
-                                            <img className="img-fluid flex-shrink-0" src={Service1} alt="" />
+                                            <img className="img-fluid flex-shrink-0" src={CM} alt="" />
                                         </div>
                                         <div className="card-content">
                                             <h4 className="card-title">
