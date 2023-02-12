@@ -59,7 +59,7 @@ const UserDashBoard = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link className="list-item d-flex" to="/userdash/loanApp">
+                            <Link className="list-item d-flex" to="/userdash/faq">
                                 <FaQuestionCircle className="me-3 mt-1" />
                                 <span>FAQ</span>
                             </Link>
@@ -88,12 +88,12 @@ const UserDashBoard = () => {
 
                     <div className="card ">
                         <div className="card-header d-flex col bg-secondary text-dark fs-2">
-                            <div className="col-9">Account Number :-</div>
-                            <div className="col-3 text-end"> 4561237890</div>
+                            <div className="col-md-9 col-sm-12">Account Number :-</div>
+                            <div className="col-md-3 col-sm-12 text-end"> 4561237890</div>
                         </div>
                         <div className="card-body d-flex col text-end">
-                            <div className="col-9 text-start fs-3">Account Number :-</div>
-                            <p className="col-3 card-text fs-3"><FaRupeeSign />500.0</p>
+                            <div className="col-md-9 col-sm-12 text-start fs-3">Account Balance :-</div>
+                            <p className="col-md-3 col-sm-12 card-text fs-3"><FaRupeeSign />500.0</p>
                         </div>
                     </div>
 

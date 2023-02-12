@@ -23,6 +23,7 @@ import ForgetPass from "./components/Logins/ForgetPassword/ForgetPassword";
 import AccountInfo from "./components/Dashboard/User/UserDashBoardFunction/AccountInfo";
 import CardMan from "./components/Dashboard/User/UserDashBoardFunction/CardManage";
 import LoanApp from "./components/Dashboard/User/UserDashBoardFunction/LoanApp";
+import Faq from "./components/Dashboard/User/UserDashBoardFunction/Faq";
 
 
 function App(props) {
@@ -51,6 +52,7 @@ function App(props) {
           <Route path="/userdash/accountInfo" element={<AccountInfo/>}/>
           <Route path="/userdash/card" element={<CardMan/>}/>
           <Route path="/userdash/loanApp" element={<LoanApp/>}/>
+          <Route path="/userdash/faq" element={<Faq/>}/>
         </Routes>
       </BrowserRouter>
     </>

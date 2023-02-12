@@ -58,7 +58,7 @@ const AccountInfo = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link className="list-item d-flex" to="/userdash/loanApp">
+                            <Link className="list-item d-flex" to="/userdash/faq">
                                 <FaQuestionCircle className="me-3 mt-1" />
                                 <span>FAQ</span>
                             </Link>
@@ -92,28 +92,28 @@ const AccountInfo = () => {
                                     <div className="card-header bg-secondary fs-1">
                                         Account Information
                                     </div>
-                                    <div className="card-body">
-                                        <span className="fs-4">FirstName: Prashant</span><br/>
-                                        <span className="fs-4">userMiddleName: Vinod </span><br/>
-                                        <span className="fs-4">userLastName: Pandey</span><br/>
-                                        <span className="fs-4">userDOB: 4/11/2000 </span><br/>
-                                        <span className="fs-4">userPhoneNo: 8291571956</span><br/>
-                                        <span className="fs-4">userAltPhoneNo: 9224310983</span><br/>
-                                        <span className="fs-4">userAddress: Vikhroli</span><br/>
-                                        <span className="fs-4">userAadharNo: 4561237890 </span><br/>
-                                        <span className="fs-4">userPAN: FSDPP5243Q</span><br/>
-                                        <span className="fs-4">userGender: MALE </span><br/>
-                                        <span className="fs-4">userNationality: Indian </span><br/>
-                                        <span className="fs-4">email: pandeyprashant9532gamil.com </span><br/>
-                                        <span className="fs-4">userAccType: Saveing </span><br/>
-                                        <span className="fs-4">userBranchName: Vikhroli </span><br/>
-                                        <span className="fs-4">userIFSC: PSL00001</span><br/>
-                                        <span className="fs-4">accountNumber: 4512369870 </span><br/>
-                                        <span className="fs-4">createAt: 08/02/2023 </span><br/>
+                                    <div className="card-body row  d-flex ">
+                                        <div className="col-md-6"><p>First Name :-</p></div><div className="col-md-6 justify-content-end"><p>Prashant</p></div>
+                                        <div className="col-md-6"><p>Middle Name :-</p></div><div className="col-md-6 justify-content-end"><p>Vinod</p></div>
+                                        <div className="col-md-6"><p>Last Name :-</p></div><div className="col-md-6 justify-content-end"><p>Pandey</p></div>
+                                        <div className="col-md-6"><p>Date Of Birth :-</p></div><div className="col-md-6 justify-content-end"><p>04-11-2000</p></div>
+                                        <div className="col-md-6"><p>Phone Number :-</p></div><div className="col-md-6 justify-content-end"><p>8291571956</p></div>
+                                        <div className="col-md-6"><p>Alternate Phone Number :-</p></div><div className="col-md-6 justify-content-end"><p>7458961205</p></div>
+                                        <div className="col-md-6"><p>Address :-</p></div><div className="col-md-6 justify-content-end"><p>Vikhroli</p></div>
+                                        <div className="col-md-6"><p>Aadhar-Card Number :-</p></div><div className="col-md-6 justify-content-end"><p>656303335855</p></div>
+                                        <div className="col-md-6"><p>PAN Number :-</p></div><div className="col-md-6 justify-content-end"><p>FDWPP6214F</p></div>
+                                        <div className="col-md-6"><p>Gender :-</p></div><div className="col-md-6 justify-content-end"><p>MALE</p></div>
+                                        <div className="col-md-6"><p>Nationality :-</p></div><div className="col-md-6 justify-content-end"><p>INDIAN</p></div>
+                                        <div className="col-md-6"><p>Email :-</p></div><div className="col-md-6 justify-content-end"><p>pandeyprashant953@gmail.com</p></div>
+                                        <div className="col-md-6"><p>Account-Type :-</p></div><div className="col-md-6 justify-content-end"><p>Saving</p></div>
+                                        <div className="col-md-6"><p>Branch-Name :-</p></div><div className="col-md-6 justify-content-end"><p>Vikhroli</p></div>
+                                        <div className="col-md-6"><p>IFSC Code :-</p></div><div className="col-md-6 justify-content-end"><p>PSL00001</p></div>
+                                        <div className="col-md-6"><p>Account Nummber :-</p></div><div className="col-md-6 justify-content-end"><p>1101</p></div>
+                                        <div className="col-md-6"><p>Creation Date :-</p></div><div className="col-md-6 justify-content-end"><p>08/02/2023</p></div>
                                     </div>
                                     <div className="card-footer d-flex justify-content-center">
-                                    <button type="submit" className="btn btn-outline-warning shadow p-1 mt-3 mb-3 rounded-1">
-                                    <Link to="/userdash" className="text-dark p-3" style={{ textDecoration: "none" }}>Update</Link></button><br />
+                                        <button type="submit" className="btn btn-outline-warning shadow p-1 mt-3 mb-3 rounded-1">
+                                            <Link to="/userdash" className="text-dark p-3" style={{ textDecoration: "none" }}>Update</Link></button><br />
                                     </div>
                                 </div>
                                 <button type="submit" className="btn btn-outline-primary shadow p-1 mb-5 rounded-1">

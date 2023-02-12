@@ -63,7 +63,7 @@ const ViewTrans = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link className="list-item d-flex" to="/userdash/loanApp">
+                            <Link className="list-item d-flex" to="/userdash/faq">
                                 <FaQuestionCircle className="me-3 mt-1" />
                                 <span>FAQ</span>
                             </Link>
