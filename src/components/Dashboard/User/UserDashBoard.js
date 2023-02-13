@@ -98,7 +98,7 @@ const UserDashBoard = () => {
                     </div>
 
                     <div className="card">
-                        <div className="card-header">
+                        <div className="card-header fs-4">
                             <b>Pay new Beneficiary - Enter new Beneficiary details</b>
                         </div>
                         <div className="card-body">
@@ -118,12 +118,7 @@ const UserDashBoard = () => {
                                         <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Account Number' required />
                                     </div>
                                 </div>
-                                <div className="col-md-6 mb-4">
-                                    <div className="form-outline">
-                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Re-Enter Account Number' required />
-                                    </div>
-                                </div>
-                                <div className="col-md-12 mb-4 ">
+                                <div className="col-md-6 mb-4 ">
                                     <div className="form-outline">
                                     </div>
                                     <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Enter Amount' required />
