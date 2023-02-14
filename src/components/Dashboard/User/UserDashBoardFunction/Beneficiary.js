@@ -178,7 +178,7 @@ const Beneficiaries = () => {
                                                 <input type="datetime-local" name="updatedAt" id="updationDay" onChange={handleChange} className="form-control form-control-lg" />
                                             </div>
                                             <div className="row d-flex justify-content-center">
-                                                <button className="btn btn-outline-warning col-md-2 m-2"  onClick={resetFormData} type="submit">Reset</button>
+                                                <button  type="reset"  onClick={resetFormData }className="btn btn-outline-warning col-md-2 m-2" >Reset</button>
                                                 <button className="btn btn-outline-primary col-md-2 m-2" type="submit" onClick={handleSubmit}>Add</button>
                                             </div>
                                         </div>

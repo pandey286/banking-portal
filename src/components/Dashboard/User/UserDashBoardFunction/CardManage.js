@@ -151,6 +151,15 @@ const CardMan = () => {
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div className="col-md-6 mb-4">
+                                                <div className="form-outline">
+                                                    <select id="cardtype" className="select form-control form-control-lg" placeholder='Card Type'>
+                                                        <option selected>Card</option>
+                                                        <option value="platinum">Credit-Card</option>
+                                                        <option value="gold">Debit-Card</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <div className="form-outline col-md-12 mb-4">
                                                 <input type="text" id="address" className="form-control form-control-lg" placeholder='Address' />
                                             </div>

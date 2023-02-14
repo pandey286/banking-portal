@@ -91,7 +91,7 @@ function Login() {
                             </div>
                             {errorMessage && <div className='alert alert-danger mt-3' role='alert'>{errorMessage}</div>}
                             <div className="text-center p-3">
-                                <button type="submit" onClick={handleSubmit} className="btn btn-outline-primary shadow p-2 mb-5 rounded-1">Login</button><br />
+                                <button type="submit" onClick={handleSubmit} className="btn btn-outline-primary shadow p-2 mb-5 rounded-1" ><Link to="/userdash">Login</Link></button><br />
                                 <Link className="text-danger fs-5" to="/forgetpass">Forgot password?</Link>
                             </div>
                             <div className="text-center p-3">
