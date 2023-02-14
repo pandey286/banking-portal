@@ -4,7 +4,7 @@ import { useState } from "react";
 import "../user.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
-import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionCircle } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionCircle, FaUserPlus } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 
 const Faq = () => {
@@ -38,6 +38,12 @@ const Faq = () => {
                             <Link className="list-item d-flex" to="/userdash/accountInfo">
                                 <FaUserAlt className="me-3 mt-1" />
                                 <span>Account Information</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/userdash/beneficiary">
+                                <FaUserPlus className="me-3 mt-1" />
+                                <span>Add Beneficiary</span>
                             </Link>
                         </li>
                         <li>

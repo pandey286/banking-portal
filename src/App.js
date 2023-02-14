@@ -27,6 +27,7 @@ import Faq from "./components/Dashboard/User/UserDashBoardFunction/Faq";
 import AllCustomer from "./components/Dashboard/Admin/AdminFunction/SeeAllCustomer";
 import CustomerLoan from "./components/Dashboard/Admin/AdminFunction/CustomerLoanApp";
 import CustomerCard from "./components/Dashboard/Admin/AdminFunction/CustomerCardApp";
+import Beneficiaries from "./components/Dashboard/User/UserDashBoardFunction/Beneficiary";
 
 
 function App(props) {
@@ -58,6 +59,7 @@ function App(props) {
           <Route path="/userdash/accountInfo" element={<AccountInfo/>}/>
           <Route path="/userdash/card" element={<CardMan/>}/>
           <Route path="/userdash/loanApp" element={<LoanApp/>}/>
+          <Route path="/userdash/beneficiary" element={<Beneficiaries/>}/>
           <Route path="/userdash/faq" element={<Faq/>}/>
         </Routes>
       </BrowserRouter>

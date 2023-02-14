@@ -23,6 +23,7 @@ function Login() {
     };
 
     const url = "http://localhost:8080/api/customers/login"
+    const notificationurl = "http://localhost:8080/api/v1/notifications"
 
 
     const handleSubmit = async (event) => {
