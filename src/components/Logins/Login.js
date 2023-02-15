@@ -8,6 +8,16 @@ import swal from 'sweetalert';
 
 function Login() {
 
+    const setCookie = (name, value, days) => {
+        let expires = "";
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
     const [errorMessage, setErrorMessage] = useState('');
 
     const [formData, setFormData] = useState({
@@ -15,14 +25,31 @@ function Login() {
         password: '',
     });
 
+    const [emailData, setEmailData] = useState({
+        to: '',
+        subject: '',
+        body: ''
+      });
+
     const handleChange = event => {
         setFormData({
             ...formData,
             [event.target.name]: event.target.value
         });
+
+        setEmailData({
+            ...emailData,
+            to: formData.email,
+            subject:"User Login",
+            body:"Your Login was Successfully"
+        })
     };
 
+
+      
+
     const url = "http://localhost:8080/api/customers/login"
+
     const notificationurl = "http://localhost:8080/api/v1/notifications"
 
 
@@ -41,7 +68,7 @@ function Login() {
         }
         else if (!/\S+@\S+\.\S+/.test(formData.email)) {
             setErrorMessage('Invalid email address');
-            if (formData.password.length < 6){
+            if (formData.password.length < 6) {
                 setErrorMessage('Invalid Credentials');
             }
         } else if (formData.password.length < 6) {
@@ -55,11 +82,17 @@ function Login() {
                     text: "Your Login Was Successful",
                     icon: "success",
                 });
+                
+                const notification = await axios.post(notificationurl, emailData)
+
+                // Set data in cookies
+                setCookie("userData", JSON.stringify(response.data), 7);
+                window.location.href="/userdash"
                 console.log(response.data);
             } catch (error) {
                 console.error(error);
                 swal({
-                    title: "Login Failed SuccessFully !",
+                    title: "Login Failed Successfully !",
                     text: "Please Check Your Credential",
                     icon: "warning",
                 });
@@ -91,7 +124,7 @@ function Login() {
                             </div>
                             {errorMessage && <div className='alert alert-danger mt-3' role='alert'>{errorMessage}</div>}
                             <div className="text-center p-3">
-                                <button type="submit" onClick={handleSubmit} className="btn btn-outline-primary shadow p-2 mb-5 rounded-1" ><Link to="/userdash">Login</Link></button><br />
+                                <button type="submit" onClick={handleSubmit} className="btn btn-outline-primary shadow p-2 mb-5 rounded-1" >Login</button><br />
                                 <Link className="text-danger fs-5" to="/forgetpass">Forgot password?</Link>
                             </div>
                             <div className="text-center p-3">

@@ -3,7 +3,7 @@ import Nav from '../Navbar';
 import './style.css'
 import RegPho from "./image/RegImage1.gif"
 import axios from 'axios';
-
+import swal from 'sweetalert';
 
 
 const Register = () => {
@@ -53,22 +53,52 @@ const Register = () => {
     });
   };
 
+  const [emailData, setEmailData] = useState({
+    to: '',
+    subject: '',
+    body: ''
+  });
+
   const handleChange = event => {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value
     });
+
+    setEmailData({
+      ...emailData,
+      to: formData.email,
+      subject: "Welcome to PSL Bank",
+      body: "Thank You Registering with PSL Bank Online Platform. PSL Family is happy to have a new family member ",
+    })
   };
 
+
+
   const url = "http://localhost:8080/api/customers/register"
+
+  const notificationurl = "http://localhost:8080/api/v1/notifications"
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await axios.post(url, formData);
+      const notification = await axios.post(notificationurl, emailData)
+      swal({
+        title: "Registeration Succesfully!! ",
+        text: "You will also get mail if you successfully register",
+        icon: "success",
+    });
+
       console.log(response.data);
     } catch (error) {
       console.error(error);
+      swal({
+        title: "Registeration Failed !",
+        text: "User May already exist else, Please Check Your Credential",
+        icon: "warning",
+    });
     }
   };
 

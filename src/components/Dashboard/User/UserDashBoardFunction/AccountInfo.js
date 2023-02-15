@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../user.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
-import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionCircle,FaUserPlus } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionCircle, FaUserPlus } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
+import swal from 'sweetalert';
+import axios from "axios";
 
 const AccountInfo = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -13,27 +15,77 @@ const AccountInfo = () => {
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     }
+    
+    // Get data from cookies
+    const getCookie = (name) => {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    const [Data, setUserData] = useState(getCookie("userData"));
+    useEffect(() => {
+        const cookieValue = JSON.parse(getCookie("userData"));
+        setUserData(cookieValue);
+    }, []);
+
+
+// Update Phone, AltPhone and Address
     const [editMode, setEditMode] = useState(false);
 
-    const [phone, setPhone] = useState(" ");
-
-    const [altPhone, setAltPhone] = useState(" ");
-
-    const [address, setAddress] = useState(" ");
+    const [formData, setFormData] = useState({
+        userAddress: "",
+        userPhoneNo: "",
+        userAltPhoneNo: "",
+    });
 
     const updateData = () => {
         setEditMode(true);
     }
 
-    const handlePhone = (event) => {
-        setPhone(event.target.value);
+    const handleFormData = (event) => {
+        let Data = {
+            ...formData,
+            [event.target.name]: event.target.value
+        }
+        setFormData(Data);
     };
-    const handleAddress = (event) => {
-        setAddress(event.target.value);
-    };
-    const handleAltPhone = (event) => {
-        setAltPhone(event.target.value);
-    };
+
+    const saveData = async (event) => {
+        
+        let email = Data.email;
+        const url = `http://localhost:8080/api/customers/user-update/${email}`;
+
+        const res = await axios.put(url, formData)
+        .then(res => {
+            console.log(res.data);
+            setFormData(res.data);
+            swal({
+                title: "Updated Succesfully",
+                text:"You have Re-Login into Your Account",
+                icon: "success"
+              }).then(() => {
+                window.location.href = "/userdash/accountInfo"; 
+              }); 
+        })
+        .catch(err => {
+            console.log(err);
+            swal({
+                title: "Update Failed",
+                text: "Invalid Data! please check the data",
+                icon: "warning",
+                dangerMode: true,
+            });
+        })
+    }
+
+    
+
 
     return (
         <>
@@ -44,7 +96,7 @@ const AccountInfo = () => {
                     <div className="sidebar-header fs-5">
                         <Link className="list-item d-flex" to="/userdash">
                             <FaUserAlt className="me-3 mt-1" />
-                            <span >UserEmail</span>
+                            <span >{Data.userFirstName}{Data.userLastName}</span>
                         </Link>
                     </div>
                     <ul className="list-unstyled components">
@@ -120,45 +172,57 @@ const AccountInfo = () => {
                                         Account Information
                                     </div>
                                     <div className="card-body row  d-flex ">
-                                        <div className="col-md-6"><p>First Name :-</p></div><div className="col-md-6 justify-content-end"><p>Prashant</p></div>
+                                        <div className="col-md-6"><p>First Name :-</p></div><div className="col-md-6 justify-content-end"><p>{Data.userFirstName}</p></div>
 
-                                        <div className="col-md-6"><p>Middle Name :-</p></div><div className="col-md-6 justify-content-end"><p>Vinod</p></div>
+                                        <div className="col-md-6"><p>Middle Name :-</p></div><div className="col-md-6 justify-content-end"><p>{Data.userMiddleName}</p></div>
 
-                                        <div className="col-md-6"><p>Last Name :-</p></div><div className="col-md-6 justify-content-end"><p>Pandey</p></div>
+                                        <div className="col-md-6"><p>Last Name :-</p></div><div className="col-md-6 justify-content-end"><p>{Data.userLastName}</p></div>
 
-                                        <div className="col-md-6"><p>Date Of Birth :-</p></div><div className="col-md-6 justify-content-end"><p>04-11-2000</p></div>
+                                        <div className="col-md-6"><p>Date Of Birth :-</p></div><div className="col-md-6 justify-content-end"><p>{Data.userDOB}</p></div>
 
-                                        <div className="col-md-6"><p>Phone Number :-</p></div>{editMode ? (<input type="text" value={phone} onChange={handlePhone} />) : (
-                                            <div className="col-md-6 justify-content-end"><p>8291571956</p></div>)}
+                                        <div className="col-md-6"><p>Phone Number :-</p></div>{editMode ? (<input type="text" name="userPhoneNo" onChange={handleFormData} />) : (
+                                            <div className="col-md-6 justify-content-end"><p>{Data.userPhoneNo}</p></div>)}
 
-                                        <div className="col-md-6"><p> Alternate Phone Number :-</p></div>{editMode ? (<input type="text" value={altPhone} onChange={handleAltPhone} />) : (
-                                            <div className="col-md-6 justify-content-end"><p>7845963210</p></div>)}
+                                        <div className="col-md-6"><p> Alternate Phone Number :-</p></div>{editMode ? (<input type="text" name="userAltPhoneNo" onChange={handleFormData} />) : (
+                                            <div className="col-md-6 justify-content-end"><p>{Data.userAltPhoneNo}</p></div>)}
 
-                                        <div className="col-md-6"><p> Address :-</p></div>{editMode ? (<input type="text" value={address} onChange={handleAddress} />) : (
-                                            <div className="col-md-6 justify-content-end"><p>Vikhroli</p></div>)}
+                                        <div className="col-md-6"><p> Address :-</p></div>{editMode ? (<input type="text" name="userAddress" onChange={handleFormData} />) : (
+                                            <div className="col-md-6 justify-content-end"><p>{Data.userAddress}</p></div>)}
 
-                                        <div className="col-md-6"><p>Aadhar-Card Number :-</p></div><div className="col-md-6 justify-content-end"><p>656303335855</p></div>
+                                        <div className="col-md-6"><p>Aadhar-Card Number :-</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{Data.userAadharNo}</p></div>
 
-                                        <div className="col-md-6"><p>PAN Number :-</p></div><div className="col-md-6 justify-content-end"><p>FDWPP6214F</p></div>
+                                        <div className="col-md-6"><p>PAN Number :-</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{Data.userPAN}</p></div>
 
-                                        <div className="col-md-6"><p>Gender :-</p></div><div className="col-md-6 justify-content-end"><p>MALE</p></div>
+                                        <div className="col-md-6"><p>Gender :-</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{Data.userGender}</p></div>
 
-                                        <div className="col-md-6"><p>Nationality :-</p></div><div className="col-md-6 justify-content-end"><p>INDIAN</p></div>
+                                        <div className="col-md-6"><p>Nationality :-</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{Data.userNationality}</p></div>
 
-                                        <div className="col-md-6"><p>Email :-</p></div><div className="col-md-6 justify-content-end"><p>pandeyprashant953@gmail.com</p></div>
+                                        <div className="col-md-6"><p>Email :-</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{Data.email}</p></div>
 
-                                        <div className="col-md-6"><p>Account-Type :-</p></div><div className="col-md-6 justify-content-end"><p>Saving</p></div>
+                                        <div className="col-md-6"><p>Account-Type :-</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{Data.userAccType}</p></div>
 
-                                        <div className="col-md-6"><p>Branch-Name :-</p></div><div className="col-md-6 justify-content-end"><p>Vikhroli</p></div>
+                                        <div className="col-md-6"><p>Branch-Name :-</p>
+                                        </div><div className="col-md-6 justify-content-end"><p>{Data.userBranchName}</p></div>
 
-                                        <div className="col-md-6"><p>Account Nummber :-</p></div><div className="col-md-6 justify-content-end"><p>1101</p></div>
+                                        <div className="col-md-6"><p>IFSC :-</p>
+                                        </div><div className="col-md-6 justify-content-end"><p>{Data.userIFSC}</p></div>
 
-                                        <div className="col-md-6"><p>Creation Date :-</p></div><div className="col-md-6 justify-content-end"><p>08/02/2023</p></div>
+                                        <div className="col-md-6"><p>Account Nummber :-</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{Data.accountNumber}</p></div>
+
+                                        <div className="col-md-6"><p>Creation Date :-</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{Data.createAt}</p></div>
                                     </div>
                                     <div className="card-footer d-flex justify-content-center">
                                         <button type="submit" className="btn btn-outline-warning shadow p-1 mt-3 mb-3 rounded-1" onClick={updateData}>
                                             <Link to="" className="text-dark p-3" style={{ textDecoration: "none" }}>Update</Link></button><br />
-                                        <button type="submit" className="btn btn-outline-primary shadow p-1 mt-3 ms-3 mb-3 rounded-1" onClick={updateData}>
+                                        <button type="submit" className="btn btn-outline-primary shadow p-1 mt-3 ms-3 mb-3 rounded-1" onClick={saveData}>
                                             <Link to="" className="text-dark p-3" style={{ textDecoration: "none" }}>Save</Link></button><br />
                                     </div>
                                 </div>

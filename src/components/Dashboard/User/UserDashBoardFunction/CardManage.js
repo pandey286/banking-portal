@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "../user.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
@@ -14,15 +14,33 @@ const CardMan = () => {
         setSidebarOpen(!sidebarOpen);
     }
 
+    // Get data from cookies
+    const getCookie = (name) => {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    const [Data, setUserData] = useState(getCookie("userData"));
+    useEffect(() => {
+        const cookieValue = JSON.parse(getCookie("userData"));
+        setUserData(cookieValue);
+    }, []);
+
     return (
         <>
-           <div className="wrapper">
-                 {/* <!-- Sidebar  --> */}
+            <div className="wrapper">
+                {/* <!-- Sidebar  --> */}
                 <nav id="sidebar" className={sidebarOpen ? "active" : ""}>
                     <div className="sidebar-header fs-5">
                         <Link className="list-item d-flex" to="/userdash">
                             <FaUserAlt className="me-3 mt-1" />
-                            <span >UserEmail</span>
+                            <span >{Data.userFirstName}{Data.userLastName}</span>
                         </Link>
                     </div>
                     <ul className="list-unstyled components">
@@ -91,7 +109,7 @@ const CardMan = () => {
                     </nav>
 
                     <div className="m-5" id="page-content">
-                    <div className="card">
+                        <div className="card">
                             <div className="card-header fs-2 "> Apply For Card</div>
                             <div className="card-body d-flex col">
                                 <div className="row">
@@ -114,10 +132,10 @@ const CardMan = () => {
                                                 <input type="text" id="name" className="form-control form-control-lg" placeholder='Full-Name' />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
-                                               <span className="fs-4">Date Of Birth:- </span>
+                                                <span className="fs-4">Date Of Birth:- </span>
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
-                                                <input type="date" id="monthlyIncome" className="form-control form-control-lg"  />
+                                                <input type="date" id="monthlyIncome" className="form-control form-control-lg" />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
                                                 <input type="text" id="mobileNo" className="form-control form-control-lg" placeholder='Phone No' />

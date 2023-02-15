@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "../user.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
@@ -14,6 +14,24 @@ const Faq = () => {
         setSidebarOpen(!sidebarOpen);
     }
 
+    // Get data from cookies
+    const getCookie = (name) => {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    const [Data, setUserData] = useState(getCookie("userData"));
+    useEffect(() => {
+        const cookieValue = JSON.parse(getCookie("userData"));
+        setUserData(cookieValue);
+    }, []);
+
 
 
     return (
@@ -24,7 +42,7 @@ const Faq = () => {
                     <div className="sidebar-header fs-5">
                         <Link className="list-item d-flex" to="/userdash">
                             <FaUserAlt className="me-3 mt-1" />
-                            <span >UserEmail</span>
+                            <span >{Data.userFirstName}{Data.userLastName}</span>
                         </Link>
                     </div>
                     <ul className="list-unstyled components">
@@ -178,7 +196,7 @@ const Faq = () => {
                                             <li> Going through the types of mortgages with your bank</li>
                                             <li>  Preparing necessary paperwork</li>
                                         </ul>
-                                       <p>We recommend that you get preapproved for a home loan before you start looking for houses. This allows you to know what your budget will be and the types of homes you can afford. You don’t want to find your dream home, only to find out you wouldn’t be able to get a loan for it. As a bonus, sellers often prioritize buyers who are already pre approved, which can help you look more competitive.</p> 
+                                        <p>We recommend that you get preapproved for a home loan before you start looking for houses. This allows you to know what your budget will be and the types of homes you can afford. You don’t want to find your dream home, only to find out you wouldn’t be able to get a loan for it. As a bonus, sellers often prioritize buyers who are already pre approved, which can help you look more competitive.</p>
                                     </div>
                                 </div>
                             </div>
