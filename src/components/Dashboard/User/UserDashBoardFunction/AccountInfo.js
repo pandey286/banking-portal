@@ -84,8 +84,6 @@ const AccountInfo = () => {
         })
     }
 
-    
-
 
     return (
         <>

@@ -1,54 +1,160 @@
 import React from "react";
+import { useState } from "react";
 
 const GoldLoan = () => {
+
+    const [loanAmount, setLoanAmount] = useState(0);
+    const [interestRate, setInterestRate] = useState(0);
+    const [loanTerm, setLoanTerm] = useState(0);
+    const [monthlyPayment, setMonthlyPayment] = useState(0);
+
+    const calculatePayment = () => {
+        const r = interestRate / 100 / 12;
+        const n = loanTerm * 12;
+        const payment = loanAmount * r * (1 + r) ** n / ((1 + r) ** n - 1);
+        setMonthlyPayment(payment.toFixed(2));
+    };
+
     return (
         <>
-            <section className="container-fluid col-lg-10 text-dark">
-                <div className="mt-5 pt-5">
-                    <p className="title fs-1">Gold Loan</p>
-                </div>
-                <hr />
-                <div className="d-flex">
 
-                    <div className="region region-content">
-
-                        <p>
-                            That's one of the biggest and most significant things in everyone's life.
-                            Choose the right home, opt for the housing loan that suits you best and you are settled for life.
-                            And remember, when you go for a housing loan, you stand to enjoy tax benefits too. All the more reason
-                            why you needn't have second thoughts when applying for a housing loan, especially one with Bank!
-                        </p>
-
-                        <p className="sub-title">Bank Home Loans - Interest Rates slashed</p>
-                        <p>Home Loans now at 9.69%* p.a. for loans upto Rs 75 lakhs and 9.94%* p.a. for loans above Rs 75 lakhs.</p>
-                        <p>(*Interest rates are subject to change Floating interest rate linked to RLLR)</p>
-                        <p>Affordable home loans from Bank with attractive features like:</p>
-
-                        <p>
-                            <ul className="common-ul">
-                                <li>Quick processing.</li>
-                                <li>Simple documentation.</li>
-                                <li>Zero prepayment penalty.</li>
-                                <li>Loans for both residents & NRIs.</li>
-                                <li>More benefits with PMAY (Pradhan Mantri Awas Yojana)</li>
-                            </ul>
-                        </p>
-
-                        <p className="sub-title">Other Home Loan Products</p>
-                        <p>
-                            <ul className="common-ul">
-                                <li>Bank Loan - For purchase of land and further construction within three years.</li>
-                            </ul>
-                        </p>
-
-                        <p className="sub-title">Requirements</p>
-                        <p>
-                            For the information regarding the documents and other requirements for the loan application
-                        </p>
-                        <p><button type="button" className="btn btn-info p-2"><a href="/contactuS" style={{color:"white", textDecoration: "none"}}>To Know More Contact Us</a></button></p>
+            <div className="mt-5 pt-3">
+                {/* Info Section */}
+                <section className="container-fluid col-lg-10 text-dark">
+                    <div>
+                        <p className="title fs-1">Gold Loan</p>
                     </div>
-                </div>
-            </section>
+                    <hr />
+                    <div className="d-flex">
+
+                        <div className="region region-content">
+                            <p>
+                            Sovereign Gold Bond Scheme was launched by Govt in November 2015, under Gold Monetisation Scheme. Under the scheme, the issues are made open for subscription in tranches by RBI in consultation with GOI. RBI Notifies the terms and conditions for the scheme from time to time. 
+                            </p>
+                            <p className="sub-title"><b>Gold Loans - Interest Rates slashed</b></p>
+                            <p><em>The Bonds will be denominated in multiples of gram(s) of gold with a basic unit of 1 gram.</em></p>
+                            
+                            <p>Minimum permissible investment will be 1 gram of gold.</p>
+                            <p>The maximum limit of subscribed shall be 4 KG for individual, 4 Kg for HUF and 20 Kg for trusts and similar entities per fiscal year (April-March) notified by the Government from time to time. A self-declaration to this effect will be obtained. The annual ceiling will include bonds subscribed under different tranches during initial issuance by Government and those purchase from the Secondary Market.</p>
+                            <p>In case of joint holding, the investment limit of 4 KG will be applied to the first applicant only.</p>
+                            <p>Payment for the Bonds will be through cash payment (up to a maximum of Rs. 20,000/-) or demand draft or cheque or electronic banking.</p>
+                            <p>The Gold Bonds will be issued as Government of India Stocks under Government Security Act, 2006. The investors will be issued a Holding Certificate for the same. The Bonds are eligible for conversion into Demat form.</p>
+                            <p>The investors will be compensated at a fixed rate of 2.50 per cent per annum payable semi-annually on the nominal value.
+Bonds can be used as collateral for loans. The loan-to-value (LTV) ratio is to be set equal to ordinary gold loan mandated by the Reserve Bank from time to time. The lien on the bond shall be marked in the depository by the authorised banks.</p>
+                            <p><strong><i>Note : The loan against SGBs would be subject to decision of the bank/financing agency and cannot be inferred as a matter of right.</i></strong></p>
+                            
+                            <div className="card">
+                                    <div className="card-header bg-secondary fs-1">
+                                        Gold Loan Details
+                                    </div>
+                                    <div className="card-body">
+                                        <div className="table-responsive">
+                                            <table className="table bg-white shadow-sm  text-center table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Scheme</th>
+                                                        <th scope="col">Max Period</th>
+                                                        <th scope="col">Interest Rate</th>
+                                                        <th scope="col">Maximum Loan Amount</th>
+                                    
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>10 grams</td>
+                                                        <td>1 year</td>
+                                                        <td>7%</td>
+                                                        <td>Rs. 60 Thousands</td>
+                                                        
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td>25 grams</td>
+                                                        <td>1.5 year</td>
+                                                        <td>8%</td>
+                                                        <td>2 lakhs</td>
+                                                       
+                                                    </tr>
+                                                    <tr>
+                                                        <td>50 grams</td>
+                                                        <td>2 year</td>
+                                                        <td>9%</td>
+                                                        <td>4 lakhs</td>
+                                                       
+                                                    </tr>
+                                                    <tr>
+                                                        <td>1kg</td>
+                                                        <td>2.5 year</td>
+                                                        <td>9%</td>
+                                                        <td>10 lakhs</td>
+                                                       
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            <p>
+                                <ul className="common-ul">
+                                    <li>Easy and hassle-free loan process.</li>
+                                    <li>Gold loans will be granted only to individuals.</li>
+                                    <li>Loan will be granted after getting the jewels duly appraised by the jewel appraiser engaged by the Bank.</li>
+                                    <li>22 carat Gold’s are accepted as security.</li>
+                                    <li>Repayment of Gold Loans depends on the scheme in which the ornaments has been pledged.</li>
+                                </ul>
+                            </p>
+                            <p className="sub-title">Requirements</p>
+                            <p>
+                                For the information regarding the documents and other requirements for the loan application
+                            </p>
+                            <p><button type="button" className="btn btn-info p-2"><a href="/contactuS" style={{ color: "white", textDecoration: "none" }}>To Know More Contact Us</a></button></p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Calculator Section */}
+                <section>
+                    <div className='card ms-5 me-5'>
+                        <div className="card-header fw-bold text-center">
+                            <h1 className="title">Gold Loan Calculator</h1>
+                        </div>
+                        <div className="card-body row d-flex justify-content center">
+                            <div className="col-md-6 mb-4">
+                                <span className='fs-4 fw-bold'>Loan Amount ₹ : </span>
+                            </div>
+                            <div className="form-outline col-md-6 mb-4">
+                                <input className="input form-control form-control-lg" type="text" value={loanAmount} onChange={(e) => setLoanAmount(e.target.value)} placeholder='Loan Amount' />
+                            </div>
+
+                            <div className="col-md-6 mb-4">
+                                <span className='fs-4 fw-bold'>Interest Rate (%):</span>
+                            </div>
+                            <div className="form-outline col-md-6 mb-4">
+                                <input className="input form-control form-control-lg" type="text" value={interestRate} onChange={(e) => setInterestRate(e.target.value)} placeholder='Interset Rate' />
+                            </div>
+
+                            <div className="col-md-6 mb-4">
+                                <span className='fs-4 fw-bold '>Loan Term (years):</span>
+                            </div>
+                            <div className="form-outline col-md-6 mb-4">
+                                <input className="input form-control form-control-lg" type="text" value={loanTerm} onChange={(e) => setLoanTerm(e.target.value)} placeholder='Loan Term' />
+                            </div>
+                            <div className="col-md-12 mb-4 text-center">
+                                <button className="btn btn-outline-info col-md-6 fw-bold" onClick={calculatePayment}>
+                                    Calculate
+                                </button>
+                            </div>
+                            <div className="card-footer text-center fw-bold fs-4">
+                                <span className="payment">Monthly Payment(₹): {monthlyPayment} ₹</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
 
         </>
     )
