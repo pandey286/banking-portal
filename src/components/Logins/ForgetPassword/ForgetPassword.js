@@ -22,7 +22,7 @@ const ForgetPass = () => {
     const [mail, setMail] = useState({
         to: '',
         subject: '',
-        text: ''
+        body: ''
     });
 
     const [otpPass, setOtppass] = useState({
@@ -65,7 +65,7 @@ const ForgetPass = () => {
                 ...mail,
                 to: formData.email,
                 subject: 'Reset Password',
-                text: `OTP for resetting your PSL Online Banking account password is ${otp}`
+                body: `OTP for resetting your PSL Online Banking account password is ${otp}`
             };
             setMail(mailData);
             Axios.post(url, mailData)
@@ -87,13 +87,13 @@ const ForgetPass = () => {
         }
     };
 
-    const updatePass = () => {
+    const updatePass = (event) => {
         if (otpPass.otp === otp) {
             let mailData = {
                 ...mail,
                 to: formData.email,
                 subject: 'Password Updation',
-                text: 'Your password has been successfully updated'
+                body: 'Your password has been successfully updated'
             };
             Axios.put(mailurl, { password: formData.password })
                 .then(() => {
@@ -104,6 +104,7 @@ const ForgetPass = () => {
                         text: 'You can now login with your new password',
                         icon: 'success'
                     });
+                    window.location.href='/login'
                 })
                 .catch(() => {
                     swal({
