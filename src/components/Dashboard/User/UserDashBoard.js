@@ -1,5 +1,5 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./user.css"
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -18,23 +18,23 @@ const UserDashBoard = () => {
         setSidebarOpen(!sidebarOpen);
     };
 
-        // Get data from cookies
-        const getCookie = (name) => {
-            let nameEQ = name + "=";
-            let ca = document.cookie.split(';');
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
+    // Get data from cookies
+    const getCookie = (name) => {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
         }
-    
-        const [Data, setUserData] = useState(getCookie("userData"));
-        useEffect(() => {
-          const cookieValue = JSON.parse(getCookie("userData"));
-          setUserData(cookieValue);
-        }, []);
+        return null;
+    }
+
+    const [Data, setUserData] = useState(getCookie("userData"));
+    useEffect(() => {
+        const cookieValue = JSON.parse(getCookie("userData"));
+        setUserData(cookieValue);
+    }, []);
 
     return (
         <>
@@ -115,7 +115,7 @@ const UserDashBoard = () => {
                     <div className="card ">
                         <div className="card-header d-flex col bg-secondary text-dark fs-2">
                             <div className="col-md-9 col-sm-12">Account Number :-</div>
-                            <div className="col-md-3 col-sm-12 text-end">{Data.accountNumber}</div>
+                            <div className="col-md-3 col-sm-12 text-end">{Data.userAccountNumber}</div>
                         </div>
                         <div className="card-body d-flex col text-end">
                             <div className="col-md-9 col-sm-12 text-start fs-3">Account Balance :-</div>
@@ -125,7 +125,7 @@ const UserDashBoard = () => {
 
                     <div className="card">
                         <div className="card-header fs-4">
-                            <b>Pay new Beneficiary - Enter new Beneficiary details</b>
+                            <b>Pay to your Payee</b>
                         </div>
                         <div className="card-body">
                             <div className="row">
@@ -141,7 +141,12 @@ const UserDashBoard = () => {
                                 </div>
                                 <div className="col-md-6 mb-4">
                                     <div className="form-outline">
-                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Account Number' required />
+                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Payee Account Number' required />
+                                    </div>
+                                </div>
+                                <div className="col-md-6 mb-4">
+                                    <div className="form-outline">
+                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Sender Account Number' required />
                                     </div>
                                 </div>
                                 <div className="col-md-6 mb-4 ">

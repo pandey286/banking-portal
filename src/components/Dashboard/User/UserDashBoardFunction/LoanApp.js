@@ -136,6 +136,9 @@ const LoanApp = () => {
                                                 <input type="text" id="name" className="form-control form-control-lg" placeholder='Full-Name' />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
+                                                <input type="text" id="email" className="form-control form-control-lg" placeholder='Enter Email' />
+                                            </div>
+                                            <div className="form-outline col-md-6 mb-4">
                                                 <input type="text" id="mobileNo" className="form-control form-control-lg" placeholder='Phone No' />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">

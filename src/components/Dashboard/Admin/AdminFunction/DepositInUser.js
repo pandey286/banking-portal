@@ -5,12 +5,12 @@ import "../.././Admin/admindash.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
-import {RiLuggageDepositFill} from 'react-icons/ri'
-import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms} from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
+import {RiLuggageDepositFill} from 'react-icons/ri'
 
 
-const CustomerCard = () => {
+const DepositInUser= () => {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -81,42 +81,27 @@ const CustomerCard = () => {
                             <h3><span><img className='mb-1' src={Kakashi} width="30px" /></span><strong>PSL Bank Ltd.</strong></h3>
                         </div>
                     </nav>
-
-                    <div>
-                        <table className="table table-hover table-responsive">
-                        <thead className="table-dark">
-                            <tr>
-                            <th scope="col">Title</th>
-                            <th scope="col">FullName</th>
-                            <th scope="col">Date Of Birth</th>
-                            <th scope="col">Phone Number </th>
-                            <th scope="col">Gender </th>
-                            <th scope="col">Profession </th>
-                            <th scope="col">Card Type </th>
-                            <th scope="col">Address </th>
-                            <th scope="col">Status </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <td scope="row">Mr.</td>
-                            <td>John Doe</td>
-                            <td>07/05/1997</td>
-                            <td>9974567890</td>
-                            <td>Male</td>
-                            <td>Doctor</td>
-                            <td>Debit</td>
-                            <td>Thane</td>
-                            <td>
-                                <button type="button" className="btn-sm btn btn-success m-1"> Approve</button> 
-                                <button type="button" className="btn-sm btn btn-danger m-1"> Deny </button></td>
-                            </tr>
-                        </tbody>
-                        </table>
-                    </div>
-
-
-
+                    
+                    <section>
+                        <div class="card ">
+                            <div class="card-header bg-dark text-white text-center fw-bold fs-4">
+                                Deposit Page
+                            </div>
+                            <div class="card-body justify-content-center">
+                                <form>
+                                    <div className="form-outline col-md-6 my-4 m-auto">
+                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Account Number' required />
+                                    </div>
+                                    <div className="form-outline col-md-6 my-4 m-auto">
+                                        <input type="number" id="form3Example1n" className="form-control form-control-lg" placeholder='Enter Amount' required />
+                                    </div>
+                                    <div className="form-outline col-md-6 my-4 m-auto">
+                                        <button type="button" className="btn btn-outline-secondary">Deposit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </>
@@ -124,4 +109,4 @@ const CustomerCard = () => {
     )
 }
 
-export default CustomerCard;
+export default DepositInUser;

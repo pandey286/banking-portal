@@ -11,7 +11,6 @@ const Register = () => {
   const [formData, setFormData] = useState({
 
     userFirstName: '',
-    userMiddleName: '',
     userLastName: '',
     userDOB: '',
     userPhoneNo: '',
@@ -26,14 +25,13 @@ const Register = () => {
     userAccType: '',
     userBranchName: '',
     userIFSC: '',
-    accountNumber: '',
+    userAccountNumber: '',
     createAt: '',
   });
 
   const resetFormData = () => {
     setFormData({
       userFirstName: '',
-      userMiddleName: '',
       userLastName: '',
       userDOB: '',
       userPhoneNo: '',
@@ -48,7 +46,7 @@ const Register = () => {
       userAccType: '',
       userBranchName: '',
       userIFSC: '',
-      accountNumber: '',
+      userAccountNumber: '',
       createAt: '',
     });
   };
@@ -127,11 +125,6 @@ const Register = () => {
                           </div>
                           <div className="col-md-6 mb-4">
                             <div className="form-outline">
-                              <input type="text" name="userMiddleName" onChange={handleChange} id="form3Example1m" className="form-control form-control-lg" placeholder='Middle Name' required />
-                            </div>
-                          </div>
-                          <div className="col-md-6 mb-4">
-                            <div className="form-outline">
                               <input type="text" id="lastname" name='userLastName' onChange={handleChange} className="form-control form-control-lg" placeholder='Last Name' required />
                             </div>
                           </div>
@@ -185,9 +178,20 @@ const Register = () => {
                           <div className="form-outline col-md-6 mb-4">
                             <input type="text" id="form3Example8" name='password' onChange={handleChange} className="form-control form-control-lg" placeholder='Password' />
                           </div>
-                          <div className="form-outline col-md-6 mb-4">
+                          {/* <div className="form-outline col-md-6 mb-4">
                             <input type="text" id="form3Example8" name='userAccType' onChange={handleChange} className="form-control form-control-lg" placeholder='Account Type' />
+                          </div> */}
+                          <div className="col-md-6 mb-4">
+                            <div className="form-outline">
+                              <select id="form3Example1n" name='userAccType' onChange={handleChange} className="select form-control form-control-lg" placeholder='Account Type'>
+                                <option value="Savings">Savings</option>
+                                <option value="Current">Current</option>
+                                <option value="FixedDeposit">FixedDeposit</option>
+                                <option value="SafeDepositLockers">SafeDepositLockers</option>
+                              </select>
+                            </div>
                           </div>
+
                           <div className="form-outline col-md-6 mb-4">
                             <input type="text" id="form3Example8" name='userBranchName' onChange={handleChange} className="form-control form-control-lg" placeholder='Branch Name' />
                           </div>
@@ -195,7 +199,7 @@ const Register = () => {
                             <input type="text" id="form3Example8" name='userIFSC' onChange={handleChange} className="form-control form-control-lg" placeholder='IFSC Code' />
                           </div>
                           <div className="form-outline col-md-6 mb-4">
-                            <input type="number" id="form3Example8" name='accountNumber' onChange={handleChange} className="form-control form-control-lg" placeholder='Account Number' />
+                            <input type="number" id="form3Example8" name='userAccountNumber' onChange={handleChange} className="form-control form-control-lg" placeholder='Account Number' />
                           </div>
                           <div className="col-md-6 mb-4">
                             <span className='fs-4'>Date Of Birth :-</span>

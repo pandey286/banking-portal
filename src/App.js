@@ -28,6 +28,8 @@ import AllCustomer from "./components/Dashboard/Admin/AdminFunction/SeeAllCustom
 import CustomerLoan from "./components/Dashboard/Admin/AdminFunction/CustomerLoanApp";
 import CustomerCard from "./components/Dashboard/Admin/AdminFunction/CustomerCardApp";
 import Beneficiaries from "./components/Dashboard/User/UserDashBoardFunction/Beneficiary";
+import AdminLogin from "./components/Dashboard/Admin/AdminLogin";
+import DepositInUser from "./components/Dashboard/Admin/AdminFunction/DepositInUser";
 
 
 function App(props) {
@@ -51,10 +53,12 @@ function App(props) {
           <Route path="/forgetpass" element={<ForgetPass/>}/>
           <Route path="/userdash" element={<UserDashBoard />} />
           <Route path='/register' element={<Register />} />
+          <Route path="/adminlogin" element={<AdminLogin />} />
           <Route path="/admindash" element={<AdminDashBoard />} />
           <Route path="/admindash/allcustomer" element={<AllCustomer />} />
           <Route path="/admindash/customer-loan" element={<CustomerLoan />} />
           <Route path="/admindash/customer-card" element={<CustomerCard />} />
+          <Route path="/admindash/deposit" element={<DepositInUser />} />
           <Route path="/userdash/viewtrans" element={<ViewTrans/>}/>
           <Route path="/userdash/accountInfo" element={<AccountInfo/>}/>
           <Route path="/userdash/card" element={<CardMan/>}/>

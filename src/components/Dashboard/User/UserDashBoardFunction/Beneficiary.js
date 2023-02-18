@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../user.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaUser } from "react-icons/fa";
@@ -19,7 +19,7 @@ const Beneficiaries = () => {
     const [formData, setFormData] = useState({
 
         name: '',
-        accountNumber: '',
+        beneaccountNumber: '',
         ifscCode: '',
         bankName: '',
         branchName: '',
@@ -158,7 +158,7 @@ const Beneficiaries = () => {
                     <div className="m-5" id="page-content">
                         <div className="card">
                             <div className="card-header bg-secondary fs-1">
-                                Add New Beneficiary <FaUser />
+                                Add New Payee <FaUser />
                             </div>
                             <div className="card-body d-flex col">
                                 <div className="row">
@@ -167,6 +167,9 @@ const Beneficiaries = () => {
                                             <div className="form-outline col-md-6 mb-4">
 
                                                 <input type="text" name="name" onChange={handleChange} id="form3Example1m" className="form-control form-control-lg" placeholder='Full-Name' />
+                                            </div>
+                                            <div className="form-outline col-md-6 mb-4">
+                                                <input type="text" name="email" id="email" onChange={handleChange} className="form-control form-control-lg" placeholder='Enter Email' />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
                                                 <input type="text" name="accountNumber" id="accountNo" onChange={handleChange} className="form-control form-control-lg" placeholder='Account Number' />
@@ -183,17 +186,19 @@ const Beneficiaries = () => {
                                             <div className="form-outline col-md-6 mb-4">
                                                 <input type="text" name="accountType" id="accountType" onChange={handleChange} className="form-control form-control-lg" placeholder='Account Type' />
                                             </div>
-                                            <div className="form-outline col-md-6 mb-4">
-                                                <span className="fs-4">Created at : </span>
-                                            </div>
-                                            <div className="form-outline col-md-6 mb-4">
-                                                <input type="datetime-local" name="createdAt" id="creationDay" onChange={handleChange} className="form-control form-control-lg" />
-                                            </div>
-                                            <div className="form-outline col-md-6 mb-4">
-                                                <span className="fs-4">Updated at : </span>
-                                            </div>
-                                            <div className="form-outline col-md-6 mb-4">
-                                                <input type="datetime-local" name="updatedAt" id="updationDay" onChange={handleChange} className="form-control form-control-lg" />
+                                            <div className="row">
+                                                <div className="form-outline col-md-6 mb-4">
+                                                    <span className="fs-4">Created at : </span>
+                                                </div>
+                                                <div className="form-outline col-md-6 mb-4">
+                                                    <input type="datetime-local" name="createdAt" id="creationDay" onChange={handleChange} className="form-control form-control-lg" />
+                                                </div>
+                                                <div className="form-outline col-md-6 mb-4">
+                                                    <span className="fs-4">Updated at : </span>
+                                                </div>
+                                                <div className="form-outline col-md-6 mb-4">
+                                                    <input type="datetime-local" name="updatedAt" id="updationDay" onChange={handleChange} className="form-control form-control-lg" />
+                                                </div>
                                             </div>
                                             <div className="row d-flex justify-content-center">
                                                 <button type="reset" onClick={resetFormData} className="btn btn-outline-warning col-md-2 m-2" >Reset</button>

@@ -70,7 +70,7 @@ const AccountInfo = () => {
                 text:"You have Re-Login into Your Account",
                 icon: "success"
               }).then(() => {
-                window.location.href = "/userdash/accountInfo"; 
+                window.location.href = "/login"; 
               }); 
         })
         .catch(err => {
@@ -172,8 +172,6 @@ const AccountInfo = () => {
                                     <div className="card-body row  d-flex ">
                                         <div className="col-md-6"><p>First Name :-</p></div><div className="col-md-6 justify-content-end"><p>{Data.userFirstName}</p></div>
 
-                                        <div className="col-md-6"><p>Middle Name :-</p></div><div className="col-md-6 justify-content-end"><p>{Data.userMiddleName}</p></div>
-
                                         <div className="col-md-6"><p>Last Name :-</p></div><div className="col-md-6 justify-content-end"><p>{Data.userLastName}</p></div>
 
                                         <div className="col-md-6"><p>Date Of Birth :-</p></div><div className="col-md-6 justify-content-end"><p>{Data.userDOB}</p></div>
@@ -212,7 +210,7 @@ const AccountInfo = () => {
                                         </div><div className="col-md-6 justify-content-end"><p>{Data.userIFSC}</p></div>
 
                                         <div className="col-md-6"><p>Account Nummber :-</p></div>
-                                        <div className="col-md-6 justify-content-end"><p>{Data.accountNumber}</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{Data.userAccountNumber}</p></div>
 
                                         <div className="col-md-6"><p>Creation Date :-</p></div>
                                         <div className="col-md-6 justify-content-end"><p>{Data.createAt}</p></div>

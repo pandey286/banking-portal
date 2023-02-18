@@ -7,6 +7,7 @@ import { BiLogOut } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
+import {RiLuggageDepositFill} from 'react-icons/ri'
 
 
 const CustomerLoan = () => {
@@ -53,6 +54,12 @@ const CustomerLoan = () => {
                                 <span>Customer Loan Application</span>
                             </Link>
                         </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/deposit">
+                                <RiLuggageDepositFill className="me-3 mt-1" />
+                                <span>Deposit In User Account</span>
+                            </Link>
+                        </li>
                     </ul>
 
                     <ul className="list-unstyled CTAs">
@@ -75,26 +82,38 @@ const CustomerLoan = () => {
                         </div>
                     </nav>
 
-                    <div className="container">
-                        <h2 className="text-center">Application For Loan</h2>
-                        <div className="card mt-5">
-                            <div className="card-body fs-4">
-                                <div className="card-body row  d-flex ">
-                                    <div className="col-md-6"><p>Selected Loan Type:-</p></div><div className="col-md-6 justify-content-end"><p>Home Loan</p></div>
-                                    <div className="col-md-6"><p>FullName :-</p></div><div className="col-md-6 justify-content-end"><p>John Doe</p></div>
-                                    <div className="col-md-6"><p>Phone Number :-</p></div><div className="col-md-6 justify-content-end"><p>9974567890</p></div>
-                                    <div className="col-md-6"><p>Loan Ammount In Rupees :-</p></div><div className="col-md-6 justify-content-end"><p>15,00,000</p></div>
-                                    <div className="col-md-6"><p>Monthly Income :-</p></div><div className="col-md-6 justify-content-end"><p>65,000</p></div>
-                                    <div className="col-md-6"><p>Annual Income :-</p></div><div className="col-md-6 justify-content-end"><p>7,80,000</p></div>
-                                    <div className="col-md-6"><p>Profession :-</p></div><div className="col-md-6 justify-content-end"><p>Salaried</p></div>
-                                    <div className="col-md-6"><p>Address :-</p></div><div className="col-md-6 justify-content-end"><p>Thane</p></div>
-                                </div>
-                            </div>
-                            <div className="card-footer">
-                            <button className="btn btn-outline-success col-md-4 m-3" type="submit">Approve</button> 
-                            <button className="btn btn-outline-danger col-md-4 m-3" type="submit">Decline</button>
-                            </div>
-                        </div>
+                    <div>
+                        <table className="table table-hover table-responsive">
+                        <thead className="table-dark">
+                            <tr>
+                            <th scope="col">Selected Loan Type </th>
+                            <th scope="col">FullName </th>
+                            <th scope="col">Phone Number </th>
+                            <th scope="col">Loan Ammount In Rupees </th>
+                            <th scope="col">Monthly Income </th>
+                            <th scope="col">Annual Income </th>
+                            <th scope="col">Profession </th>
+                            <th scope="col">Address </th>
+                            <th scope="col">Status </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row">Home Loan Type</td>
+                                <td>John Doe</td>
+                                <td>9974567890</td>
+                                <td>15,00,000</td>
+                                <td>65,000</td>
+                                <td>7,80,000</td>
+                                <td>Salaried</td>
+                                <td>Thane</td>
+                                <td>
+                                    <button type="button" className="btn-sm btn btn-success m-1"> Approve</button> 
+                                    <button type="button" className="btn-sm btn btn-danger m-1"> Deny </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

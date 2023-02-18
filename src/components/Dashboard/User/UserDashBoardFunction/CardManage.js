@@ -131,6 +131,7 @@ const CardMan = () => {
                                             <div className="form-outline col-md-9 mb-4">
                                                 <input type="text" id="name" className="form-control form-control-lg" placeholder='Full-Name' />
                                             </div>
+                                    
                                             <div className="form-outline col-md-6 mb-4">
                                                 <span className="fs-4">Date Of Birth:- </span>
                                             </div>
@@ -177,6 +178,9 @@ const CardMan = () => {
                                                         <option value="gold">Debit-Card</option>
                                                     </select>
                                                 </div>
+                                            </div>
+                                            <div className="form-outline col-md-6 mb-4">
+                                                <input type="text" id="email" className="form-control form-control-lg" placeholder='Enter Email' />
                                             </div>
                                             <div className="form-outline col-md-12 mb-4">
                                                 <input type="text" id="address" className="form-control form-control-lg" placeholder='Address' />
