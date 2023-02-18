@@ -199,7 +199,7 @@ const Register = () => {
                             <input type="text" id="form3Example8" name='userIFSC' onChange={handleChange} className="form-control form-control-lg" placeholder='IFSC Code' />
                           </div>
                           <div className="form-outline col-md-6 mb-4">
-                            <input type="number" id="form3Example8" name='userAccountNumber' onChange={handleChange} className="form-control form-control-lg" placeholder='Account Number' />
+                            <input type=" text" id="form3Example8" name='userAccountNumber' onChange={handleChange} className="form-control form-control-lg" placeholder='Account Number' />
                           </div>
                           <div className="col-md-6 mb-4">
                             <span className='fs-4'>Date Of Birth :-</span>
