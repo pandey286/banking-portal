@@ -1,22 +1,40 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
-import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms} from "react-icons/fa";
+import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
-import {RiLuggageDepositFill} from 'react-icons/ri'
+import { RiLuggageDepositFill } from 'react-icons/ri'
 
 
-const DepositInUser= () => {
+const DepositInUser = () => {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     };
+
+    // Get data from cookies
+    const getCookie = (name) => {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    const [Data, setUserData] = useState(getCookie("adminData"));
+    useEffect(() => {
+        const cookieValue = JSON.parse(getCookie("adminData"));
+        setUserData(cookieValue);
+    }, []);
 
     return (
         <>
@@ -26,7 +44,7 @@ const DepositInUser= () => {
                     <div className="sidebar-header fs-5">
                         <Link className="list-item d-flex" to="/userdash">
                             <FaUserAlt className="me-3 mt-1" />
-                            <span >Admin</span>
+                            <span >{Data.adminName}</span>
                         </Link>
                     </div>
                     <ul className="list-unstyled components">
@@ -81,7 +99,7 @@ const DepositInUser= () => {
                             <h3><span><img className='mb-1' src={Kakashi} width="30px" /></span><strong>PSL Bank Ltd.</strong></h3>
                         </div>
                     </nav>
-                    
+
                     <section>
                         <div class="card ">
                             <div class="card-header bg-dark text-white text-center fw-bold fs-4">

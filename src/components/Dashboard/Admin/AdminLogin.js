@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../../Navbar';
 import LogImg from '../../Logins/images/LogImg1.gif'
@@ -67,7 +67,7 @@ function AdminLogin() {
              
 
                 // Set data in cookies
-                setCookie("userData", JSON.stringify(response.data), 7);
+                setCookie("adminData", JSON.stringify(response.data), 7);
                 window.location.href="/admindash"
             } catch (error) {
                 swal({

@@ -30,9 +30,9 @@ const AdminDashboard = () => {
         return null;
     }
 
-    const [Data, setUserData] = useState(getCookie("userData"));
+    const [Data, setUserData] = useState(getCookie("adminData"));
     useEffect(() => {
-        const cookieValue = JSON.parse(getCookie("userData"));
+        const cookieValue = JSON.parse(getCookie("adminData"));
         setUserData(cookieValue);
     }, []);
 

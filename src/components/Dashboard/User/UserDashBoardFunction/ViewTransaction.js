@@ -2,7 +2,7 @@ import React from "react";
 import { AiFillCloseCircle, AiFillCheckCircle } from "react-icons/ai";
 import { GrTransaction } from "react-icons/gr";
 import { Link } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../user.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
@@ -136,13 +136,12 @@ const ViewTrans = () => {
                                                         <th scope="col">User Acc_no</th>
                                                         <th scope="col">Trans Date</th>
                                                         <th scope="col">Beneficiary Name</th>
-                                                        <th scope="col">Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
                                                         <td>Debit</td>
-                                                        <td>Success</td>
+                                                        <td>Success<AiFillCheckCircle style={SuccessIcon} /></td>
                                                         <td>$500</td>
                                                         <td>$1200</td>
                                                         <td>$1700</td>
@@ -150,17 +149,22 @@ const ViewTrans = () => {
                                                         <td>098876756509</td>
                                                         <td>12-02-2023</td>
                                                         <td>John Doe</td>
-                                                        <td><AiFillCheckCircle style={SuccessIcon} /></td>
                                                     </tr>
-                                                    
+
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
-                                <div>
-                                <button type="submit" className="btn btn-warning shadow p-1 mb-5 rounded-1 justify-content-center">
-                                    <Link to="/userdash" className="text-dark p-3" style={{ textDecoration: "none" }}>Back To Home</Link></button><br />
+                                <div className="text-center row">
+                                    <div className="col-md-6 text-end">
+                                        <button type="submit" className="btn btn-outline-warning shadow p-1 mb-5 rounded-1 justify-content-center">
+                                            <Link to="/userdash" className="text-dark p-3" style={{ textDecoration: "none" }}><BiLogOut classname="me-3" />Back To Home</Link></button><br />
+                                    </div>
+                                    <div className="col-md-6 text-start">
+                                        <button type="submit" className="btn btn-outline-success shadow p-1 mb-5 rounded-1 justify-content-center">
+                                            Get Statement</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

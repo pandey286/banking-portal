@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -8,7 +8,7 @@ import { BiLogOut } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
-import {RiLuggageDepositFill} from 'react-icons/ri'
+import { RiLuggageDepositFill } from 'react-icons/ri'
 
 let SuccessIcon = { color: "green" };
 let FailedIcon = { color: "red" };
@@ -21,6 +21,24 @@ const AllCustomer = () => {
         setSidebarOpen(!sidebarOpen);
     };
 
+    // Get data from cookies
+    const getCookie = (name) => {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    const [Data, setUserData] = useState(getCookie("adminData"));
+    useEffect(() => {
+        const cookieValue = JSON.parse(getCookie("adminData"));
+        setUserData(cookieValue);
+    }, []);
+
     return (
         <>
             <div className="wrapper">
@@ -29,7 +47,7 @@ const AllCustomer = () => {
                     <div className="sidebar-header fs-5">
                         <Link className="list-item d-flex" to="/userdash">
                             <FaUserAlt className="me-3 mt-1" />
-                            <span >Admin</span>
+                            <span >{Data.adminName}</span>
                         </Link>
                     </div>
                     <ul className="list-unstyled components">
@@ -87,10 +105,10 @@ const AllCustomer = () => {
                     <div className="text-center fs-1 mb-5">All the Customer </div>
                     <div className="card">
                         <div className="card-body">
-                        <input type="text" id="pan" className="form-control" placeholder='Search Customer by Account Number' />
-                        <div className="d-flex justify-content-center pt-3">
-                        <button type="button" className="btn-sm btn btn-secondary m-auto"> Search </button>
-                        </div>
+                            <input type="text" id="pan" className="form-control" placeholder='Search Customer by Account Number' />
+                            <div className="d-flex justify-content-center pt-3">
+                                <button type="button" className="btn-sm btn btn-secondary m-auto"> Search </button>
+                            </div>
 
                         </div>
                     </div>
@@ -130,7 +148,7 @@ const AllCustomer = () => {
                                             <td>Male</td>
                                             <td>Bangalore,India</td>
                                             <td>
-                                                <button type="button" className="btn-sm btn btn-success m-1"> Approve</button> 
+                                                <button type="button" className="btn-sm btn btn-success m-1"> Approve</button>
                                                 <button type="button" className="btn-sm btn btn-danger m-1"> Deny </button>
                                             </td>
                                         </tr>

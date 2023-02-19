@@ -1,11 +1,11 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
-import {RiLuggageDepositFill} from 'react-icons/ri'
+import { RiLuggageDepositFill } from 'react-icons/ri'
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 
@@ -17,6 +17,23 @@ const CustomerCard = () => {
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     };
+    // Get data from cookies
+    const getCookie = (name) => {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    const [Data, setUserData] = useState(getCookie("adminData"));
+    useEffect(() => {
+        const cookieValue = JSON.parse(getCookie("adminData"));
+        setUserData(cookieValue);
+    }, []);
 
     return (
         <>
@@ -26,7 +43,7 @@ const CustomerCard = () => {
                     <div className="sidebar-header fs-5">
                         <Link className="list-item d-flex" to="/userdash">
                             <FaUserAlt className="me-3 mt-1" />
-                            <span >Admin</span>
+                            <span >{Data.adminName}</span>
                         </Link>
                     </div>
                     <ul className="list-unstyled components">
@@ -84,34 +101,34 @@ const CustomerCard = () => {
 
                     <div>
                         <table className="table table-hover table-responsive">
-                        <thead className="table-dark">
-                            <tr>
-                            <th scope="col">Title</th>
-                            <th scope="col">FullName</th>
-                            <th scope="col">Date Of Birth</th>
-                            <th scope="col">Phone Number </th>
-                            <th scope="col">Gender </th>
-                            <th scope="col">Profession </th>
-                            <th scope="col">Card Type </th>
-                            <th scope="col">Address </th>
-                            <th scope="col">Status </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <td scope="row">Mr.</td>
-                            <td>John Doe</td>
-                            <td>07/05/1997</td>
-                            <td>9974567890</td>
-                            <td>Male</td>
-                            <td>Doctor</td>
-                            <td>Debit</td>
-                            <td>Thane</td>
-                            <td>
-                                <button type="button" className="btn-sm btn btn-success m-1"> Approve</button> 
-                                <button type="button" className="btn-sm btn btn-danger m-1"> Deny </button></td>
-                            </tr>
-                        </tbody>
+                            <thead className="table-dark">
+                                <tr>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">FullName</th>
+                                    <th scope="col">Date Of Birth</th>
+                                    <th scope="col">Phone Number </th>
+                                    <th scope="col">Gender </th>
+                                    <th scope="col">Profession </th>
+                                    <th scope="col">Card Type </th>
+                                    <th scope="col">Address </th>
+                                    <th scope="col">Status </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row">Mr.</td>
+                                    <td>John Doe</td>
+                                    <td>07/05/1997</td>
+                                    <td>9974567890</td>
+                                    <td>Male</td>
+                                    <td>Doctor</td>
+                                    <td>Debit</td>
+                                    <td>Thane</td>
+                                    <td>
+                                        <button type="button" className="btn-sm btn btn-success m-1"> Approve</button>
+                                        <button type="button" className="btn-sm btn btn-danger m-1"> Deny </button></td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
 
