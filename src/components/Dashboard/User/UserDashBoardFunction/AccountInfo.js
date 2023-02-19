@@ -166,7 +166,7 @@ const AccountInfo = () => {
                         <div className="row">
                             <div className="col-lg-12 grid-margin stretch-card align-middle">
                                 <div className="card">
-                                    <div className="card-header bg-secondary fs-1">
+                                    <div className="card-header bg-secondary fs-1 fw-bold text-white bg-dark">
                                         Account Information
                                     </div>
                                     <div className="card-body row  d-flex ">

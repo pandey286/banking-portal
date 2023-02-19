@@ -71,11 +71,6 @@ const ContactForm = () => {
               <textarea className="form-control" id="Elaborate Your Query" name="message" value={formData.message} 
               onChange={handleInputChange} rows="10" required/>
             </div>
-            <div className="form-check form-switch">
-              <input className="form-check-input" type="checkbox" id="hasAccount" name="hasAccount" checked={formData.hasAccount} 
-              onChange={handleCheckboxChange}/>
-              <label className="form-check-label" htmlFor="hasAccount">Do you have Account in our Bank ? </label>
-            </div>
             <button className="btn btn-danger mt-3" type="submit">
               {formStatus}
             </button>

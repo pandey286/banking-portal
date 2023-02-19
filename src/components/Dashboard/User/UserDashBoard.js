@@ -113,32 +113,22 @@ const UserDashBoard = () => {
                     </nav>
 
                     <div className="card ">
-                        <div className="card-header d-flex col bg-secondary text-dark fs-2">
+                        <div className="card-header d-flex col bg-dark text-white fs-2 fw-bold">
                             <div className="col-md-9 col-sm-12">Account Number :-</div>
-                            <div className="col-md-3 col-sm-12 text-end">{Data.userAccountNumber}</div>
+                            <div className="col-md-3 col-sm-12 text-end ">{Data.userAccountNumber}</div>
                         </div>
-                        <div className="card-body d-flex col text-end">
+                        <div className="card-body d-flex col text-end fw-bold">
                             <div className="col-md-9 col-sm-12 text-start fs-3">Account Balance :-</div>
-                            <p className="col-md-3 col-sm-12 card-text fs-3"><FaRupeeSign />500.0</p>
+                            <p className="col-md-3 col-sm-12 card-text text-success fs-3"><FaRupeeSign />{Data.balance}</p>
                         </div>
                     </div>
 
                     <div className="card">
-                        <div className="card-header fs-4">
-                            <b>Pay to your Payee</b>
+                        <div className="card-header fs-4 bg-dark text-white">
+                            <b>Pay to Beneficiary</b>
                         </div>
                         <div className="card-body">
                             <div className="row">
-                                <div className="col-md-6 mb-4">
-                                    <div className="form-outline">
-                                        <input type="text" id="form3Example1m" className="form-control form-control-lg" placeholder='Payee Name' />
-                                    </div>
-                                </div>
-                                <div className="col-md-6 mb-4">
-                                    <div className="form-outline">
-                                        <input type="text" id="form3Example1m" className="form-control form-control-lg" placeholder='IFSC Code' required />
-                                    </div>
-                                </div>
                                 <div className="col-md-6 mb-4">
                                     <div className="form-outline">
                                         <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Payee Account Number' required />
@@ -152,10 +142,12 @@ const UserDashBoard = () => {
                                 <div className="col-md-6 mb-4 ">
                                     <div className="form-outline">
                                     </div>
-                                    <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Enter Amount' required />
+                                    <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Enter Amount to Pay' required />
                                 </div>
-                                <div className="row ">
-                                    <button type="button" className="btn btn-success btn-lg ms-2">Transfer</button>
+                                <div className="row d-flex justify-content-center">
+                                    <div className="col-md-6 text-center">
+                                        <button type="button" className="btn btn-success btn-lg ms-2 ">Transfer</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -85,27 +85,17 @@ const AllCustomer = () => {
                         </div>
                     </nav>
                     <div className="text-center fs-1 mb-5">All the Customer </div>
-                    <div className="col data-table mt-4">
-                                <table className="table bg-white shadow-sm  text-center table-hover">
-                                    <thead className="table-dark">
-                                        <tr>
-                                            <th scope="col">Enter email</th>
-                                            <th scope="col">Enter account number</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="text" id="email" className="form-control " placeholder='Enter email' /></td>
-                                            <td><input type="text" id="pan" className="form-control" placeholder='Enter account number' /></td>
-                                        </tr>
-                                        <tr>
-                                            <td> 
-                                                <button type="button" className="btn-sm btn btn-secondary m-auto"> Search </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    <div className="card">
+                        <div className="card-body">
+                        <input type="text" id="pan" className="form-control" placeholder='Search Customer by Account Number' />
+                        <div className="d-flex justify-content-center pt-3">
+                        <button type="button" className="btn-sm btn btn-secondary m-auto"> Search </button>
+                        </div>
+
+                        </div>
                     </div>
+
+
                     <div className="card">
                         <div className="card-body">
                             <div className="col data-table mt-4">

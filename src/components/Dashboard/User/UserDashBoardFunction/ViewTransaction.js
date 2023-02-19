@@ -12,6 +12,7 @@ import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 
 let SuccessIcon = { color: "green" };
 let FailedIcon = { color: "red" };
+let Trans = { color: "white" };
 
 const ViewTrans = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -118,85 +119,49 @@ const ViewTrans = () => {
                         <div className="row">
                             <div className="col-lg-12 grid-margin stretch-card align-middle">
                                 <div className="card">
-                                    <div className="card-header bg-secondary fs-1">
-                                        All Transaction <GrTransaction />
+                                    <div className="card-header fw-bold text-white bg-dark fs-1">
+                                        All Transaction <GrTransaction style={Trans} />
                                     </div>
                                     <div className="card-body">
                                         <div className="table-responsive">
                                             <table className="table bg-white shadow-sm  text-center table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col">Transaction Id</th>
-                                                        <th scope="col">Transaction Date</th>
-                                                        <th scope="col">Beneficiary</th>
-                                                        <th scope="col">Amount</th>
+                                                        <th scope="col">Trans Type</th>
+                                                        <th scope="col">Trans Status</th>
+                                                        <th scope="col">Trans Amount</th>
+                                                        <th scope="col">Curr Balance</th>
+                                                        <th scope="col">Prev Balance</th>
+                                                        <th scope="col">Bene Acc_no</th>
+                                                        <th scope="col">User Acc_no</th>
+                                                        <th scope="col">Trans Date</th>
+                                                        <th scope="col">Beneficiary Name</th>
                                                         <th scope="col">Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td>TRANS0000012</td>
-                                                        <td>4/11/2056</td>
-                                                        <td>Joe Doe</td>
+                                                        <td>Debit</td>
+                                                        <td>Success</td>
+                                                        <td>$500</td>
                                                         <td>$1200</td>
+                                                        <td>$1700</td>
+                                                        <td>878745455577</td>
+                                                        <td>098876756509</td>
+                                                        <td>12-02-2023</td>
+                                                        <td>John Doe</td>
                                                         <td><AiFillCheckCircle style={SuccessIcon} /></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>TRANS0007718</td>
-                                                        <td>4/11/2056</td>
-                                                        <td>Joe Doe</td>
-                                                        <td>$1200</td>
-                                                        <td><AiFillCheckCircle style={SuccessIcon} /></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TRANS0000012</td>
-                                                        <td>4/11/2056</td>
-                                                        <td>Joe Doe</td>
-                                                        <td>$1200</td>
-                                                        <td><AiFillCloseCircle style={FailedIcon} /></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TRANS0007718</td>
-                                                        <td>4/11/2056</td>
-                                                        <td>Joe Doe</td>
-                                                        <td>$1200</td>
-                                                        <td ><AiFillCheckCircle style={SuccessIcon} /></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TRANS0000012</td>
-                                                        <td>4/11/2056</td>
-                                                        <td>Joe Doe</td>
-                                                        <td>$1200</td>
-                                                        <td><AiFillCloseCircle style={FailedIcon} /></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TRANS0007718</td>
-                                                        <td>4/11/2056</td>
-                                                        <td>Joe Doe</td>
-                                                        <td>$1200</td>
-                                                        <td><AiFillCheckCircle style={SuccessIcon} /></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TRANS0000012</td>
-                                                        <td></td>
-                                                        <td>Joe Doe</td>
-                                                        <td>$1200</td>
-                                                        <td><AiFillCheckCircle style={FailedIcon} /></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TRANS0007718</td>
-                                                        <td>4/11/2056</td>
-                                                        <td>Joe Doe</td>
-                                                        <td>$1200</td>
-                                                        <td><AiFillCheckCircle style={SuccessIcon} /></td>
-                                                    </tr>
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" className="btn btn-warning shadow p-1 mb-5 rounded-1">
+                                <div>
+                                <button type="submit" className="btn btn-warning shadow p-1 mb-5 rounded-1 justify-content-center">
                                     <Link to="/userdash" className="text-dark p-3" style={{ textDecoration: "none" }}>Back To Home</Link></button><br />
+                                </div>
                             </div>
                         </div>
                     </div>

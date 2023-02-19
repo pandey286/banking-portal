@@ -157,8 +157,8 @@ const Beneficiaries = () => {
 
                     <div className="m-5" id="page-content">
                         <div className="card">
-                            <div className="card-header bg-secondary fs-1">
-                                Add New Payee <FaUser />
+                            <div className="card-header bg-secondary fs-1 fw-bold text-white bg-dark">
+                                Add Beneficiary <FaUserPlus />
                             </div>
                             <div className="card-body d-flex col">
                                 <div className="row">
@@ -166,13 +166,13 @@ const Beneficiaries = () => {
                                         <div className="row">
                                             <div className="form-outline col-md-6 mb-4">
 
-                                                <input type="text" name="name" onChange={handleChange} id="form3Example1m" className="form-control form-control-lg" placeholder='Full-Name' />
+                                                <input type="text" name="name" onChange={handleChange} id="form3Example1m" className="form-control form-control-lg" placeholder='Beneficiary Full-Name' />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
-                                                <input type="text" name="email" id="email" onChange={handleChange} className="form-control form-control-lg" placeholder='Enter Email' />
+                                                <input type="text" name="userAccNo" id="userAccNo" onChange={handleChange} className="form-control form-control-lg" placeholder='User Account Number' />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
-                                                <input type="text" name="accountNumber" id="accountNo" onChange={handleChange} className="form-control form-control-lg" placeholder='Account Number' />
+                                                <input type="text" name="accountNumber" id="accountNo" onChange={handleChange} className="form-control form-control-lg" placeholder='Beneficiary Account Number' />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
                                                 <input type="text" name="ifscCode" id="ifscCode" onChange={handleChange} className="form-control form-control-lg" placeholder='IFSC Code' />
@@ -181,7 +181,7 @@ const Beneficiaries = () => {
                                                 <input type="text" name="bankName" id="bankName" onChange={handleChange} className="form-control form-control-lg" placeholder='Bank Name' />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
-                                                <input type="text" name="branchName" id="BranchName" onChange={handleChange} className="form-control form-control-lg" placeholder='Branch Name' />
+                                                <input type="text" name="branchLocation" id="BranchLocation" onChange={handleChange} className="form-control form-control-lg" placeholder='Branch Location' />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
                                                 <input type="text" name="accountType" id="accountType" onChange={handleChange} className="form-control form-control-lg" placeholder='Account Type' />

@@ -11,43 +11,43 @@ const Register = () => {
   const [formData, setFormData] = useState({
 
     userFirstName: '',
-    userLastName: '',
-    userDOB: '',
-    userPhoneNo: '',
-    userAltPhoneNo: '',
-    userAddress: '',
-    userAadharNo: '',
-    userPAN: '',
-    userGender: '',
-    userNationality: '',
-    email: '',
-    password: '',
-    userAccType: '',
-    userBranchName: '',
-    userIFSC: '',
-    userAccountNumber: '',
-    createAt: '',
+    userLastName : '',
+    userDOB : '' ,
+    userPhoneNo : '',
+    userAltPhoneNo  : '',
+    userAddress :'' ,
+    userAadharNo :'' ,
+    userPAN : '',
+    userGender : '',
+    userNationality :'' ,
+    email : '',
+    password : '',
+    userAccType :'' ,
+    userBranchName : '',
+    userIFSC :'' ,
+    userAccountNumber : '',
+    createAt :'',
   });
 
   const resetFormData = () => {
     setFormData({
       userFirstName: '',
-      userLastName: '',
-      userDOB: '',
-      userPhoneNo: '',
-      userAltPhoneNo: '',
-      userAddress: '',
-      userAadharNo: '',
-      userPAN: '',
-      userGender: '',
-      userNationality: '',
-      email: '',
-      password: '',
-      userAccType: '',
-      userBranchName: '',
-      userIFSC: '',
-      userAccountNumber: '',
-      createAt: '',
+      userLastName : '',
+      userDOB : '' ,
+      userPhoneNo : '',
+      userAltPhoneNo  : '',
+      userAddress :'' ,
+      userAadharNo :'' ,
+      userPAN : '',
+      userGender : '',
+      userNationality :'' ,
+      email : '',
+      password : '',
+      userAccType :'' ,
+      userBranchName : '',
+      userIFSC :'' ,
+      userAccountNumber : '',
+      createAt :'',
     });
   };
 
@@ -184,6 +184,7 @@ const Register = () => {
                           <div className="col-md-6 mb-4">
                             <div className="form-outline">
                               <select id="form3Example1n" name='userAccType' onChange={handleChange} className="select form-control form-control-lg" placeholder='Account Type'>
+                              <option selected>Select Your Account Type</option>
                                 <option value="Savings">Savings</option>
                                 <option value="Current">Current</option>
                                 <option value="FixedDeposit">FixedDeposit</option>

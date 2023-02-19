@@ -112,7 +112,7 @@ const LoanApp = () => {
 
                     <div className="m-5" id="page-content">
                         <div className="card">
-                            <div className="card-header fs-2 "> Apply For Loan</div>
+                            <div className="card-header fs-2 fw-bold text-white bg-dark"> Apply For Loan</div>
                             <div className="card-body d-flex col">
                                 <div className="row">
                                     <div className="col-xl-5">
