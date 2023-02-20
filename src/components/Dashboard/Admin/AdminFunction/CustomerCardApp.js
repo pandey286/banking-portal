@@ -34,6 +34,12 @@ const CustomerCard = () => {
         const cookieValue = JSON.parse(getCookie("adminData"));
         setUserData(cookieValue);
     }, []);
+    
+    const [CardData, setCardData] = useState(getCookie("cardAppl"));
+    useEffect(() => {
+        const cookieValue = JSON.parse(getCookie("cardAppl"));
+        setCardData(cookieValue);
+    }, []);
 
     return (
         <>
@@ -110,20 +116,22 @@ const CustomerCard = () => {
                                     <th scope="col">Gender </th>
                                     <th scope="col">Profession </th>
                                     <th scope="col">Card Type </th>
+                                    <th scope="col">Card</th>
                                     <th scope="col">Address </th>
                                     <th scope="col">Status </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td scope="row">Mr.</td>
-                                    <td>John Doe</td>
-                                    <td>07/05/1997</td>
-                                    <td>9974567890</td>
-                                    <td>Male</td>
-                                    <td>Doctor</td>
-                                    <td>Debit</td>
-                                    <td>Thane</td>
+                                    <td scope="row">{CardData.title}</td>
+                                    <td>{CardData.userFullName}</td>
+                                    <td>{CardData.dob}</td>
+                                    <td>{CardData.userPhoneNo}</td>
+                                    <td>{CardData. userGender}</td>
+                                    <td>{CardData. userProfession}</td>
+                                    <td>{CardData.userCardType}</td>
+                                    <td>{CardData.userCard}</td>
+                                    <td>{CardData.userAddress}</td>
                                     <td>
                                         <button type="button" className="btn-sm btn btn-success m-1"> Approve</button>
                                         <button type="button" className="btn-sm btn btn-danger m-1"> Deny </button></td>

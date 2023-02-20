@@ -1,17 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../user.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionCircle, FaUserPlus } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
+import axios from "axios";
+import swal from "sweetalert";
 
 const LoanApp = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
+    }
+
+    const setCookie = (name, value, days) => {
+        let expires = "";
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
     }
 
     // Get data from cookies
@@ -31,6 +43,75 @@ const LoanApp = () => {
         const cookieValue = JSON.parse(getCookie("userData"));
         setUserData(cookieValue);
     }, []);
+
+    const [formData, setFormData] = useState({
+        userLoanType: '',
+        userFullName: '',
+        email: '',
+        userPhoneNo: '',
+        loanAmountInRupees: '',
+        monthlyIncome: '',
+        annualIncome: '',
+        userProfession: '',
+        userAddress: ''
+    });
+
+    const [emailData, setEmailData] = useState({
+        to: '',
+        subject: '',
+        body: ''
+    });
+
+    const handleChange = event => {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value
+        });
+
+        setEmailData({
+            ...emailData,
+            to: formData.email,
+            subject: `Application for ${formData.userLoanType}`,
+            body: `Thank You Applying for  ${formData.userLoanType} from PSL Bank Online Platform.You have Applied for ${formData.userLoanType} with following Drtails
+            Loan Type:- ${formData.userLoanType},
+            FullName:- ${formData.userFullName},
+            Email:- ${formData.email},
+            Phone Number:- ${formData.userPhoneNo},
+            Loan Amount You Want:- ${formData.loanAmountInRupees},
+            Your Monthly Income:- ${formData.monthlyIncome},
+            YourAnuual Income:- ${formData.annualIncome},
+            Your Profession:- ${formData.userProfession},
+            Your Address:- ${formData.userAddress},
+            We Will let you know by Email if you card application have been approve or decline.`
+        })
+    };
+
+    const loanUrl = "http://localhost:8080/api/users/apply-loan"
+    const notificationurl = "http://localhost:8080/api/v1/notifications"
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post(loanUrl, formData);
+            const notification = await axios.post(notificationurl, emailData)
+            setCookie("loanAppl", JSON.stringify(response.data), 7);
+            swal({
+                title: "Loan Application Succesfully!! ",
+                text: "You have Successfully applied for a Card",
+                icon: "success",
+            })
+            // console.log(response.data);
+        } catch (error) {
+            swal({
+                title: "Loan Application Failed!! ",
+                text: "Pleas try later",
+                icon: "warning",
+            })
+            console.error(error);
+        }
+    };
+
+
 
 
 
@@ -122,7 +203,7 @@ const LoanApp = () => {
                                         <div className="row">
                                             <div className="col-md-6 mb-4">
                                                 <div className="form-outline">
-                                                    <select id="Loan" className="select form-control form-control-lg" placeholder='Loan'>
+                                                    <select id="Loan" className="select form-control form-control-lg" placeholder='Loan' name="userLoanType" onChange={handleChange}>
                                                         <option selected>Select Loan Type</option>
                                                         <option value="Home Loan">Home Loan</option>
                                                         <option value="Education Loan">Education Loan</option>
@@ -133,26 +214,26 @@ const LoanApp = () => {
                                                 </div>
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
-                                                <input type="text" id="name" className="form-control form-control-lg" placeholder='Full-Name' />
+                                                <input type="text" id="name" className="form-control form-control-lg" placeholder='Full-Name' name="userFullName" onChange={handleChange}/>
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
-                                                <input type="text" id="email" className="form-control form-control-lg" placeholder='Enter Email' />
+                                                <input type="text" id="email" className="form-control form-control-lg" placeholder='Enter Email' name="email" onChange={handleChange}/>
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
-                                                <input type="text" id="mobileNo" className="form-control form-control-lg" placeholder='Phone No' />
+                                                <input type="text" id="mobileNo" className="form-control form-control-lg" placeholder='Phone No' name="userPhoneNo" onChange={handleChange} />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
-                                                <input type="text" id="loanAmount" className="form-control form-control-lg" placeholder='Loan Amount In Rupees' />
+                                                <input type="text" id="loanAmount" className="form-control form-control-lg" placeholder='Loan Amount In Rupees' name="loanAmountInRupees" onChange={handleChange} />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
-                                                <input type="text" id="monthlyIncome" className="form-control form-control-lg" placeholder='Monthly Income' />
+                                                <input type="text" id="monthlyIncome" className="form-control form-control-lg" placeholder='Monthly Income' name="monthlyIncome" onChange={handleChange} />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
-                                                <input type="text" id="annualIncome" className="form-control form-control-lg" placeholder='Annual Income' />
+                                                <input type="text" id="annualIncome" className="form-control form-control-lg" placeholder='Annual Income' name="annualIncome" onChange={handleChange} />
                                             </div>
                                             <div className="col-md-6 mb-4">
                                                 <div className="form-outline">
-                                                    <select id="Loan" className="select form-control form-control-lg" placeholder='Loan'>
+                                                    <select id="profession" className="select form-control form-control-lg" placeholder='profession' name="userProfession" onChange={handleChange}>
                                                         <option selected>Profession</option>
                                                         <option value="self">Self-Employeed</option>
                                                         <option value="salary">Salaried</option>
@@ -160,10 +241,10 @@ const LoanApp = () => {
                                                 </div>
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
-                                                <input type="text" id="annualIncome" className="form-control form-control-lg" placeholder='Address' />
+                                                <input type="text" id="annualIncome" className="form-control form-control-lg" placeholder='Address' name="userAddress" onChange={handleChange} />
                                             </div>
                                             <div className="row d-flex justify-content-center">
-                                                <button className="btn btn-outline-primary col-md-4 mt-3" type="submit">Apply</button>
+                                                <button className="btn btn-outline-primary col-md-4 mt-3" type="submit"  onClick={handleSubmit}>Apply</button>
                                             </div>
                                         </div>
                                     </div>

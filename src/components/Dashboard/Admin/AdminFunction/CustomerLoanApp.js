@@ -36,6 +36,12 @@ const CustomerLoan = () => {
         setUserData(cookieValue);
     }, []);
 
+    const [LoanData, setLoanData] = useState(getCookie("loanAppl"));
+    useEffect(() => {
+        const cookieValue = JSON.parse(getCookie("loanAppl"));
+        setLoanData(cookieValue);
+    }, []);
+
     return (
         <>
             <div className="wrapper">
@@ -104,10 +110,11 @@ const CustomerLoan = () => {
                         <table className="table table-hover table-responsive">
                             <thead className="table-dark">
                                 <tr>
-                                    <th scope="col">Selected Loan Type </th>
+                                    <th scope="col">Loan Type </th>
                                     <th scope="col">FullName </th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Phone Number </th>
-                                    <th scope="col">Loan Ammount In Rupees </th>
+                                    <th scope="col">Loan Ammount</th>
                                     <th scope="col">Monthly Income </th>
                                     <th scope="col">Annual Income </th>
                                     <th scope="col">Profession </th>
@@ -117,14 +124,15 @@ const CustomerLoan = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td scope="row">Home Loan Type</td>
-                                    <td>John Doe</td>
-                                    <td>9974567890</td>
-                                    <td>15,00,000</td>
-                                    <td>65,000</td>
-                                    <td>7,80,000</td>
-                                    <td>Salaried</td>
-                                    <td>Thane</td>
+                                    <td scope="row">{LoanData.userLoanType}</td>
+                                    <td>{LoanData.userFullName}</td>
+                                    <td>{LoanData.email}</td>
+                                    <td>{LoanData.userPhoneNo}</td>
+                                    <td>{LoanData.loanAmountInRupees}</td>
+                                    <td>{LoanData.monthlyIncome}</td>
+                                    <td>{LoanData.annualIncome}</td>
+                                    <td>{LoanData.userProfession}</td>
+                                    <td>{LoanData.userAddress}</td>
                                     <td>
                                         <button type="button" className="btn-sm btn btn-success m-1"> Approve</button>
                                         <button type="button" className="btn-sm btn btn-danger m-1"> Deny </button>
