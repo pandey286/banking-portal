@@ -19,7 +19,8 @@ const Beneficiaries = () => {
     const [formData, setFormData] = useState({
 
         name: '',
-        beneaccountNumber: '',
+        userAccountNumber: '',
+        beneAccountNumber: '',
         ifscCode: '',
         bankName: '',
         branchName: '',
@@ -31,7 +32,8 @@ const Beneficiaries = () => {
     const resetFormData = () => {
         setFormData({
             name: '',
-            accountNumber: '',
+            userAccountNumber: '',
+            beneAccountNumber: '',
             ifscCode: '',
             bankName: '',
             branchName: '',
@@ -169,10 +171,10 @@ const Beneficiaries = () => {
                                                 <input type="text" name="name" onChange={handleChange} id="form3Example1m" className="form-control form-control-lg" placeholder='Beneficiary Full-Name' />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
-                                                <input type="text" name="userAccNo" id="userAccNo" onChange={handleChange} className="form-control form-control-lg" placeholder='User Account Number' />
+                                                <input type="text" name="userAccountNumber" id="userAccNo" onChange={handleChange} className="form-control form-control-lg" placeholder='User Account Number' />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
-                                                <input type="text" name="accountNumber" id="accountNo" onChange={handleChange} className="form-control form-control-lg" placeholder='Beneficiary Account Number' />
+                                                <input type="text" name="beneAccountNumber" id="accountNo" onChange={handleChange} className="form-control form-control-lg" placeholder='Beneficiary Account Number' />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
                                                 <input type="text" name="ifscCode" id="ifscCode" onChange={handleChange} className="form-control form-control-lg" placeholder='IFSC Code' />
@@ -181,7 +183,7 @@ const Beneficiaries = () => {
                                                 <input type="text" name="bankName" id="bankName" onChange={handleChange} className="form-control form-control-lg" placeholder='Bank Name' />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
-                                                <input type="text" name="branchLocation" id="BranchLocation" onChange={handleChange} className="form-control form-control-lg" placeholder='Branch Location' />
+                                                <input type="text" name="branchName" id="BranchLocation" onChange={handleChange} className="form-control form-control-lg" placeholder='Branch Location' />
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
                                                 <input type="text" name="accountType" id="accountType" onChange={handleChange} className="form-control form-control-lg" placeholder='Account Type' />

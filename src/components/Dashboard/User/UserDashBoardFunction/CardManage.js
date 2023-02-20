@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../user.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionCircle, FaUserPlus } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
+import axios from "axios";
 
 const CardMan = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -31,6 +32,41 @@ const CardMan = () => {
         const cookieValue = JSON.parse(getCookie("userData"));
         setUserData(cookieValue);
     }, []);
+
+    const [formData, setFormData] = useState({
+
+        title: '',
+        userFullName: '',
+        email: '',
+        dob: '',
+        userPhoneNo: '',
+        userGender: '',
+        userProfession: '',
+        userCardType: '',
+        userCard: '',
+        userAddress: '',
+    });
+
+    const handleChange = event => {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value
+        });
+    };
+
+    const cardUrl = "http://localhost:8080/api/users/apply-card"
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post(cardUrl, formData);
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+
 
     return (
         <>
@@ -120,49 +156,49 @@ const CardMan = () => {
                                         <div className="row">
                                             <div className="col-md-3 mb-4">
                                                 <div className="form-outline">
-                                                    <select id="Loan" className="select form-control form-control-lg" placeholder='Loan'>
+                                                    <select id="Loan" className="select form-control form-control-lg" placeholder='Loan' name="title" onChange={handleChange}>
                                                         <option selected>Title</option>
-                                                        <option value="Mr">Mr.</option>
-                                                        <option value="Mrs">Mrs.</option>
+                                                        <option value="Mr.">Mr.</option>
+                                                        <option value="Mrs.">Mrs.</option>
                                                     </select>
                                                 </div>
                                             </div>
 
                                             <div className="form-outline col-md-9 mb-4">
-                                                <input type="text" id="name" className="form-control form-control-lg" placeholder='Full-Name' />
+                                                <input type="text" id="name" className="form-control form-control-lg" placeholder='Full-Name' onChange={handleChange} name="userFullName" />
                                             </div>
-                                    
-                                            <div className="form-outline col-md-6 mb-4">
+
+                                            <div className="form-outline col-md-6 mb-4" >
                                                 <span className="fs-4">Date Of Birth:- </span>
                                             </div>
-                                            <div className="form-outline col-md-6 mb-4">
-                                                <input type="date" id="monthlyIncome" className="form-control form-control-lg" />
+                                            <div className="form-outline col-md-6 mb-4" >
+                                                <input type="date" id="monthlyIncome" className="form-control form-control-lg" onChange={handleChange} name="dob" />
                                             </div>
-                                            <div className="form-outline col-md-6 mb-4">
-                                                <input type="text" id="mobileNo" className="form-control form-control-lg" placeholder='Phone No' />
+                                            <div className="form-outline col-md-6 mb-4" >
+                                                <input type="text" id="mobileNo" className="form-control form-control-lg" placeholder='Phone No' onChange={handleChange} name="userPhoneNo" />
                                             </div>
                                             <div className="col-md-6 mb-4">
                                                 <div className="form-outline">
-                                                    <select id="gender" className="select form-control form-control-lg" placeholder='Gender'>
+                                                    <select id="gender" className="select form-control form-control-lg" placeholder='Gender' onChange={handleChange} name="userGender">
                                                         <option selected>Gender</option>
-                                                        <option value="male">Male</option>
-                                                        <option value="female">Female</option>
-                                                        <option value="other">Others</option>
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                        <option value="Other">Others</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div className="col-md-6 mb-4">
                                                 <div className="form-outline">
-                                                    <select id="profession" className="select form-control form-control-lg" placeholder='profession'>
+                                                    <select id="profession" className="select form-control form-control-lg" placeholder='profession' onChange={handleChange} name="userProfession">
                                                         <option selected>Profession</option>
-                                                        <option value="self">Self-Employeed</option>
-                                                        <option value="salary">Salaried</option>
+                                                        <option value="self-employeed">Self-Employeed</option>
+                                                        <option value="salaried">Salaried</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div className="col-md-6 mb-4">
                                                 <div className="form-outline">
-                                                    <select id="cardtype" className="select form-control form-control-lg" placeholder='Card Type'>
+                                                    <select id="cardtype" className="select form-control form-control-lg" placeholder='Card Type' onChange={handleChange} name="userCardType">
                                                         <option selected>Card Type</option>
                                                         <option value="platinum">Platinum</option>
                                                         <option value="gold">Gold</option>
@@ -172,7 +208,7 @@ const CardMan = () => {
                                             </div>
                                             <div className="col-md-6 mb-4">
                                                 <div className="form-outline">
-                                                    <select id="cardtype" className="select form-control form-control-lg" placeholder='Card Type'>
+                                                    <select id="cardtype" className="select form-control form-control-lg" placeholder='Card Type' onChange={handleChange} name="userCard">
                                                         <option selected>Card</option>
                                                         <option value="platinum">Credit-Card</option>
                                                         <option value="gold">Debit-Card</option>
@@ -180,13 +216,13 @@ const CardMan = () => {
                                                 </div>
                                             </div>
                                             <div className="form-outline col-md-6 mb-4">
-                                                <input type="text" id="email" className="form-control form-control-lg" placeholder='Enter Email' />
+                                                <input type="text" id="email" className="form-control form-control-lg" placeholder='Enter Email' onChange={handleChange} name="email"/>
                                             </div>
                                             <div className="form-outline col-md-12 mb-4">
-                                                <input type="text" id="address" className="form-control form-control-lg" placeholder='Address' />
+                                                <input type="text" id="address" className="form-control form-control-lg" placeholder='Address' onChange={handleChange} name="userAddress" />
                                             </div>
                                             <div className="row d-flex justify-content-center">
-                                                <button className="btn btn-outline-primary col-md-4 mt-3" type="submit">Apply</button>
+                                                <button className="btn btn-outline-primary col-md-4 mt-3" type="submit" onClick={handleSubmit}>Apply</button>
                                             </div>
                                         </div>
                                     </div>

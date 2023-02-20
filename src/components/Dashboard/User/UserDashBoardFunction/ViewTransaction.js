@@ -7,7 +7,7 @@ import "../user.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionCircle, FaUserPlus } from "react-icons/fa";
-import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
+import Kakashi from "../../../../images/NavbarImages/kakashi.ico";
 
 
 let SuccessIcon = { color: "green" };
@@ -115,6 +115,8 @@ const ViewTrans = () => {
                         </div>
                     </nav>
 
+
+                    
                     <div className="m-5" id="page-content">
                         <div className="row">
                             <div className="col-lg-12 grid-margin stretch-card align-middle">
