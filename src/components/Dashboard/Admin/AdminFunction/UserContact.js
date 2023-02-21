@@ -1,26 +1,22 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
 import { GiHamburgerMenu } from "react-icons/gi";
-import { AiFillCloseCircle, AiFillCheckCircle } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
-import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms,FaQuestionCircle } from "react-icons/fa";
-import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 import { RiLuggageDepositFill } from 'react-icons/ri'
+import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle } from "react-icons/fa";
+import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 
-let SuccessIcon = { color: "green" };
-let FailedIcon = { color: "red" };
 
-const AllCustomer = () => {
+const UserContacts = () => {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     };
-
     // Get data from cookies
     const getCookie = (name) => {
         let nameEQ = name + "=";
@@ -33,16 +29,16 @@ const AllCustomer = () => {
         return null;
     }
 
-    const [adminData, setAdminData] = useState(getCookie("adminData"));
+    const [Data, setUserData] = useState(getCookie("adminData"));
     useEffect(() => {
         const cookieValue = JSON.parse(getCookie("adminData"));
-        setAdminData(cookieValue);
-    }, []);
-
-    const [Data, setUserData] = useState(getCookie("userData"));
-    useEffect(() => {
-        const cookieValue = JSON.parse(getCookie("userData"));
         setUserData(cookieValue);
+    }, []);
+    
+    const [ContactData, setContactData] = useState(getCookie("contactUs"));
+    useEffect(() => {
+        const cookieValue = JSON.parse(getCookie("contactUs"));
+        setContactData(cookieValue);
     }, []);
 
     return (
@@ -53,7 +49,7 @@ const AllCustomer = () => {
                     <div className="sidebar-header fs-5">
                         <Link className="list-item d-flex" to="/userdash">
                             <FaUserAlt className="me-3 mt-1" />
-                            <span >{adminData.adminName}</span>
+                            <span >{Data.adminName}</span>
                         </Link>
                     </div>
                     <ul className="list-unstyled components">
@@ -114,56 +110,28 @@ const AllCustomer = () => {
                             <h3><span><img className='mb-1' src={Kakashi} width="30px" /></span><strong>PSL Bank Ltd.</strong></h3>
                         </div>
                     </nav>
-                    <div className="text-center fs-1 mb-5">All the Customer </div>
-                    <div className="card">
-                        <div className="card-body">
-                            <input type="text" id="pan" className="form-control" placeholder='Search Customer by Account Number' />
-                            <div className="d-flex justify-content-center pt-3">
-                                <button type="button" className="btn-sm btn btn-secondary m-auto"> Search </button>
-                            </div>
 
-                        </div>
-                    </div>
-
-
-                    <div className="card">
-                        <div className="card-body">
-                            <div className="col data-table mt-4">
-                                <table className="table bg-white shadow-sm  text-center table-hover">
-                                    <thead className="table-dark">
-                                        <tr>
-                                            <th scope="col">Acc no.</th>
-                                            <th scope="col">User_Name</th>
-                                            <th scope="col">User_Email</th>
-                                            <th scope="col">Adhar_Card</th>
-                                            <th scope="col">PAN_Card</th>
-                                            <th scope="col">Contact_Info</th>
-                                            <th scope="col">DOB</th>
-                                            <th scope="col">Gender</th>
-                                            <th scope="col">Address</th>
-                                            <th scope="col">Delete User</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>{Data.userAccountNumber}</td>
-                                            <td>{Data.userFirstName}{Data.userLastName}</td>
-                                            <td>{Data.email}</td>
-                                            <td>{Data.userAadharNo}</td>
-                                            <td>{Data.userPAN}</td>
-                                            <td>{Data.userPhoneNo}</td>
-                                            <td>{Data.userDOB}</td>
-                                            <td>{Data.userGender}</td>
-                                            <td>{Data.userAddress}</td>
-                                            <td>
-                                                <button type="button" className="btn-sm btn btn-danger m-1"> Delete </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
+                    <div>
+                        <table className="table table-hover table-responsive">
+                            <thead className="table-dark">
+                                <tr>
+                                    <th scope="col">FullName</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">User Query</th>
+                                    <th scope="col">Elaborate Query</th>
+                                    <th scope="col">Reply To Query</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row">{ContactData.userFullName}</td>
+                                    <td>{ContactData.email}</td>
+                                    <td>{ContactData.selectQuery}</td>
+                                    <td>{ContactData.elaborateQuery}</td>
+                                    <td><button type="button" className="btn-sm btn btn-info m-1">Reply</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -172,4 +140,4 @@ const AllCustomer = () => {
     )
 }
 
-export default AllCustomer;
+export default UserContacts;

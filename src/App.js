@@ -31,6 +31,7 @@ import Beneficiaries from "./components/Dashboard/User/UserDashBoardFunction/Ben
 import AdminLogin from "./components/Dashboard/Admin/AdminLogin";
 import DepositInUser from "./components/Dashboard/Admin/AdminFunction/DepositInUser";
 import Dummy from "./components/dummy";
+import UserContacts from "./components/Dashboard/Admin/AdminFunction/UserContact";
 
 
 function App(props) {
@@ -61,6 +62,7 @@ function App(props) {
           <Route path="/admindash/customer-loan" element={<CustomerLoan />} />
           <Route path="/admindash/customer-card" element={<CustomerCard />} />
           <Route path="/admindash/deposit" element={<DepositInUser />} />
+          <Route path="/admindash/customer-query" element={<UserContacts />} />
           <Route path="/userdash/viewtrans" element={<ViewTrans/>}/>
           <Route path="/userdash/accountInfo" element={<AccountInfo/>}/>
           <Route path="/userdash/card" element={<CardMan/>}/>

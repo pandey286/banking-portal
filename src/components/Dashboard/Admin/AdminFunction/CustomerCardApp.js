@@ -6,7 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
 import { RiLuggageDepositFill } from 'react-icons/ri'
-import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms,FaQuestionCircle } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 
 
@@ -81,6 +81,12 @@ const CustomerCard = () => {
                             <Link className="list-item d-flex" to="/admindash/deposit">
                                 <RiLuggageDepositFill className="me-3 mt-1" />
                                 <span>Deposit In User Account</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/customer-query">
+                                <FaQuestionCircle className="me-3 mt-1" />
+                                <span>Query from User</span>
                             </Link>
                         </li>
                     </ul>
