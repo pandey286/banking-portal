@@ -1,11 +1,11 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
-import { GiHamburgerMenu } from "react-icons/gi";
-import { BiLogOut } from "react-icons/bi";
+import { GiHamburgerMenu, GiGoldBar } from "react-icons/gi";
+import { BiLogOut, BiTransfer } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
-import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms,FaQuestionCircle } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 import { RiLuggageDepositFill } from 'react-icons/ri'
 import axios from "axios";
@@ -31,31 +31,27 @@ const CustomerLoan = () => {
         return null;
     }
 
-    const [Data, setUserData] = useState(getCookie("adminData"));
+    const [adminData, setAdminData] = useState(getCookie("adminData"));
     useEffect(() => {
         const cookieValue = JSON.parse(getCookie("adminData"));
-        setUserData(cookieValue);
+        setAdminData(cookieValue);
     }, []);
 
-    // const [LoanData, setLoanData] = useState(getCookie("loanAppl"));
-    // useEffect(() => {
-    //     const cookieValue = JSON.parse(getCookie("loanAppl"));
-    //     setLoanData(cookieValue);
-    // }, []);
+
 
     const [LoanData, setLoanData] = useState([]);
 
     useEffect(() => {
         axios
-        .get("http://localhost:8080/api/users/all-users-loan-request")
-        .then((response) => {
-          console.log(response.data);
-          setLoanData(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      
+            .get("http://localhost:8080/api/users/all-users-loan-request")
+            .then((response) => {
+                console.log(response.data);
+                setLoanData(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
     }, []);
 
     return (
@@ -66,7 +62,7 @@ const CustomerLoan = () => {
                     <div className="sidebar-header fs-5">
                         <Link className="list-item d-flex" to="/userdash">
                             <FaUserAlt className="me-3 mt-1" />
-                            <span >{Data.adminName}</span>
+                            <span >{adminData.adminName}</span>
                         </Link>
                     </div>
                     <ul className="list-unstyled components">
@@ -86,6 +82,18 @@ const CustomerLoan = () => {
                             <Link className="list-item d-flex" to="/admindash/customer-kyc">
                                 <FaQuestionCircle className="me-3 mt-1" />
                                 <span>Customer Kyc Details</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/all-transactions">
+                                <BiTransfer className="me-3 mt-1" />
+                                <span>All Transactions</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/transactions-date">
+                                <BiTransfer className="me-3 mt-1" />
+                                <span>Transactions By Date</span>
                             </Link>
                         </li>
                         <li>
@@ -114,7 +122,7 @@ const CustomerLoan = () => {
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/usergoldloan-app">
-                                <FaQuestionCircle className="me-3 mt-1" />
+                                <GiGoldBar className="me-3 mt-1" />
                                 <span>User Gold Loan Appliaction</span>
                             </Link>
                         </li>
@@ -156,24 +164,24 @@ const CustomerLoan = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {LoanData.map((data)=>(
-                                     <tr key={data.id}>
-                                    <td scope="row">{data.userLoanType}</td>
-                                    <td>{data.userFullName}</td>
-                                    <td>{data.email}</td>
-                                    <td>{data.userPhoneNo}</td>
-                                    <td>{data.loanAmountInRupees}</td>
-                                    <td>{data.monthlyIncome}</td>
-                                    <td>{data.annualIncome}</td>
-                                    <td>{data.userProfession}</td>
-                                    <td>{data.userAddress}</td>
-                                    <td>
-                                        <button type="button" className="btn-sm btn btn-success m-1"> Approve</button>
-                                        <button type="button" className="btn-sm btn btn-danger m-1"> Deny </button>
-                                    </td>
-                                </tr>
+                                {LoanData.map((data) => (
+                                    <tr key={data.id}>
+                                        <td scope="row">{data.userLoanType}</td>
+                                        <td>{data.userFullName}</td>
+                                        <td>{data.email}</td>
+                                        <td>{data.userPhoneNo}</td>
+                                        <td>{data.loanAmountInRupees}</td>
+                                        <td>{data.monthlyIncome}</td>
+                                        <td>{data.annualIncome}</td>
+                                        <td>{data.userProfession}</td>
+                                        <td>{data.userAddress}</td>
+                                        <td>
+                                            <button type="button" className="btn-sm btn btn-success m-1"> Approve</button>
+                                            <button type="button" className="btn-sm btn btn-danger m-1"> Deny </button>
+                                        </td>
+                                    </tr>
                                 ))}
-                               
+
                             </tbody>
                         </table>
                     </div>

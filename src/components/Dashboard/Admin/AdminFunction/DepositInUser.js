@@ -1,11 +1,11 @@
 import React from "react";
-import { useState,useEffect} from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
-import { GiHamburgerMenu } from "react-icons/gi";
-import { BiLogOut } from "react-icons/bi";
+import { GiHamburgerMenu,GiGoldBar } from "react-icons/gi";
+import { BiLogOut, BiTransfer } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
-import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms,FaQuestionCircle } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 import { RiLuggageDepositFill } from 'react-icons/ri'
 import axios from "axios";
@@ -32,17 +32,17 @@ const DepositInUser = () => {
         return null;
     }
 
-    const [Data, setUserData] = useState(getCookie("adminData"));
+    const [adminData, setAdminData] = useState(getCookie("adminData"));
     useEffect(() => {
         const cookieValue = JSON.parse(getCookie("adminData"));
-        setUserData(cookieValue);
+        setAdminData(cookieValue);
     }, []);
 
     const [formData, setFormData] = useState({
-           
-            userAccountNumber:'',
-            balance:''
-        
+
+        userAccountNumber: '',
+        balance: ''
+
     })
 
     const handleFormData = (event) => {
@@ -53,40 +53,40 @@ const DepositInUser = () => {
         setFormData(Data);
     };
 
-    const depositMoney = async(event) =>{
+    const depositMoney = async (event) => {
         let userAccountNumber = formData.userAccountNumber
-        const debitUrl =`http://localhost:8080/api/customers/add-balance/${userAccountNumber}`;
+        const debitUrl = `http://localhost:8080/api/customers/add-balance/${userAccountNumber}`;
 
         const res = await axios.put(debitUrl, formData)
-        .then(res => {
-            console.log(res.data);
-            setFormData(res.data);
-            swal({
-                title: "Deposit In User Account",
-                text: "Money was deposit successfully",
-                icon: "success"
+            .then(res => {
+                console.log(res.data);
+                setFormData(res.data);
+                swal({
+                    title: "Deposit In User Account",
+                    text: "Money was deposit successfully",
+                    icon: "success"
+                })
             })
-        })
-        .catch(err => {
-            console.log(err);
-            swal({
-                title: "Failed to deposit",
-                text: "Check the Field",
-                icon: "warning",
-                dangerMode: true,
-            });
-        })
+            .catch(err => {
+                console.log(err);
+                swal({
+                    title: "Failed to deposit",
+                    text: "Check the Field",
+                    icon: "warning",
+                    dangerMode: true,
+                });
+            })
     }
 
     return (
         <>
-           <div className="wrapper">
+            <div className="wrapper">
                 {/* <!-- Sidebar  --> */}
                 <nav id="sidebar" className={sidebarOpen ? "active" : ""}>
                     <div className="sidebar-header fs-5">
                         <Link className="list-item d-flex" to="/userdash">
                             <FaUserAlt className="me-3 mt-1" />
-                            <span >{Data.adminName}</span>
+                            <span >{adminData.adminName}</span>
                         </Link>
                     </div>
                     <ul className="list-unstyled components">
@@ -106,6 +106,18 @@ const DepositInUser = () => {
                             <Link className="list-item d-flex" to="/admindash/customer-kyc">
                                 <FaQuestionCircle className="me-3 mt-1" />
                                 <span>Customer Kyc Details</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/all-transactions">
+                                <BiTransfer className="me-3 mt-1" />
+                                <span>All Transactions</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/transactions-date">
+                                <BiTransfer className="me-3 mt-1" />
+                                <span>Transactions By Date</span>
                             </Link>
                         </li>
                         <li>
@@ -134,7 +146,7 @@ const DepositInUser = () => {
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/usergoldloan-app">
-                                <FaQuestionCircle className="me-3 mt-1" />
+                                <GiGoldBar className="me-3 mt-1" />
                                 <span>User Gold Loan Appliaction</span>
                             </Link>
                         </li>
@@ -173,8 +185,8 @@ const DepositInUser = () => {
                                     <div className="form-outline col-md-6 my-4 m-auto">
                                         <input type="number" id="form3Example1n" className="form-control form-control-lg" placeholder='Enter Amount' onChange={handleFormData} name='balance' required />
                                     </div>
-                                    <div className="form-outline col-md-6 my-4 m-auto">
-                                        <button type="button" className="btn btn-outline-secondary" onClick={depositMoney}>Deposit</button>
+                                    <div className="form-outline col-md-6 my-4 m-auto text-center">
+                                        <button type="button" className="btn btn-outline-success shadow mb-3" onClick={depositMoney}>Deposit</button>
                                     </div>
                                 </form>
                             </div>

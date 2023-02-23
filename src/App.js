@@ -35,7 +35,9 @@ import UserContacts from "./components/Dashboard/Admin/AdminFunction/UserContact
 import GoldLoanApp from "./components/Dashboard/User/UserDashBoardFunction/GoldLoanApp";
 import UserGoldLoanApp from "./components/Dashboard/Admin/AdminFunction/UserGoldLoanApp";
 import CustomerKyc from "./components/Dashboard/Admin/AdminFunction/CustomerKyc";
+import AllTransactions from "./components/Dashboard/Admin/AdminFunction/AllTransactions";
 import Upload from "./components/Dashboard/User/UserDashBoardFunction/Upload";
+import TransactionData from "./components/Dashboard/Admin/AdminFunction/TransactionByData";
 
 
 
@@ -67,6 +69,8 @@ function App(props) {
           <Route path="/admindash" element={<AdminDashBoard />} />
           <Route path="/admindash/allcustomer" element={<AllCustomer />} />
           <Route path="/admindash/customer-kyc" element={<CustomerKyc />} />
+          <Route path="/admindash/all-transactions" element={<AllTransactions />} />
+          <Route path="/admindash/transactions-date" element={<TransactionData />} />
           <Route path="/admindash/customer-loan" element={<CustomerLoan />} />
           <Route path="/admindash/usergoldloan-app" element={<UserGoldLoanApp/>} />
           <Route path="/admindash/customer-card" element={<CustomerCard />} />

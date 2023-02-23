@@ -7,7 +7,7 @@ import { GiHamburgerMenu, GiGoldBar } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionCircle, FaUserPlus } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico";
-import csb from "../../image/csb.jpeg"
+import axios from "axios";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
@@ -28,11 +28,28 @@ const ViewTrans = () => {
     useEffect(() => {
         const storedData = JSON.parse(localStorage.getItem('accountInfo'));
         if (storedData) {
-          setInfo(storedData);
+            setInfo(storedData);
         }
-      }, []);
-      
+    }, []);
+
     console.log(info);
+
+    const [transData, setTransData] = useState([]);
+
+    useEffect(() => {
+        axios
+            .get(`http://localhost:8080/api/transactions/viewTransactions/${info.userAccountNumber}`)
+            .then((response) => {
+                console.log(response.data);
+                setTransData(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+    }, []);
+
+
 
     const tableRef = useRef(null);
 
@@ -163,18 +180,18 @@ const ViewTrans = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Debit</td>
-                                                        <td>Success<AiFillCheckCircle style={SuccessIcon} /></td>
-                                                        <td>$500</td>
-                                                        <td>$1200</td>
-                                                        <td>$1700</td>
-                                                        <td>878745455577</td>
-                                                        <td>098876756509</td>
-                                                        <td>12-02-2023</td>
-                                                        <td>John Doe</td>
-                                                    </tr>
-
+                                                    {transData.map((data) => (
+                                                        <tr key={data.id}>
+                                                            <td>{data.transType}</td>
+                                                            <td>{data.transStatus}</td>
+                                                            <td>{data.transAmount}</td>
+                                                            <td>{data.currBalance}</td>
+                                                            <td>{data.prevBalance}</td>
+                                                            <td>{data.beneAccountNumber}</td>
+                                                            <td>{data.userAccountNumber}</td>
+                                                            <td>{data.transDate}</td>
+                                                            <td>{data.beneficiaryName}</td>
+                                                        </tr>))}
                                                 </tbody>
                                             </table>
                                         </div>

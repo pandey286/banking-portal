@@ -52,16 +52,6 @@ const Beneficiaries = () => {
 
     const url = "http://localhost:8080/api/transactions/beneficiary"
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await axios.post(url, formData);
-            console.log(response.data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
     const [info, setInfo] = useState({});
 
     useEffect(() => {
@@ -72,6 +62,35 @@ const Beneficiaries = () => {
     }, []);
 
     console.log(info);
+
+
+    const [beneData, setbeneData] = useState([]);
+
+    useEffect(() => {
+        axios
+            .get(`http://localhost:8080/api/transactions/details/${info.userAccountNumber}`)
+            .then((response) => {
+                console.log(response.data);
+                setbeneData(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+    }, []);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post(url, formData);
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+
+    
 
 
     return (
@@ -216,6 +235,34 @@ const Beneficiaries = () => {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div>
+                            <table className="table table-hover table-responsive">
+                                <thead className="table-dark">
+                                    <tr>
+                                        <th scope="col">FullName </th>
+                                        <th scope="col">Account Number</th>
+                                        <th scope="col">Bene. Account Number</th>
+                                        <th scope="col">IFSC Code </th>
+                                        <th scope="col">Bank Name</th>
+                                        <th scope="col">Branch Name</th>
+                                        <th scope="col">Account Type</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {beneData.map((data) => (
+                                        <tr key={data.id}>
+                                            <td>{data.name}</td>
+                                            <td>{data.userAccountNumber}</td>
+                                            <td>{data.beneAccountNumber}</td>
+                                            <td>{data.ifscCode}</td>
+                                            <td>{data.bankName}</td>
+                                            <td>{data.branchName}</td>
+                                            <td>{data.accountType}</td>
+                                        </tr>))}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

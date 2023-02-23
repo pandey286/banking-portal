@@ -7,16 +7,10 @@ import { BiLogOut } from "react-icons/bi";
 import { FaRupeeSign, FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle, FaUserPlus } from "react-icons/fa";
 import Kakashi from "../../../images/NavbarImages/kakashi.ico"
 import axios from "axios";
-import Cookies from "js-cookie";
-import jwt_decode from 'jwt-decode';
+import swal from "sweetalert";
 
 
 const UserDashBoard = () => {
-
-
-    // const token = Cookies.get('jwtoken');
-    // const decoded = jwt_decode(token);
-    // console.log(decoded);
 
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -30,11 +24,38 @@ const UserDashBoard = () => {
     useEffect(() => {
         const storedData = JSON.parse(localStorage.getItem('accountInfo'));
         if (storedData) {
-          setInfo(storedData);
+            setInfo(storedData);
         }
-      }, []);
-      
+    }, []);
+
     console.log(info);
+
+    const [transData, setTransData] = useState({
+        beneAccountNumber: '',
+        transAmount: '',
+        userAccountNumber: ''
+    });
+
+    const handleChange = event => {
+        setTransData({
+            ...transData,
+            [event.target.name]: event.target.value
+        });
+    }
+    const url = "http://localhost:8080/api/transactions/debit"
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post(url, transData);
+            swal("Success", "Transaction Successful", "success");
+            console.log(response.data);
+        } catch (error) {
+            swal("Failed", "Transaction Failed", "danger");
+            console.error(error);
+        }
+    };
+
 
 
     return (
@@ -126,7 +147,7 @@ const UserDashBoard = () => {
                     </nav>
 
                     <div className="card ">
-                        <div className="card-header d-flex col bg-dark text-white fs-2 fw-bold">
+                        <div className="card-header d-flex  bg-dark text-white fs-2 fw-bold">
                             <div className="col-md-9 col-sm-12">Account Number :-</div>
                             <div className="col-md-3 col-sm-12 text-end ">{info.userAccountNumber}</div>
                         </div>
@@ -144,22 +165,22 @@ const UserDashBoard = () => {
                             <div className="row">
                                 <div className="col-md-6 mb-4">
                                     <div className="form-outline">
-                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Payee Account Number' required />
+                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Payee Account Number' name='beneAccountNumber' onChange={handleChange} required />
                                     </div>
                                 </div>
                                 <div className="col-md-6 mb-4">
                                     <div className="form-outline">
-                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Sender Account Number' required />
+                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Sender Account Number' name='userAccountNumber' onChange={handleChange} required />
                                     </div>
                                 </div>
                                 <div className="col-md-6 mb-4 ">
                                     <div className="form-outline">
                                     </div>
-                                    <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Enter Amount to Pay' required />
+                                    <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Enter Amount to Pay' name='transAmount' onChange={handleChange} required />
                                 </div>
                                 <div className="row d-flex justify-content-center">
                                     <div className="col-md-6 text-center">
-                                        <button type="button" className="btn btn-success btn-lg ms-2 ">Transfer</button>
+                                        <button type="button" className="btn btn-outline-success btn-lg ms-2 " onClick={handleSubmit} >Transfer</button>
                                     </div>
                                 </div>
                             </div>

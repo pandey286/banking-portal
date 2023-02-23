@@ -2,8 +2,8 @@ import React from "react";
 import { useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
-import { GiHamburgerMenu } from "react-icons/gi";
-import { BiLogOut } from "react-icons/bi";
+import { GiHamburgerMenu,GiGoldBar } from "react-icons/gi";
+import { BiLogOut,BiTransfer } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
 import { RiLuggageDepositFill } from 'react-icons/ri'
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle } from "react-icons/fa";
@@ -30,10 +30,10 @@ const UserContacts = () => {
         return null;
     }
 
-    const [Data, setUserData] = useState(getCookie("adminData"));
+    const [adminData, setAdminData] = useState(getCookie("adminData"));
     useEffect(() => {
         const cookieValue = JSON.parse(getCookie("adminData"));
-        setUserData(cookieValue);
+        setAdminData(cookieValue);
     }, []);
     
     const [ContactData, setContactData] = useState([]);
@@ -59,7 +59,7 @@ const UserContacts = () => {
                     <div className="sidebar-header fs-5">
                         <Link className="list-item d-flex" to="/userdash">
                             <FaUserAlt className="me-3 mt-1" />
-                            <span >{Data.adminName}</span>
+                            <span >{adminData.adminName}</span>
                         </Link>
                     </div>
                     <ul className="list-unstyled components">
@@ -79,6 +79,18 @@ const UserContacts = () => {
                             <Link className="list-item d-flex" to="/admindash/customer-kyc">
                                 <FaQuestionCircle className="me-3 mt-1" />
                                 <span>Customer Kyc Details</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/all-transactions">
+                            <BiTransfer className="me-3 mt-1" />
+                                <span>All Transactions</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/transactions-date">
+                            <BiTransfer className="me-3 mt-1" />
+                                <span>Transactions By Date</span>
                             </Link>
                         </li>
                         <li>
@@ -107,7 +119,7 @@ const UserContacts = () => {
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/usergoldloan-app">
-                                <FaQuestionCircle className="me-3 mt-1" />
+                                <GiGoldBar className="me-3 mt-1" />
                                 <span>User Gold Loan Appliaction</span>
                             </Link>
                         </li>

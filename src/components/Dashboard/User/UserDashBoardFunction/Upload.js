@@ -25,10 +25,12 @@ const Upload = () => {
     useEffect(() => {
         const storedData = JSON.parse(localStorage.getItem('accountInfo'));
         if (storedData) {
-          setInfo(storedData);
+            setInfo(storedData);
         }
-      }, []);
-      
+    }, []);
+
+    const [uploadedImage, setUploadedImage] = useState(null);
+
     console.log(info);
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
@@ -37,6 +39,7 @@ const Upload = () => {
         axios.post('/api/upload-image', formData)
             .then(response => {
                 console.log(response.data);
+                setUploadedImage(URL.createObjectURL(file));
             })
             .catch(error => {
                 console.error(error);
@@ -134,32 +137,26 @@ const Upload = () => {
                         </div>
                     </nav>
                     <div className="m-5" id="page-content">
-                        <h3 className="m-5">Upload KYC Details</h3>
+
                     </div>
                     <div className="row">
                         <div className="col-lg-12 grid-margin stretch-card align-middle">
                             <div className="card">
                                 <div className="card-header bg-secondary fs-1 fw-bold text-white bg-dark">
-                                    Upload Aadhar Card <FaAddressCard />
+                                    Upload Aadhar Card and PAN Card <FaAddressCard />
                                 </div>
                                 <div className="card-body row  d-flex ">
                                     <div className="form-outline col-md-6 mb-4">
                                         <input type="file" id="aadhar" className="form-control form-control-lg" placeholder='Aadhar Card' name="email" onChange={handleImageUpload} />
                                         <button className="btn btn-outline-secondary col-md-4 mt-3">Upload</button>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="card">
-                                <div className="card-header bg-secondary fs-1 fw-bold text-white bg-dark">
-                                    Upload PAN Card <FaAddressCard />
-                                </div>
-                                <div className="card-body row  d-flex ">
                                     <div className="form-outline col-md-6 mb-4">
                                         <input type="file" id="pan" className="form-control form-control-lg" placeholder='PAN Card' name="email" onChange={handleImageUpload} />
                                         <button className="btn btn-outline-secondary col-md-4 mt-3">Upload</button>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button class="btn btn-outline-primary" type="button" onClick={handleImageUpload}>Upload</button>
