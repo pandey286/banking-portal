@@ -61,6 +61,12 @@ const AdminDashboard = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link className="list-item d-flex" to="/admindash/customer-kyc">
+                                <FaQuestionCircle className="me-3 mt-1" />
+                                <span>Customer Kyc Details</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link className="list-item d-flex" to="/admindash/customer-card">
                                 <FaRegCreditCard className="me-3 mt-1" />
                                 <span>Customer Card Application </span>
@@ -82,6 +88,12 @@ const AdminDashboard = () => {
                             <Link className="list-item d-flex" to="/admindash/customer-query">
                                 <FaQuestionCircle className="me-3 mt-1" />
                                 <span>Query from User</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/usergoldloan-app">
+                                <FaQuestionCircle className="me-3 mt-1" />
+                                <span>User Gold Loan Appliaction</span>
                             </Link>
                         </li>
                     </ul>

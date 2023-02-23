@@ -1,24 +1,24 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { AiFillCloseCircle, AiFillCheckCircle } from "react-icons/ai";
+import { GrTransaction } from "react-icons/gr";
 import { Link } from "react-router-dom";
-import "./user.css"
+import "../user.css"
 import { GiHamburgerMenu, GiGoldBar } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
-import { FaRupeeSign, FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle, FaUserPlus } from "react-icons/fa";
-import Kakashi from "../../../images/NavbarImages/kakashi.ico"
+import { FaAddressCard } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionCircle, FaUserPlus } from "react-icons/fa";
+import Kakashi from "../../../../images/NavbarImages/kakashi.ico";
+import "jspdf-autotable";
 import axios from "axios";
-import Cookies from "js-cookie";
-
-
-const UserDashBoard = () => {
 
 
 
+const Upload = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
-    };
+    }
 
     // Get data from cookies
     const getCookie = (name) => {
@@ -38,21 +38,36 @@ const UserDashBoard = () => {
         setUserData(cookieValue);
     }, []);
 
-    // const [Data, setUserData] = useState([]);
-    // useEffect(() => {
-    //     axios
-    //     .get("http://localhost:8080/api/customers/user-by/pandey.aman4256@gmail.com")
-    //     .then((response) => {
-    //     console.log(response.data);
-    //     setUserData(response.data);
-    //     })
-    //     .catch((error) => {
-    //     console.log(error);
-    //     });
-    
-    // }, []);
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        const formData = new FormData();
+        formData.append('image', file);
+        axios.post('/api/upload-image', formData)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
 
-    
+    //   const express = require('express');
+    //const multer = require('multer');
+    //const upload = multer({ dest: 'uploads/' });
+
+    //const app = express();
+
+    //app.post('/api/upload-image', upload.single('image'), (req, res) => {
+    // const file = req.file;
+    //console.log(file);
+    //res.send({ message: 'Image uploaded successfully' });
+    //});
+
+    //app.listen(3000, () => {
+    //  console.log('Server started on port 3000');
+    //});
+
+
 
     return (
         <>
@@ -114,6 +129,7 @@ const UserDashBoard = () => {
                                 <span>Apply For Gold Loan</span>
                             </Link>
                         </li>
+
                         <li>
                             <Link className="list-item d-flex" to="/userdash/faq">
                                 <FaQuestionCircle className="me-3 mt-1" />
@@ -141,53 +157,44 @@ const UserDashBoard = () => {
                             <h3><span><img className='mb-1' src={Kakashi} width="30px" /></span><strong>PSL Bank Ltd.</strong></h3>
                         </div>
                     </nav>
-
-                    <div className="card ">
-                        <div className="card-header d-flex col bg-dark text-white fs-2 fw-bold">
-                            <div className="col-md-9 col-sm-12">Account Number :-</div>
-                            <div className="col-md-3 col-sm-12 text-end ">{Data.userAccountNumber}</div>
-                        </div>
-                        <div className="card-body d-flex col text-end fw-bold">
-                            <div className="col-md-9 col-sm-12 text-start fs-3">Account Balance :-</div>
-                            <p className="col-md-3 col-sm-12 card-text text-success fs-3"><FaRupeeSign />{Data.balance}</p>
-                        </div>
+                    <div className="m-5" id="page-content">
+                        <h3 className="m-5">Upload KYC Details</h3>
                     </div>
-
-                    <div className="card">
-                        <div className="card-header fs-4 bg-dark text-white">
-                            <b>Pay to Beneficiary</b>
-                        </div>
-                        <div className="card-body">
-                            <div className="row">
-                                <div className="col-md-6 mb-4">
-                                    <div className="form-outline">
-                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Payee Account Number' required />
+                    <div className="row">
+                        <div className="col-lg-12 grid-margin stretch-card align-middle">
+                            <div className="card">
+                                <div className="card-header bg-secondary fs-1 fw-bold text-white bg-dark">
+                                    Upload Aadhar Card <FaAddressCard />
+                                </div>
+                                <div className="card-body row  d-flex ">
+                                    <div className="form-outline col-md-6 mb-4">
+                                        <input type="file" id="aadhar" className="form-control form-control-lg" placeholder='Aadhar Card' name="email" onChange={handleImageUpload} />
+                                        <button className="btn btn-outline-secondary col-md-4 mt-3">Upload</button>
                                     </div>
                                 </div>
-                                <div className="col-md-6 mb-4">
-                                    <div className="form-outline">
-                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Sender Account Number' required />
-                                    </div>
+                            </div>
+                            <div className="card">
+                                <div className="card-header bg-secondary fs-1 fw-bold text-white bg-dark">
+                                    Upload PAN Card <FaAddressCard />
                                 </div>
-                                <div className="col-md-6 mb-4 ">
-                                    <div className="form-outline">
-                                    </div>
-                                    <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Enter Amount to Pay' required />
-                                </div>
-                                <div className="row d-flex justify-content-center">
-                                    <div className="col-md-6 text-center">
-                                        <button type="button" className="btn btn-success btn-lg ms-2 ">Transfer</button>
+                                <div className="card-body row  d-flex ">
+                                    <div className="form-outline col-md-6 mb-4">
+                                        <input type="file" id="pan" className="form-control form-control-lg" placeholder='PAN Card' name="email" onChange={handleImageUpload} />
+                                        <button className="btn btn-outline-secondary col-md-4 mt-3">Upload</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button class="btn btn-outline-primary" type="button">Upload</button>
+                        </div>
                     </div>
+
 
                 </div>
             </div>
         </>
-
     )
 }
 
-export default UserDashBoard;
+export default Upload

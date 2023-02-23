@@ -1,16 +1,17 @@
 import React from "react";
-import { useState,useEffect} from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
-import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms,FaQuestionCircle } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 import { RiLuggageDepositFill } from 'react-icons/ri'
+import axios from "axios";
 
 
-const DepositInUser = () => {
+const UserGoldLoanApp = () => {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -36,11 +37,32 @@ const DepositInUser = () => {
         setUserData(cookieValue);
     }, []);
 
-    
+    // const [goldLoanData, setgoldData] = useState(getCookie("goldData"));
+    // useEffect(() => {
+    //     const cookieValue = JSON.parse(getCookie("goldData"));
+    //     setgoldData(cookieValue);
+    // }, []);
+
+
+    const [goldLoanData, setgoldData] = useState([]);
+
+    useEffect(() => {
+        axios
+        .get("http://localhost:8080/api/users/all-users-gold-loan-request")
+        .then((response) => {
+          console.log(response.data);
+          setgoldData(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      
+    }, []);
+
 
     return (
         <>
-           <div className="wrapper">
+            <div className="wrapper">
                 {/* <!-- Sidebar  --> */}
                 <nav id="sidebar" className={sidebarOpen ? "active" : ""}>
                     <div className="sidebar-header fs-5">
@@ -109,7 +131,7 @@ const DepositInUser = () => {
                     </ul>
                 </nav>
 
-                {/* <!-- Page Content  --> */}
+
                 <div id="content">
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
                         <div className="container-fluid">
@@ -120,31 +142,45 @@ const DepositInUser = () => {
                         </div>
                     </nav>
 
-                    <section>
-                        <div class="card ">
-                            <div class="card-header bg-dark text-white text-center fw-bold fs-4">
-                                Deposit Page
-                            </div>
-                            <div class="card-body justify-content-center">
-                                <form>
-                                    <div className="form-outline col-md-6 my-4 m-auto">
-                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Account Number' required />
-                                    </div>
-                                    <div className="form-outline col-md-6 my-4 m-auto">
-                                        <input type="number" id="form3Example1n" className="form-control form-control-lg" placeholder='Enter Amount' required />
-                                    </div>
-                                    <div className="form-outline col-md-6 my-4 m-auto">
-                                        <button type="button" className="btn btn-outline-secondary">Deposit</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </section>
+                    <div>
+                        <table className="table table-hover table-responsive">
+                            <thead className="table-dark">
+                                <tr>
+                                    <th scope="col">FullName </th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone Number </th>
+                                    <th scope="col">Account Number</th>
+                                    <th scope="col">AadharNo </th>
+                                    <th scope="col">Gold weight(gm)</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {goldLoanData.map((data) => (
+                                    <tr key={data.id}>
+                                        <td>{data.userFullName}</td>
+                                        <td>{data.email}</td>
+                                        <td>{data.userPhoneNo}</td>
+                                        <td>{data.accountNo}</td>
+                                        <td>{data.aadharNo}</td>
+                                        <td>{data.goldweight}</td>
+                                        <td>{data.goldloanAmountInRupees}</td>
+                                        <td>{data.userAddress}</td>
+                                        
+                                        <td>
+                                            <button type="button" className="btn-sm btn btn-success m-1"> Approve</button>
+                                            <button type="button" className="btn-sm btn btn-danger m-1"> Deny </button>
+                                        </td>
+                                    </tr>))}
+                                    </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </>
 
     )
 }
-
-export default DepositInUser;
+export default UserGoldLoanApp;

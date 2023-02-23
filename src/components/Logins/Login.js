@@ -21,15 +21,10 @@ function Login() {
     const [errorMessage, setErrorMessage] = useState('');
 
     const [formData, setFormData] = useState({
-        email: '',
+        userName: '',
         password: '',
     });
 
-    const [emailData, setEmailData] = useState({
-        to: '',
-        subject: '',
-        body: ''
-      });
 
     const handleChange = event => {
         setFormData({
@@ -37,58 +32,37 @@ function Login() {
             [event.target.name]: event.target.value
         });
 
-        setEmailData({
-            ...emailData,
-            to: formData.email,
-            subject:"User Login",
-            body:"Your Login was Successfully"
-        })
     };
 
-
-      
-
     const url = "http://localhost:8080/api/customers/login"
-
-    const notificationurl = "http://localhost:8080/api/v1/notifications"
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         setErrorMessage('');
 
-        if (!formData.email) {
-            setErrorMessage('Email is required');
+        if (!formData.userName) {
+            setErrorMessage('UserName is required');
         }
         else if (!formData.password) {
             setErrorMessage('Password is required');
         }
-        else if (!formData.email || !formData.password) {
-            setErrorMessage('Email and password are required');
+        else if (!formData.userName || !formData.password) {
+            setErrorMessage('UserName and password are required');
         }
-        else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            setErrorMessage('Invalid email address');
-            if (formData.password.length < 6) {
-                setErrorMessage('Invalid Credentials');
-            }
-        } else if (formData.password.length < 6) {
+        else if (formData.password.length < 6) {
             setErrorMessage('Password must be at least 6 characters long');
         }
         else {
             try {
-                const response = await axios.post(url, formData);
+                const res = await axios.post(url, formData);
                 swal({
                     title: "Login Succesfully!! ",
                     text: "Your Login Was Successful",
                     icon: "success",
                 });
-                
-                const notification = await axios.post(notificationurl, emailData)
-
-                // Set data in cookies
-                setCookie("userData", JSON.stringify(response.data), 7);
-                window.location.href="/userdash"
-                console.log(response.data);
+                setCookie("jwtToken", res.data.token, 7); // store JWT token in cookie
+                window.location.href = "/userdash"
+                console.log(res.data);
             } catch (error) {
                 console.error(error);
                 swal({
@@ -96,7 +70,7 @@ function Login() {
                     text: "Please Check Your Credential",
                     icon: "warning",
                 });
-                setErrorMessage('Incorrect email or password');
+                setErrorMessage('Incorrect UserName or password');
             }
         }
     };
@@ -114,13 +88,17 @@ function Login() {
                         <h2 className='text-center p-3 '>Please Login Here</h2><br />
                         <span className='text-center fs-1'><FaUserCircle /></span>
                         <form>
-                            <div className="p-3 mb-3 col align-self-center">
+                            {/* <div className="p-3 mb-3 col align-self-center">
                                 <input type="email" className="form-control shadow-sm  " id="userId" aria-describedby="EmailId" name='email' onChange={handleChange}
                                     placeholder="Enter Your Registered Email" />
+                            </div> */}
+                            <div className="p-3 mb-3 col align-self-center">
+                                <input type="text" className="form-control shadow-sm  " id="userId" aria-describedby="UserName" name='userName' onChange={handleChange}
+                                    placeholder="Enter Your UserName" />
                             </div>
                             <div className="p-3 col align-self-center">
                                 <input type="password" className="form-control  shadow-sm " id="InputPassword1" name='password' onChange={handleChange}
-                                    placeholder="Enter Registered Password" />
+                                    placeholder="Enter Password" />
                             </div>
                             {errorMessage && <div className='alert alert-danger mt-3' role='alert'>{errorMessage}</div>}
                             <div className="text-center p-3">

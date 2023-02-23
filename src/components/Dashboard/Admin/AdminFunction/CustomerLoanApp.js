@@ -8,6 +8,7 @@ import { BsPeopleFill } from "react-icons/bs";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms,FaQuestionCircle } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 import { RiLuggageDepositFill } from 'react-icons/ri'
+import axios from "axios";
 
 
 const CustomerLoan = () => {
@@ -36,10 +37,25 @@ const CustomerLoan = () => {
         setUserData(cookieValue);
     }, []);
 
-    const [LoanData, setLoanData] = useState(getCookie("loanAppl"));
+    // const [LoanData, setLoanData] = useState(getCookie("loanAppl"));
+    // useEffect(() => {
+    //     const cookieValue = JSON.parse(getCookie("loanAppl"));
+    //     setLoanData(cookieValue);
+    // }, []);
+
+    const [LoanData, setLoanData] = useState([]);
+
     useEffect(() => {
-        const cookieValue = JSON.parse(getCookie("loanAppl"));
-        setLoanData(cookieValue);
+        axios
+        .get("http://localhost:8080/api/users/all-users-loan-request")
+        .then((response) => {
+          console.log(response.data);
+          setLoanData(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      
     }, []);
 
     return (
@@ -67,6 +83,12 @@ const CustomerLoan = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link className="list-item d-flex" to="/admindash/customer-kyc">
+                                <FaQuestionCircle className="me-3 mt-1" />
+                                <span>Customer Kyc Details</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link className="list-item d-flex" to="/admindash/customer-card">
                                 <FaRegCreditCard className="me-3 mt-1" />
                                 <span>Customer Card Application </span>
@@ -90,6 +112,12 @@ const CustomerLoan = () => {
                                 <span>Query from User</span>
                             </Link>
                         </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/usergoldloan-app">
+                                <FaQuestionCircle className="me-3 mt-1" />
+                                <span>User Gold Loan Appliaction</span>
+                            </Link>
+                        </li>
                     </ul>
 
                     <ul className="list-unstyled CTAs">
@@ -100,7 +128,6 @@ const CustomerLoan = () => {
                         </li>
                     </ul>
                 </nav>
-
                 {/* <!-- Page Content  --> */}
                 <div id="content">
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -129,21 +156,24 @@ const CustomerLoan = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td scope="row">{LoanData.userLoanType}</td>
-                                    <td>{LoanData.userFullName}</td>
-                                    <td>{LoanData.email}</td>
-                                    <td>{LoanData.userPhoneNo}</td>
-                                    <td>{LoanData.loanAmountInRupees}</td>
-                                    <td>{LoanData.monthlyIncome}</td>
-                                    <td>{LoanData.annualIncome}</td>
-                                    <td>{LoanData.userProfession}</td>
-                                    <td>{LoanData.userAddress}</td>
+                                {LoanData.map((data)=>(
+                                     <tr key={data.id}>
+                                    <td scope="row">{data.userLoanType}</td>
+                                    <td>{data.userFullName}</td>
+                                    <td>{data.email}</td>
+                                    <td>{data.userPhoneNo}</td>
+                                    <td>{data.loanAmountInRupees}</td>
+                                    <td>{data.monthlyIncome}</td>
+                                    <td>{data.annualIncome}</td>
+                                    <td>{data.userProfession}</td>
+                                    <td>{data.userAddress}</td>
                                     <td>
                                         <button type="button" className="btn-sm btn btn-success m-1"> Approve</button>
                                         <button type="button" className="btn-sm btn btn-danger m-1"> Deny </button>
                                     </td>
                                 </tr>
+                                ))}
+                               
                             </tbody>
                         </table>
                     </div>

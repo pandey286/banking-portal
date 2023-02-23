@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../user.css"
-import { GiHamburgerMenu } from "react-icons/gi";
+import { GiHamburgerMenu, GiGoldBar } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionCircle, FaUserPlus } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 import swal from 'sweetalert';
 import axios from "axios";
+import { useParams } from 'react-router-dom';
 
 const AccountInfo = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -15,7 +16,7 @@ const AccountInfo = () => {
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     }
-    
+
     // Get data from cookies
     const getCookie = (name) => {
         let nameEQ = name + "=";
@@ -35,7 +36,7 @@ const AccountInfo = () => {
     }, []);
 
 
-// Update Phone, AltPhone and Address
+    // Update Phone, AltPhone and Address
     const [editMode, setEditMode] = useState(false);
 
     const [formData, setFormData] = useState({
@@ -57,31 +58,31 @@ const AccountInfo = () => {
     };
 
     const saveData = async (event) => {
-        
+
         let email = Data.email;
         const url = `http://localhost:8080/api/customers/user-update/${email}`;
 
         const res = await axios.put(url, formData)
-        .then(res => {
-            console.log(res.data);
-            setFormData(res.data);
-            swal({
-                title: "Updated Succesfully",
-                text:"You have Re-Login into Your Account",
-                icon: "success"
-              }).then(() => {
-                window.location.href = "/login"; 
-              }); 
-        })
-        .catch(err => {
-            console.log(err);
-            swal({
-                title: "Update Failed",
-                text: "Invalid Data! please check the data",
-                icon: "warning",
-                dangerMode: true,
-            });
-        })
+            .then(res => {
+                console.log(res.data);
+                setFormData(res.data);
+                swal({
+                    title: "Updated Succesfully",
+                    text: "You have Re-Login into Your Account",
+                    icon: "success"
+                }).then(() => {
+                    window.location.href = "/login";
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                swal({
+                    title: "Update Failed",
+                    text: "Invalid Data! please check the data",
+                    icon: "warning",
+                    dangerMode: true,
+                });
+            })
     }
 
 
@@ -111,6 +112,12 @@ const AccountInfo = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link className="list-item d-flex" to="/userdash/KYC">
+                                <FaUserAlt className="me-3 mt-1" />
+                                <span>Upload KYC</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link className="list-item d-flex" to="/userdash/beneficiary">
                                 <FaUserPlus className="me-3 mt-1" />
                                 <span>Add Beneficiary</span>
@@ -134,6 +141,13 @@ const AccountInfo = () => {
                                 <span>Apply For Loan's</span>
                             </Link>
                         </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/userdash/goldloanApp">
+                                <GiGoldBar className="me-3 mt-1" />
+                                <span>Apply For Gold Loan</span>
+                            </Link>
+                        </li>
+
                         <li>
                             <Link className="list-item d-flex" to="/userdash/faq">
                                 <FaQuestionCircle className="me-3 mt-1" />

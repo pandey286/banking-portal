@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
 import "../user.css"
-import { GiHamburgerMenu } from "react-icons/gi";
+import { GiHamburgerMenu, GiGoldBar } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionCircle, FaUserPlus } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
@@ -59,6 +59,12 @@ const Faq = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link className="list-item d-flex" to="/userdash/KYC">
+                                <FaUserAlt className="me-3 mt-1" />
+                                <span>Upload KYC</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link className="list-item d-flex" to="/userdash/beneficiary">
                                 <FaUserPlus className="me-3 mt-1" />
                                 <span>Add Beneficiary</span>
@@ -82,6 +88,13 @@ const Faq = () => {
                                 <span>Apply For Loan's</span>
                             </Link>
                         </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/userdash/goldloanApp">
+                                <GiGoldBar className="me-3 mt-1" />
+                                <span>Apply For Gold Loan</span>
+                            </Link>
+                        </li>
+
                         <li>
                             <Link className="list-item d-flex" to="/userdash/faq">
                                 <FaQuestionCircle className="me-3 mt-1" />

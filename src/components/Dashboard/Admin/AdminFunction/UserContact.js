@@ -8,6 +8,7 @@ import { BsPeopleFill } from "react-icons/bs";
 import { RiLuggageDepositFill } from 'react-icons/ri'
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
+import axios from "axios";
 
 
 const UserContacts = () => {
@@ -35,10 +36,19 @@ const UserContacts = () => {
         setUserData(cookieValue);
     }, []);
     
-    const [ContactData, setContactData] = useState(getCookie("contactUs"));
+    const [ContactData, setContactData] = useState([]);
+
     useEffect(() => {
-        const cookieValue = JSON.parse(getCookie("contactUs"));
-        setContactData(cookieValue);
+        axios
+        .get("http://localhost:8080/api/enquiry/all-users-contactUs")
+        .then((response) => {
+          console.log(response.data);
+          setContactData(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      
     }, []);
 
     return (
@@ -66,6 +76,12 @@ const UserContacts = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link className="list-item d-flex" to="/admindash/customer-kyc">
+                                <FaQuestionCircle className="me-3 mt-1" />
+                                <span>Customer Kyc Details</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link className="list-item d-flex" to="/admindash/customer-card">
                                 <FaRegCreditCard className="me-3 mt-1" />
                                 <span>Customer Card Application </span>
@@ -87,6 +103,12 @@ const UserContacts = () => {
                             <Link className="list-item d-flex" to="/admindash/customer-query">
                                 <FaQuestionCircle className="me-3 mt-1" />
                                 <span>Query from User</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/usergoldloan-app">
+                                <FaQuestionCircle className="me-3 mt-1" />
+                                <span>User Gold Loan Appliaction</span>
                             </Link>
                         </li>
                     </ul>
@@ -123,13 +145,14 @@ const UserContacts = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td scope="row">{ContactData.userFullName}</td>
-                                    <td>{ContactData.email}</td>
-                                    <td>{ContactData.selectQuery}</td>
-                                    <td>{ContactData.elaborateQuery}</td>
+                                {ContactData.map((data) => (
+                                    <tr key={data.id}>
+                                    <td scope="row">{data.userFullName}</td>
+                                    <td>{data.email}</td>
+                                    <td>{data.selectQuery}</td>
+                                    <td>{data.elaborateQuery}</td>
                                     <td><button type="button" className="btn-sm btn btn-info m-1">Reply</button></td>
-                                </tr>
+                                </tr>))}
                             </tbody>
                         </table>
                     </div>

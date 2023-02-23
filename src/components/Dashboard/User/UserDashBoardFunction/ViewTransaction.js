@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { AiFillCloseCircle, AiFillCheckCircle } from "react-icons/ai";
 import { GrTransaction } from "react-icons/gr";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import "../user.css"
-import { GiHamburgerMenu } from "react-icons/gi";
+import { GiHamburgerMenu, GiGoldBar } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionCircle, FaUserPlus } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico";
+import csb from "../../image/csb.jpeg"
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 
 let SuccessIcon = { color: "green" };
@@ -39,6 +41,19 @@ const ViewTrans = () => {
         setUserData(cookieValue);
     }, []);
 
+    const tableRef = useRef(null);
+
+    const generatePdf = () => {
+        const doc = new jsPDF();
+        // const img = new Image();
+        const imgData = "https://www.goodreturns.in/img/2019/11/csbbanklogo-1574336687.jpeg";
+
+        doc.addImage(imgData, "JPEG", 4, 4, 25, 10);
+        doc.autoTable({ html: "#my-table" });
+        doc.save("Mini_Statement.pdf");
+    };
+
+
     return (
         <>
             <div className="wrapper">
@@ -61,6 +76,12 @@ const ViewTrans = () => {
                             <Link className="list-item d-flex" to="/userdash/accountInfo">
                                 <FaUserAlt className="me-3 mt-1" />
                                 <span>Account Information</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/userdash/KYC">
+                                <FaUserAlt className="me-3 mt-1" />
+                                <span>Upload KYC</span>
                             </Link>
                         </li>
                         <li>
@@ -87,6 +108,13 @@ const ViewTrans = () => {
                                 <span>Apply For Loan's</span>
                             </Link>
                         </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/userdash/goldloanApp">
+                                <GiGoldBar className="me-3 mt-1" />
+                                <span>Apply For Gold Loan</span>
+                            </Link>
+                        </li>
+
                         <li>
                             <Link className="list-item d-flex" to="/userdash/faq">
                                 <FaQuestionCircle className="me-3 mt-1" />
@@ -116,7 +144,7 @@ const ViewTrans = () => {
                     </nav>
 
 
-                    
+
                     <div className="m-5" id="page-content">
                         <div className="row">
                             <div className="col-lg-12 grid-margin stretch-card align-middle">
@@ -125,8 +153,9 @@ const ViewTrans = () => {
                                         All Transaction <GrTransaction style={Trans} />
                                     </div>
                                     <div className="card-body">
-                                        <div className="table-responsive">
-                                            <table className="table bg-white shadow-sm  text-center table-hover">
+                                        <div className="table-responsive" >
+                                            {/* <h3><span><img className='mb-1' src={Kakashi} width="30px" /></span><strong>PSL Bank Ltd.</strong></h3> */}
+                                            <table className="table bg-white shadow-sm  text-center table-hover" ref={tableRef} id="my-table">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">Trans Type</th>
@@ -161,10 +190,10 @@ const ViewTrans = () => {
                                 <div className="text-center row">
                                     <div className="col-md-6 text-end">
                                         <button type="submit" className="btn btn-outline-warning shadow p-1 mb-5 rounded-1 justify-content-center">
-                                            <Link to="/userdash" className="text-dark p-3" style={{ textDecoration: "none" }}><BiLogOut classname="me-3" />Back To Home</Link></button><br />
+                                            <Link to="/userdash" className="text-dark p-3" style={{ textDecoration: "none" }}><BiLogOut className="me-3" />Back To Home</Link></button><br />
                                     </div>
                                     <div className="col-md-6 text-start">
-                                        <button type="submit" className="btn btn-outline-success shadow p-1 mb-5 rounded-1 justify-content-center">
+                                        <button type="submit" className="btn btn-outline-success shadow p-1 mb-5 rounded-1 justify-content-center" onClick={generatePdf}>
                                             Get Statement</button>
                                     </div>
                                 </div>

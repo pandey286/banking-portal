@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
@@ -35,11 +36,19 @@ const CustomerCard = () => {
         setUserData(cookieValue);
     }, []);
     
-    const [CardData, setCardData] = useState(getCookie("cardAppl"));
-    useEffect(() => {
-        const cookieValue = JSON.parse(getCookie("cardAppl"));
-        setCardData(cookieValue);
-    }, []);
+    const [CardData, setCardData] = useState([]);
+        useEffect(() => {
+            axios
+            .get("http://localhost:8080/api/users/all-users-card-request")
+            .then((response) => {
+            console.log(response.data);
+            setCardData(response.data);
+            })
+            .catch((error) => {
+            console.log(error);
+            });
+        
+        }, []);
 
     return (
         <>
@@ -66,6 +75,12 @@ const CustomerCard = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link className="list-item d-flex" to="/admindash/customer-kyc">
+                                <FaQuestionCircle className="me-3 mt-1" />
+                                <span>Customer Kyc Details</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link className="list-item d-flex" to="/admindash/customer-card">
                                 <FaRegCreditCard className="me-3 mt-1" />
                                 <span>Customer Card Application </span>
@@ -87,6 +102,12 @@ const CustomerCard = () => {
                             <Link className="list-item d-flex" to="/admindash/customer-query">
                                 <FaQuestionCircle className="me-3 mt-1" />
                                 <span>Query from User</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/usergoldloan-app">
+                                <FaQuestionCircle className="me-3 mt-1" />
+                                <span>User Gold Loan Appliaction</span>
                             </Link>
                         </li>
                     </ul>
@@ -115,7 +136,6 @@ const CustomerCard = () => {
                         <table className="table table-hover table-responsive">
                             <thead className="table-dark">
                                 <tr>
-                                    <th scope="col">Title</th>
                                     <th scope="col">FullName</th>
                                     <th scope="col">Date Of Birth</th>
                                     <th scope="col">Phone Number </th>
@@ -128,20 +148,20 @@ const CustomerCard = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td scope="row">{CardData.title}</td>
-                                    <td>{CardData.userFullName}</td>
-                                    <td>{CardData.dob}</td>
-                                    <td>{CardData.userPhoneNo}</td>
-                                    <td>{CardData. userGender}</td>
-                                    <td>{CardData. userProfession}</td>
-                                    <td>{CardData.userCardType}</td>
-                                    <td>{CardData.userCard}</td>
-                                    <td>{CardData.userAddress}</td>
+                            {CardData.map((data) => (
+                                    <tr key={data.id}>
+                                    <td>{data.userFullName}</td>
+                                    <td>{data.dob}</td>
+                                    <td>{data.userPhoneNo}</td>
+                                    <td>{data. userGender}</td>
+                                    <td>{data. userProfession}</td>
+                                    <td>{data.userCardType}</td>
+                                    <td>{data.userCard}</td>
+                                    <td>{data.userAddress}</td>
                                     <td>
                                         <button type="button" className="btn-sm btn btn-success m-1"> Approve</button>
                                         <button type="button" className="btn-sm btn btn-danger m-1"> Deny </button></td>
-                                </tr>
+                                </tr>))}
                             </tbody>
                         </table>
                     </div>

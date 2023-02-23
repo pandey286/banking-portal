@@ -32,6 +32,11 @@ import AdminLogin from "./components/Dashboard/Admin/AdminLogin";
 import DepositInUser from "./components/Dashboard/Admin/AdminFunction/DepositInUser";
 import Dummy from "./components/dummy";
 import UserContacts from "./components/Dashboard/Admin/AdminFunction/UserContact";
+import GoldLoanApp from "./components/Dashboard/User/UserDashBoardFunction/GoldLoanApp";
+import UserGoldLoanApp from "./components/Dashboard/Admin/AdminFunction/UserGoldLoanApp";
+import CustomerKyc from "./components/Dashboard/Admin/AdminFunction/CustomerKyc";
+import Upload from "./components/Dashboard/User/UserDashBoardFunction/Upload";
+
 
 
 function App(props) {
@@ -56,20 +61,28 @@ function App(props) {
           <Route path="/forgetpass" element={<ForgetPass/>}/>
           <Route path="/userdash" element={<UserDashBoard />} />
           <Route path='/register' element={<Register />} />
+
+          {/* Admin - routes */}
           <Route path="/adminlogin" element={<AdminLogin />} />
           <Route path="/admindash" element={<AdminDashBoard />} />
           <Route path="/admindash/allcustomer" element={<AllCustomer />} />
+          <Route path="/admindash/customer-kyc" element={<CustomerKyc />} />
           <Route path="/admindash/customer-loan" element={<CustomerLoan />} />
+          <Route path="/admindash/usergoldloan-app" element={<UserGoldLoanApp/>} />
           <Route path="/admindash/customer-card" element={<CustomerCard />} />
           <Route path="/admindash/deposit" element={<DepositInUser />} />
           <Route path="/admindash/customer-query" element={<UserContacts />} />
+
+          {/* User-Routes */}
           <Route path="/userdash/viewtrans" element={<ViewTrans/>}/>
           <Route path="/userdash/accountInfo" element={<AccountInfo/>}/>
           <Route path="/userdash/card" element={<CardMan/>}/>
           <Route path="/userdash/loanApp" element={<LoanApp/>}/>
           <Route path="/userdash/beneficiary" element={<Beneficiaries/>}/>
+          <Route path="/userdash/goldloanApp" element={<GoldLoanApp/>}/>
           <Route path="/userdash/faq" element={<Faq/>}/>
-          <Route path="/dummy" element={<Dummy/>}/>
+          <Route path="/userdash/KYC" element={<Upload/>}/>
+          {/* <Route path="/dummy" element={<Dummy/>}/> */}
         </Routes>
       </BrowserRouter>
     </>

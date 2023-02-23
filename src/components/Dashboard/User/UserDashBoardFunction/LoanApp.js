@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../user.css"
-import { GiHamburgerMenu } from "react-icons/gi";
+import { GiHamburgerMenu, GiGoldBar } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionCircle, FaUserPlus } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
@@ -72,16 +72,16 @@ const LoanApp = () => {
             ...emailData,
             to: formData.email,
             subject: `Application for ${formData.userLoanType}`,
-            body: `Thank You Applying for  ${formData.userLoanType} from PSL Bank Online Platform.You have Applied for ${formData.userLoanType} with following Drtails
-            Loan Type:- ${formData.userLoanType},
-            FullName:- ${formData.userFullName},
-            Email:- ${formData.email},
-            Phone Number:- ${formData.userPhoneNo},
-            Loan Amount You Want:- ${formData.loanAmountInRupees},
-            Your Monthly Income:- ${formData.monthlyIncome},
-            YourAnuual Income:- ${formData.annualIncome},
-            Your Profession:- ${formData.userProfession},
-            Your Address:- ${formData.userAddress},
+            body: `Thank You Applying for  ${formData.userLoanType} from PSL Bank Online Platform.You have Applied for ${formData.userLoanType} with following Details
+            Loan Type: ${formData.userLoanType},
+            FullName: ${formData.userFullName},
+            Email: ${formData.email},
+            Phone Number: ${formData.userPhoneNo},
+            Loan Amount You Want: ${formData.loanAmountInRupees},
+            Your Monthly Income: ${formData.monthlyIncome},
+            YourAnuual Income: ${formData.annualIncome},
+            Your Profession: ${formData.userProfession},
+            Your Address: ${formData.userAddress},
             We Will let you know by Email if you card application have been approve or decline.`
         })
     };
@@ -96,15 +96,15 @@ const LoanApp = () => {
             const notification = await axios.post(notificationurl, emailData)
             setCookie("loanAppl", JSON.stringify(response.data), 7);
             swal({
-                title: "Loan Application Succesfully!! ",
-                text: "You have Successfully applied for a Card",
+                title: "Loan application succesfully submitted!! ",
+                text: "You have Successfully applied for Loan",
                 icon: "success",
             })
             // console.log(response.data);
         } catch (error) {
             swal({
                 title: "Loan Application Failed!! ",
-                text: "Pleas try later",
+                text: "Please try later",
                 icon: "warning",
             })
             console.error(error);
@@ -140,6 +140,12 @@ const LoanApp = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link className="list-item d-flex" to="/userdash/KYC">
+                                <FaUserAlt className="me-3 mt-1" />
+                                <span>Upload KYC</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link className="list-item d-flex" to="/userdash/beneficiary">
                                 <FaUserPlus className="me-3 mt-1" />
                                 <span>Add Beneficiary</span>
@@ -163,6 +169,13 @@ const LoanApp = () => {
                                 <span>Apply For Loan's</span>
                             </Link>
                         </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/userdash/goldloanApp">
+                                <GiGoldBar className="me-3 mt-1" />
+                                <span>Apply For Gold Loan</span>
+                            </Link>
+                        </li>
+
                         <li>
                             <Link className="list-item d-flex" to="/userdash/faq">
                                 <FaQuestionCircle className="me-3 mt-1" />

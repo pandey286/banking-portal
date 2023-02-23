@@ -3,16 +3,33 @@ import { useState } from "react";
 
 const GoldLoan = () => {
 
-    const [loanAmount, setLoanAmount] = useState(0);
+    const [weight, setWeight] = useState(0);
+    const [karat, setKarat] = useState(0);
     const [interestRate, setInterestRate] = useState(0);
-    const [loanTerm, setLoanTerm] = useState(0);
-    const [monthlyPayment, setMonthlyPayment] = useState(0);
-
-    const calculatePayment = () => {
-        const r = interestRate / 100 / 12;
-        const n = loanTerm * 12;
-        const payment = loanAmount * r * (1 + r) ** n / ((1 + r) ** n - 1);
-        setMonthlyPayment(payment.toFixed(2));
+    const [loanAmount, setLoanAmount] = useState(0);
+  
+    const marketRate = 5000; // Assuming Rs. 5000 per gram of gold
+    const loanToValueRatio = 0.8; // Assuming the loan amount is 80% of the gold's market value
+  
+    const handleWeightChange = (event) => {
+      setWeight(parseFloat(event.target.value));
+    };
+  
+    const handleKaratChange = (event) => {
+      setKarat(parseInt(event.target.value));
+    };
+  
+    const handleInterestRateChange = (event) => {
+      setInterestRate(parseFloat(event.target.value));
+    };
+  
+    const calculateLoanAmount = () => {
+      const purity = karat / 24;
+      const value = weight * marketRate * purity;
+      const interest = (interestRate / 100) * value;
+      const totalValue = value + interest;
+      const loanAmount = totalValue * loanToValueRatio;
+      setLoanAmount(loanAmount);
     };
 
     return (
@@ -124,32 +141,32 @@ Bonds can be used as collateral for loans. The loan-to-value (LTV) ratio is to b
                         </div>
                         <div className="card-body row d-flex justify-content center">
                             <div className="col-md-6 mb-4">
-                                <span className='fs-4 fw-bold'>Loan Amount ₹ : </span>
+                                <span className='fs-4 fw-bold'>Weight (In Grams ) : </span>
                             </div>
                             <div className="form-outline col-md-6 mb-4">
-                                <input className="input form-control form-control-lg" type="text" value={loanAmount} onChange={(e) => setLoanAmount(e.target.value)} placeholder='Loan Amount' />
+                                <input className="input form-control form-control-lg" type="number" value={weight} onChange={handleWeightChange}  placeholder='Loan Amount' />
                             </div>
 
                             <div className="col-md-6 mb-4">
                                 <span className='fs-4 fw-bold'>Interest Rate (%):</span>
                             </div>
                             <div className="form-outline col-md-6 mb-4">
-                                <input className="input form-control form-control-lg" type="text" value={interestRate} onChange={(e) => setInterestRate(e.target.value)} placeholder='Interset Rate' />
+                                <input className="input form-control form-control-lg" type="number" value={interestRate} onChange={handleInterestRateChange} placeholder='Interset Rate' />
                             </div>
 
                             <div className="col-md-6 mb-4">
-                                <span className='fs-4 fw-bold '>Loan Term (years):</span>
+                                <span className='fs-4 fw-bold '>Gold Quality (karat):</span>
                             </div>
                             <div className="form-outline col-md-6 mb-4">
-                                <input className="input form-control form-control-lg" type="text" value={loanTerm} onChange={(e) => setLoanTerm(e.target.value)} placeholder='Loan Term' />
+                                <input className="input form-control form-control-lg" type="number" value={karat} onChange={handleKaratChange}  placeholder='Loan Term' />
                             </div>
                             <div className="col-md-12 mb-4 text-center">
-                                <button className="btn btn-outline-info col-md-6 fw-bold" onClick={calculatePayment}>
+                                <button className="btn btn-outline-info col-md-6 fw-bold" onClick={calculateLoanAmount}>
                                     Calculate
                                 </button>
                             </div>
                             <div className="card-footer text-center fw-bold fs-4">
-                                <span className="payment">Monthly Payment(₹): {monthlyPayment} ₹</span>
+                                <span className="payment">Loan Amount: Rs. {loanAmount.toFixed(2)} ₹</span>
                             </div>
                         </div>
                     </div>

@@ -8,46 +8,59 @@ import swal from 'sweetalert';
 
 const Register = () => {
 
+  const setCookie = (name, value, days) => {
+    let expires = "";
+    if (days) {
+      let date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  }
+
+
   const [formData, setFormData] = useState({
 
     userFirstName: '',
-    userLastName : '',
-    userDOB : '' ,
-    userPhoneNo : '',
-    userAltPhoneNo  : '',
-    userAddress :'' ,
-    userAadharNo :'' ,
-    userPAN : '',
-    userGender : '',
-    userNationality :'' ,
-    email : '',
-    password : '',
-    userAccType :'' ,
-    userBranchName : '',
-    userIFSC :'' ,
-    userAccountNumber : '',
-    createAt :'',
+    userLastName: '',
+    userName: '',
+    userDOB: '',
+    userPhoneNo: '',
+    userAltPhoneNo: '',
+    userAddress: '',
+    userAadharNo: '',
+    userPAN: '',
+    userGender: '',
+    userNationality: '',
+    email: '',
+    password: '',
+    userAccType: '',
+    userBranchName: '',
+    userIFSC: '',
+    userAccountNumber: '',
+    createAt: '',
   });
 
   const resetFormData = () => {
     setFormData({
       userFirstName: '',
-      userLastName : '',
-      userDOB : '' ,
-      userPhoneNo : '',
-      userAltPhoneNo  : '',
-      userAddress :'' ,
-      userAadharNo :'' ,
-      userPAN : '',
-      userGender : '',
-      userNationality :'' ,
-      email : '',
-      password : '',
-      userAccType :'' ,
-      userBranchName : '',
-      userIFSC :'' ,
-      userAccountNumber : '',
-      createAt :'',
+      userLastName: '',
+      userName: '',
+      userDOB: '',
+      userPhoneNo: '',
+      userAltPhoneNo: '',
+      userAddress: '',
+      userAadharNo: '',
+      userPAN: '',
+      userGender: '',
+      userNationality: '',
+      email: '',
+      password: '',
+      userAccType: '',
+      userBranchName: '',
+      userIFSC: '',
+      userAccountNumber: '',
+      createAt: '',
     });
   };
 
@@ -83,21 +96,24 @@ const Register = () => {
     event.preventDefault();
     try {
       const response = await axios.post(url, formData);
-      const notification = await axios.post(notificationurl, emailData)
       swal({
         title: "Registeration Succesfully!! ",
         text: "You will also get mail if you successfully register",
         icon: "success",
-    });
+      });
 
-      // console.log(response.data);
+      // Set data in cookies
+      setCookie("userData", JSON.stringify(response.data), 7);
+      const notification = await axios.post(notificationurl, emailData)
+
+      console.log(response.data);
     } catch (error) {
       console.error(error);
       swal({
         title: "Registeration Failed !",
         text: "User May already exist else, Please Check Your Credential",
         icon: "warning",
-    });
+      });
     }
   };
 
@@ -127,6 +143,11 @@ const Register = () => {
                           <div className="col-md-6 mb-4">
                             <div className="form-outline">
                               <input type="text" id="lastname" name='userLastName' onChange={handleChange} className="form-control form-control-lg" placeholder='Last Name' required />
+                            </div>
+                          </div>
+                          <div className="col-md-6 mb-4">
+                            <div className="form-outline">
+                              <input type="text" id="username" name='userName' onChange={handleChange} className="form-control form-control-lg" placeholder='User Name' required />
                             </div>
                           </div>
                           <div className="col-md-6 mb-4">
@@ -185,7 +206,7 @@ const Register = () => {
                           <div className="col-md-6 mb-4">
                             <div className="form-outline">
                               <select id="form3Example1n" name='userAccType' onChange={handleChange} className="select form-control form-control-lg" placeholder='Account Type'>
-                              <option selected>Select Your Account Type</option>
+                                <option selected>Select Your Account Type</option>
                                 <option value="Savings">Savings</option>
                                 <option value="Current">Current</option>
                                 <option value="FixedDeposit">FixedDeposit</option>

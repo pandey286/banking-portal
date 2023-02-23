@@ -1,16 +1,19 @@
-import React from "react";
-import { useState,useEffect} from "react";
+import React, { useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
 import { GiHamburgerMenu } from "react-icons/gi";
+// import { AiFillCloseCircle, AiFillCheckCircle } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
-import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms,FaQuestionCircle } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle } from "react-icons/fa";
+// import {BiSearchAlt} from "react-icons/bi";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 import { RiLuggageDepositFill } from 'react-icons/ri'
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
-
-const DepositInUser = () => {
+const CustomerKyc = () => {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -30,17 +33,30 @@ const DepositInUser = () => {
         return null;
     }
 
-    const [Data, setUserData] = useState(getCookie("adminData"));
+    const [adminData, setAdminData] = useState(getCookie("adminData"));
     useEffect(() => {
         const cookieValue = JSON.parse(getCookie("adminData"));
+        setAdminData(cookieValue);
+    }, []);
+
+    const [Data, setUserData] = useState(getCookie("userData"));
+    useEffect(() => {
+        const cookieValue = JSON.parse(getCookie("userData"));
         setUserData(cookieValue);
     }, []);
 
-    
+
+    const tableRef = useRef(null);
+
+    const generatePdf = () => {
+        const doc = new jsPDF();
+        doc.autoTable({ html: "#my-table" });
+        doc.save("statement.pdf");
+    };
 
     return (
         <>
-           <div className="wrapper">
+            <div className="wrapper">
                 {/* <!-- Sidebar  --> */}
                 <nav id="sidebar" className={sidebarOpen ? "active" : ""}>
                     <div className="sidebar-header fs-5">
@@ -119,27 +135,55 @@ const DepositInUser = () => {
                             <h3><span><img className='mb-1' src={Kakashi} width="30px" /></span><strong>PSL Bank Ltd.</strong></h3>
                         </div>
                     </nav>
-
-                    <section>
-                        <div class="card ">
-                            <div class="card-header bg-dark text-white text-center fw-bold fs-4">
-                                Deposit Page
+                    <div className="text-center fs-1 mb-5">Search by Kyc Details</div>
+                    <div className="card">
+                    <div className="card-header fw-bold text-white bg-dark fs-1">
+                                        Search User
+                                    </div>
+                        <div className="card-body row">
+                            <div className="col-md-8 mb-2 justify-content-center">
+                                <input type="text" id="user_id" className="form-control col-6" placeholder='Enter User id' />
                             </div>
-                            <div class="card-body justify-content-center">
-                                <form>
-                                    <div className="form-outline col-md-6 my-4 m-auto">
-                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Account Number' required />
-                                    </div>
-                                    <div className="form-outline col-md-6 my-4 m-auto">
-                                        <input type="number" id="form3Example1n" className="form-control form-control-lg" placeholder='Enter Amount' required />
-                                    </div>
-                                    <div className="form-outline col-md-6 my-4 m-auto">
-                                        <button type="button" className="btn btn-outline-secondary">Deposit</button>
-                                    </div>
-                                </form>
+                            
+                            <div className="row d-flex justify-content-center">
+                                <button className="btn btn-outline-secondary col-md-4 mt-3"> Search </button>
                             </div>
                         </div>
-                    </section>
+                    </div>
+
+                    {/* <div className="card">
+                    <div className="card-header fw-bold text-white bg-dark fs-1">
+                                        Search User to Delete <BiSearchAlt />
+                                    </div>
+                        <div className="card-body d-flex row">
+                            <div className="col-md-6 mb-2">
+                                <input type="text" id="acc_no" className="form-control col-6" placeholder='Enter account number' />
+                            </div>
+                            <div className="col-md-6 text-start">
+                            <button type="button" className="btn-sm btn btn-danger m-1"> Delete </button>
+                            </div>
+                            </div>
+                            </div>
+ */}
+
+                    
+                        
+                            <div className="col data-table mt-4">
+                                <table className="table bg-white shadow-sm  text-center table-hover" ref={tableRef} id="my-table">
+                                    <thead className="table-dark">
+                                        <tr>
+                                            <th scope="col">Acc no.</th>
+                                            <th scope="col">PAN_Card</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>8098987767878978</td>
+                                            <td>BDPPL8756R</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                 </div>
             </div>
         </>
@@ -147,4 +191,4 @@ const DepositInUser = () => {
     )
 }
 
-export default DepositInUser;
+export default CustomerKyc;
