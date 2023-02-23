@@ -20,24 +20,16 @@ const Upload = () => {
         setSidebarOpen(!sidebarOpen);
     }
 
-    // Get data from cookies
-    const getCookie = (name) => {
-        let nameEQ = name + "=";
-        let ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-    }
+    const [info, setInfo] = useState({});
 
-    const [Data, setUserData] = useState(getCookie("userData"));
     useEffect(() => {
-        const cookieValue = JSON.parse(getCookie("userData"));
-        setUserData(cookieValue);
-    }, []);
-
+        const storedData = JSON.parse(localStorage.getItem('accountInfo'));
+        if (storedData) {
+          setInfo(storedData);
+        }
+      }, []);
+      
+    console.log(info);
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
         const formData = new FormData();
@@ -51,22 +43,6 @@ const Upload = () => {
             });
     }
 
-    //   const express = require('express');
-    //const multer = require('multer');
-    //const upload = multer({ dest: 'uploads/' });
-
-    //const app = express();
-
-    //app.post('/api/upload-image', upload.single('image'), (req, res) => {
-    // const file = req.file;
-    //console.log(file);
-    //res.send({ message: 'Image uploaded successfully' });
-    //});
-
-    //app.listen(3000, () => {
-    //  console.log('Server started on port 3000');
-    //});
-
 
 
     return (
@@ -77,7 +53,7 @@ const Upload = () => {
                     <div className="sidebar-header fs-5">
                         <Link className="list-item d-flex" to="/userdash">
                             <FaUserAlt className="me-3 mt-1" />
-                            <span >{Data.userFirstName}{Data.userLastName}</span>
+                            <span >{info.userName}</span>
                         </Link>
                     </div>
                     <ul className="list-unstyled components">
@@ -186,7 +162,7 @@ const Upload = () => {
                             </div>
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
-                            <button class="btn btn-outline-primary" type="button">Upload</button>
+                            <button class="btn btn-outline-primary" type="button" onClick={handleImageUpload}>Upload</button>
                         </div>
                     </div>
 

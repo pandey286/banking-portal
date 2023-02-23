@@ -26,23 +26,19 @@ const CardMan = () => {
         document.cookie = name + "=" + (value || "") + expires + "; path=/";
     }
 
-    // Get data from cookies user data
-    const getCookie = (name) => {
-        let nameEQ = name + "=";
-        let ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-    }
+    
+    const [info, setInfo] = useState({});
 
-    const [Data, setUserData] = useState(getCookie("userData"));
     useEffect(() => {
-        const cookieValue = JSON.parse(getCookie("userData"));
-        setUserData(cookieValue);
-    }, []);
+        const storedData = JSON.parse(localStorage.getItem('accountInfo'));
+        if (storedData) {
+          setInfo(storedData);
+        }
+      }, []);
+      
+    console.log(info);
+
+
 
     const [formData, setFormData] = useState({
 
@@ -122,7 +118,7 @@ const CardMan = () => {
                     <div className="sidebar-header fs-5">
                         <Link className="list-item d-flex" to="/userdash">
                             <FaUserAlt className="me-3 mt-1" />
-                            <span >{Data.userFirstName}{Data.userLastName}</span>
+                            <span >{info.userName}</span>
                         </Link>
                     </div>
                     <ul className="list-unstyled components">

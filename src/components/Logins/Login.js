@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../Navbar';
 import LogImg from './images/LogImg1.gif';
 import axios from 'axios';
 import { FaUserCircle } from 'react-icons/fa';
 import swal from 'sweetalert';
+import Cookies from 'js-cookie';
+
 
 function Login() {
 
@@ -36,7 +38,21 @@ function Login() {
 
     const url = "http://localhost:8080/api/customers/login"
 
-    const handleSubmit = async (event) => {
+    const [accountData, setAccountData] = useState();
+    // useEffect(() => {
+    //     axios
+    //     .get(`http://localhost:8080/api/customers/${formData.userName}`)
+    //     .then((response) => {
+    //     console.log(response.data);
+    //     setAccountData(response.data);
+    //     })
+    //     .catch((error) => {
+    //     console.log(error);
+    //     });
+    
+    // }, []);
+
+    const handleSubmit =  (event) => {
         event.preventDefault();
         setErrorMessage('');
 
@@ -53,27 +69,59 @@ function Login() {
             setErrorMessage('Password must be at least 6 characters long');
         }
         else {
-            try {
-                const res = await axios.post(url, formData);
-                swal({
-                    title: "Login Succesfully!! ",
-                    text: "Your Login Was Successful",
-                    icon: "success",
-                });
-                setCookie("jwtToken", res.data.token, 7); // store JWT token in cookie
-                window.location.href = "/userdash"
+            // try {
+            //     const res = await axios.post(url, formData);
+            //     swal({
+            //         title: "Login Succesfully!! ",
+            //         text: "Your Login Was Successful",
+            //         icon: "success",
+            //     });
+            //     // store JWT token in cookie
+            //     setCookie("jwtToken", res.data.token, 7); 
+            //     window.location.href = "/userdash"
+            //     console.log(res.data);
+            // } catch (error) {
+            //     console.error(error);
+            //     swal({
+            //         title: "Login Failed Successfully !",
+            //         text: "Please Check Your Credential",
+            //         icon: "warning",
+            //     });
+            //     setErrorMessage('Incorrect UserName or password');
+
+            axios.post(url , formData)
+            .then((res) => {
+                console.log(res.status)
                 console.log(res.data);
-            } catch (error) {
-                console.error(error);
-                swal({
-                    title: "Login Failed Successfully !",
-                    text: "Please Check Your Credential",
-                    icon: "warning",
-                });
-                setErrorMessage('Incorrect UserName or password');
+                axios.get(`http://localhost:8080/api/customers/${formData.userName}`, {
+                    headers: {
+                        'Authorization': `Bearer ${res.data}`
+                    }
+                })
+                    .then((res) => {
+                        console.log(res.status);
+                        setCookie('userinfo',res.data,7);
+                        localStorage.setItem('accountInfo',JSON.stringify(res.data))
+                        setAccountData(res.data)
+                        console.log(accountData)
+                    })
+                    .catch((err) => {
+                        console.log(url + formData.userName);
+                        console.log(err);
+                    })
+                swal("Success", "Login Successfull", "success");
+                // setIsLoggedIn(true)
+                window.location.href = "/userdash"
+            })
+            .catch((err) => {
+                console.log("Error", err);
+                swal("Error", "Invalid Credentials", "error");
+            })
             }
-        }
+
+        
     };
+
 
 
     return (

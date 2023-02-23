@@ -8,10 +8,15 @@ import { FaRupeeSign, FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionC
 import Kakashi from "../../../images/NavbarImages/kakashi.ico"
 import axios from "axios";
 import Cookies from "js-cookie";
+import jwt_decode from 'jwt-decode';
 
 
 const UserDashBoard = () => {
 
+
+    // const token = Cookies.get('jwtoken');
+    // const decoded = jwt_decode(token);
+    // console.log(decoded);
 
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -20,39 +25,17 @@ const UserDashBoard = () => {
         setSidebarOpen(!sidebarOpen);
     };
 
-    // Get data from cookies
-    const getCookie = (name) => {
-        let nameEQ = name + "=";
-        let ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-    }
+    const [info, setInfo] = useState({});
 
-    const [Data, setUserData] = useState(getCookie("userData"));
     useEffect(() => {
-        const cookieValue = JSON.parse(getCookie("userData"));
-        setUserData(cookieValue);
-    }, []);
+        const storedData = JSON.parse(localStorage.getItem('accountInfo'));
+        if (storedData) {
+          setInfo(storedData);
+        }
+      }, []);
+      
+    console.log(info);
 
-    // const [Data, setUserData] = useState([]);
-    // useEffect(() => {
-    //     axios
-    //     .get("http://localhost:8080/api/customers/user-by/pandey.aman4256@gmail.com")
-    //     .then((response) => {
-    //     console.log(response.data);
-    //     setUserData(response.data);
-    //     })
-    //     .catch((error) => {
-    //     console.log(error);
-    //     });
-    
-    // }, []);
-
-    
 
     return (
         <>
@@ -62,7 +45,7 @@ const UserDashBoard = () => {
                     <div className="sidebar-header fs-5">
                         <Link className="list-item d-flex" to="/userdash">
                             <FaUserAlt className="me-3 mt-1" />
-                            <span >{Data.userFirstName}{Data.userLastName}</span>
+                            <span >{info.userName}</span>
                         </Link>
                     </div>
                     <ul className="list-unstyled components">
@@ -145,11 +128,11 @@ const UserDashBoard = () => {
                     <div className="card ">
                         <div className="card-header d-flex col bg-dark text-white fs-2 fw-bold">
                             <div className="col-md-9 col-sm-12">Account Number :-</div>
-                            <div className="col-md-3 col-sm-12 text-end ">{Data.userAccountNumber}</div>
+                            <div className="col-md-3 col-sm-12 text-end ">{info.userAccountNumber}</div>
                         </div>
                         <div className="card-body d-flex col text-end fw-bold">
                             <div className="col-md-9 col-sm-12 text-start fs-3">Account Balance :-</div>
-                            <p className="col-md-3 col-sm-12 card-text text-success fs-3"><FaRupeeSign />{Data.balance}</p>
+                            <p className="col-md-3 col-sm-12 card-text text-success fs-3"><FaRupeeSign />{info.balance}</p>
                         </div>
                     </div>
 

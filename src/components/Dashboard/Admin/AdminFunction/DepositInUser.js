@@ -8,6 +8,8 @@ import { BsPeopleFill } from "react-icons/bs";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms,FaQuestionCircle } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 import { RiLuggageDepositFill } from 'react-icons/ri'
+import axios from "axios";
+import swal from "sweetalert";
 
 
 const DepositInUser = () => {
@@ -36,7 +38,45 @@ const DepositInUser = () => {
         setUserData(cookieValue);
     }, []);
 
-    
+    const [formData, setFormData] = useState({
+           
+            userAccountNumber:'',
+            balance:''
+        
+    })
+
+    const handleFormData = (event) => {
+        let Data = {
+            ...formData,
+            [event.target.name]: event.target.value
+        }
+        setFormData(Data);
+    };
+
+    const depositMoney = async(event) =>{
+        let userAccountNumber = formData.userAccountNumber
+        const debitUrl =`http://localhost:8080/api/customers/add-balance/${userAccountNumber}`;
+
+        const res = await axios.put(debitUrl, formData)
+        .then(res => {
+            console.log(res.data);
+            setFormData(res.data);
+            swal({
+                title: "Deposit In User Account",
+                text: "Money was deposit successfully",
+                icon: "success"
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            swal({
+                title: "Failed to deposit",
+                text: "Check the Field",
+                icon: "warning",
+                dangerMode: true,
+            });
+        })
+    }
 
     return (
         <>
@@ -128,13 +168,13 @@ const DepositInUser = () => {
                             <div class="card-body justify-content-center">
                                 <form>
                                     <div className="form-outline col-md-6 my-4 m-auto">
-                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Account Number' required />
+                                        <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='Account Number' onChange={handleFormData} name='userAccountNumber' required />
                                     </div>
                                     <div className="form-outline col-md-6 my-4 m-auto">
-                                        <input type="number" id="form3Example1n" className="form-control form-control-lg" placeholder='Enter Amount' required />
+                                        <input type="number" id="form3Example1n" className="form-control form-control-lg" placeholder='Enter Amount' onChange={handleFormData} name='balance' required />
                                     </div>
                                     <div className="form-outline col-md-6 my-4 m-auto">
-                                        <button type="button" className="btn btn-outline-secondary">Deposit</button>
+                                        <button type="button" className="btn btn-outline-secondary" onClick={depositMoney}>Deposit</button>
                                     </div>
                                 </form>
                             </div>

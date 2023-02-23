@@ -13,8 +13,6 @@ import { RiLuggageDepositFill } from 'react-icons/ri'
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-let SuccessIcon = { color: "green" };
-let FailedIcon = { color: "red" };
 
 const AllCustomer = () => {
 
@@ -181,10 +179,6 @@ const AllCustomer = () => {
                             </div>
                         </div>
                     </div>
-
-
-
-
                     <div className="col data-table mt-4">
                         <table className="table bg-white shadow-sm  text-center table-hover userTable" ref={tableRef} id="my-table">
                         <thead className="table-dark" >

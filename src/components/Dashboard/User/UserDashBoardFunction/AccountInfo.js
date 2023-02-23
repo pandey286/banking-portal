@@ -8,6 +8,7 @@ import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionC
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 import swal from 'sweetalert';
 import axios from "axios";
+import Cookies from 'js-cookie';
 import { useParams } from 'react-router-dom';
 
 const AccountInfo = () => {
@@ -17,24 +18,24 @@ const AccountInfo = () => {
         setSidebarOpen(!sidebarOpen);
     }
 
-    // Get data from cookies
-    const getCookie = (name) => {
-        let nameEQ = name + "=";
-        let ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-    }
+    // Get user info
 
-    const [Data, setUserData] = useState(getCookie("userData"));
+    // const info = new Object();
+
+    // info = Object.entries((JSON.parse(localStorage.getItem('accountInfo'))))[0];
+
+    // const info  = localStorage.getItem('accountInfo');
+
+    const [info, setInfo] = useState({});
+
     useEffect(() => {
-        const cookieValue = JSON.parse(getCookie("userData"));
-        setUserData(cookieValue);
-    }, []);
-
+        const storedData = JSON.parse(localStorage.getItem('accountInfo'));
+        if (storedData) {
+          setInfo(storedData);
+        }
+      }, []);
+      
+    console.log(info);
 
     // Update Phone, AltPhone and Address
     const [editMode, setEditMode] = useState(false);
@@ -59,7 +60,7 @@ const AccountInfo = () => {
 
     const saveData = async (event) => {
 
-        let email = Data.email;
+        let email = info.email;
         const url = `http://localhost:8080/api/customers/user-update/${email}`;
 
         const res = await axios.put(url, formData)
@@ -88,14 +89,16 @@ const AccountInfo = () => {
 
     return (
         <>
-
+            {/* {info.map(item => (
+                <li key={item.id}> */}
+            
             <div className="wrapper">
                 {/* <!-- Sidebar  --> */}
                 <nav id="sidebar" className={sidebarOpen ? "active" : ""}>
                     <div className="sidebar-header fs-5">
-                        <Link className="list-item d-flex" to="/userdash">
+                        <Link className="list-item d-flex" to="/userdash" >
                             <FaUserAlt className="me-3 mt-1" />
-                            <span >{Data.userFirstName}{Data.userLastName}</span>
+                            <span>{info.userName}</span>
                         </Link>
                     </div>
                     <ul className="list-unstyled components">
@@ -183,51 +186,52 @@ const AccountInfo = () => {
                                     <div className="card-header bg-secondary fs-1 fw-bold text-white bg-dark">
                                         Account Information
                                     </div>
+
                                     <div className="card-body row  d-flex ">
-                                        <div className="col-md-6"><p>First Name :-</p></div><div className="col-md-6 justify-content-end"><p>{Data.userFirstName}</p></div>
+                                        <div className="col-md-6"><p>First Name :-</p></div><div className="col-md-6 justify-content-end"><p>{info.userFirstName}</p></div>
 
-                                        <div className="col-md-6"><p>Last Name :-</p></div><div className="col-md-6 justify-content-end"><p>{Data.userLastName}</p></div>
+                                        <div className="col-md-6"><p>Last Name :-</p></div><div className="col-md-6 justify-content-end"><p>{info.userLastName}</p></div>
 
-                                        <div className="col-md-6"><p>Date Of Birth :-</p></div><div className="col-md-6 justify-content-end"><p>{Data.userDOB}</p></div>
+                                        <div className="col-md-6"><p>Date Of Birth :-</p></div><div className="col-md-6 justify-content-end"><p>{info.userDOB}</p></div>
 
                                         <div className="col-md-6"><p>Phone Number :-</p></div>{editMode ? (<input type="text" name="userPhoneNo" onChange={handleFormData} />) : (
-                                            <div className="col-md-6 justify-content-end"><p>{Data.userPhoneNo}</p></div>)}
+                                            <div className="col-md-6 justify-content-end"><p>{info.userPhoneNo}</p></div>)}
 
                                         <div className="col-md-6"><p> Alternate Phone Number :-</p></div>{editMode ? (<input type="text" name="userAltPhoneNo" onChange={handleFormData} />) : (
-                                            <div className="col-md-6 justify-content-end"><p>{Data.userAltPhoneNo}</p></div>)}
+                                            <div className="col-md-6 justify-content-end"><p>{info.userAltPhoneNo}</p></div>)}
 
                                         <div className="col-md-6"><p> Address :-</p></div>{editMode ? (<input type="text" name="userAddress" onChange={handleFormData} />) : (
-                                            <div className="col-md-6 justify-content-end"><p>{Data.userAddress}</p></div>)}
+                                            <div className="col-md-6 justify-content-end"><p>{info.userAddress}</p></div>)}
 
                                         <div className="col-md-6"><p>Aadhar-Card Number :-</p></div>
-                                        <div className="col-md-6 justify-content-end"><p>{Data.userAadharNo}</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{info.userAadharNo}</p></div>
 
                                         <div className="col-md-6"><p>PAN Number :-</p></div>
-                                        <div className="col-md-6 justify-content-end"><p>{Data.userPAN}</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{info.userPAN}</p></div>
 
                                         <div className="col-md-6"><p>Gender :-</p></div>
-                                        <div className="col-md-6 justify-content-end"><p>{Data.userGender}</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{info.userGender}</p></div>
 
                                         <div className="col-md-6"><p>Nationality :-</p></div>
-                                        <div className="col-md-6 justify-content-end"><p>{Data.userNationality}</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{info.userNationality}</p></div>
 
                                         <div className="col-md-6"><p>Email :-</p></div>
-                                        <div className="col-md-6 justify-content-end"><p>{Data.email}</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{info.email}</p></div>
 
                                         <div className="col-md-6"><p>Account-Type :-</p></div>
-                                        <div className="col-md-6 justify-content-end"><p>{Data.userAccType}</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{info.userAccType}</p></div>
 
                                         <div className="col-md-6"><p>Branch-Name :-</p>
-                                        </div><div className="col-md-6 justify-content-end"><p>{Data.userBranchName}</p></div>
+                                        </div><div className="col-md-6 justify-content-end"><p>{info.userBranchName}</p></div>
 
                                         <div className="col-md-6"><p>IFSC :-</p>
-                                        </div><div className="col-md-6 justify-content-end"><p>{Data.userIFSC}</p></div>
+                                        </div><div className="col-md-6 justify-content-end"><p>{info.userIFSC}</p></div>
 
                                         <div className="col-md-6"><p>Account Nummber :-</p></div>
-                                        <div className="col-md-6 justify-content-end"><p>{Data.userAccountNumber}</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{info.userAccountNumber}</p></div>
 
                                         <div className="col-md-6"><p>Creation Date :-</p></div>
-                                        <div className="col-md-6 justify-content-end"><p>{Data.createAt}</p></div>
+                                        <div className="col-md-6 justify-content-end"><p>{info.createAt}</p></div>
                                     </div>
                                     <div className="card-footer d-flex justify-content-center">
                                         <button type="submit" className="btn btn-outline-warning shadow p-1 mt-3 mb-3 rounded-1" onClick={updateData}>
@@ -253,6 +257,7 @@ const AccountInfo = () => {
                     </div>
                 </div>
             </div>
+           {/* </li> ))} */}
         </>
     )
 }
