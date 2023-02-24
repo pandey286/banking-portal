@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
-import { GiHamburgerMenu,GiGoldBar } from "react-icons/gi";
-import { BiLogOut,BiTransfer } from "react-icons/bi";
+import { GiHamburgerMenu, GiGoldBar } from "react-icons/gi";
+import { BiLogOut, BiTransfer } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
@@ -44,14 +44,14 @@ const TransactionData = () => {
         endDate: '',
         userAccountNumber: ''
     });
-
+    
     const handleChange = event => {
         setFormData({
             ...formData,
             [event.target.name]: event.target.value
         });
     };
-
+    
     const [transData, setTransData] = useState([]);
     useEffect(() => {
         axios
@@ -63,14 +63,12 @@ const TransactionData = () => {
             .catch((error) => {
                 console.log(error);
             });
-
-    }, []);
+    }, [formData]);
+    
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-      };
-
-
+    };
 
     const tableRef = useRef(null);
 
@@ -78,9 +76,9 @@ const TransactionData = () => {
         const doc = new jsPDF();
         const imgData = "https://www.goodreturns.in/img/2019/11/csbbanklogo-1574336687.jpeg";
         //const pdfWidth = pdf.internal.pageSize.getWidth();
-        doc.addImage(imgData, "JPEG", 4, 4, 25, 10);
+        doc.addImage(imgData, "JPEG", 20, 4, 25, 10);
         doc.autoTable({ html: "#my-table" });
-        doc.save("All_Transactions.pdf");
+        doc.save("Trans_from-to.pdf");
     };
 
     return (
@@ -115,13 +113,13 @@ const TransactionData = () => {
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/all-transactions">
-                            <BiTransfer className="me-3 mt-1" />
+                                <BiTransfer className="me-3 mt-1" />
                                 <span>All Transactions</span>
                             </Link>
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/transactions-date">
-                            <BiTransfer className="me-3 mt-1" />
+                                <BiTransfer className="me-3 mt-1" />
                                 <span>Transactions By Date</span>
                             </Link>
                         </li>
@@ -176,28 +174,28 @@ const TransactionData = () => {
                             <h3><span><img className='mb-1' src={Kakashi} width="30px" /></span><strong>PSL Bank Ltd.</strong></h3>
                         </div>
                     </nav>
-                    <div className="text-center fs-4 mb-5">All the Transactions</div>
-                    <div className="card">
-                        <div className="card-header fw-bold text-white bg-dark fs-3">
+                    <div className="text-center fs-4 mb-5 fw-bold"> Transactions by date</div>
+                    <div className="card ">
+                        <div className="card-header fw-bold text-white bg-dark fs-5">
                             Search User
                         </div>
                         <div className="card-body d-flex row">
-                            <div className="row">
-                                <div className="col-md-14  mb-4">
+                            <div className="row justify-content-center">
+                                <div className="col-md-8  mb-4">
                                     <input type="text" id="acc_no" className="form-control col-6" placeholder='Enter account number' name="userAccountNumber" onChange={handleChange} />
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-3  mb-2">
-                                    <span className="text-end fs-4">Choose Date From :-</span>
+                                <div className="col-md-6 mb-2">
+                                    <span className="text-end fs-4 m-4">Choose Date From:</span>
                                 </div>
-                                <div className="col-md-3  mb-2">
-                                    <input type="date" id="start_date" className="form-control col-6" placeholder='Choose start date' name="startDate" onChange={handleChange} />
+                                <div className="col-md-6  mb-2">
+                                    <input type="date" id="start_date" className="form-control col-6 me-3" placeholder='Choose start date' name="startDate" onChange={handleChange} />
                                 </div>
-                                <div className="col-md-3 mb-2">
-                                    <span className="text-end fs-4">Choose Date To  :-</span>
+                                <div className="col-md-6 mb-2">
+                                    <span className="text-end fs-4 m-4">Choose Date To:</span>
                                 </div>
-                                <div className="col-md-3  mb-2">
+                                <div className="col-md-6  mb-2">
                                     <input type="date" id="end_date" className="form-control col-6" placeholder='Choose end date' name="endDate" onChange={handleChange} />
                                 </div>
                             </div>

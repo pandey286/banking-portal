@@ -162,7 +162,7 @@ const AllTransactions = () => {
                             <h3><span><img className='mb-1' src={Kakashi} width="30px" /></span><strong>PSL Bank Ltd.</strong></h3>
                         </div>
                     </nav>
-                    <div className="text-center fs-1 mb-5 fw-bold">All the Transactions</div>
+                    <div className="text-center fs-2 mb-5 fw-bold">All the Transactions</div>
                     <div className="col data-table mt-4">
                         <table className="table bg-white shadow-sm  text-center table-hover userTable" ref={tableRef} id="my-table">
                             <thead  className="table-dark">

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
 import { GiHamburgerMenu, GiGoldBar } from "react-icons/gi";
 import { BiLogOut, BiTransfer } from "react-icons/bi";
+import { FaAddressCard } from "react-icons/fa";
 import { BsPeopleFill } from "react-icons/bs";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
@@ -140,18 +141,18 @@ const CustomerKyc = () => {
                             <h3><span><img className='mb-1' src={Kakashi} width="30px" /></span><strong>PSL Bank Ltd.</strong></h3>
                         </div>
                     </nav>
-                    <div className="text-center fs-1 mb-5">Search by Kyc Details</div>
+                    <div className="text-center fs-2 mb-5 fw-bold">Search by KYC details <FaAddressCard /></div>
                     <div className="card">
-                        <div className="card-header fw-bold text-white bg-dark fs-1">
+                        <div className="card-header fw-bold text-white bg-dark">
                             Search User
                         </div>
-                        <div className="card-body row">
-                            <div className="col-md-8 mb-2 justify-content-center">
-                                <input type="text" id="user_id" className="form-control col-6" placeholder='Enter User id' />
+                        <div className="card-body row justify-content-center">
+                            <div className="col-md-7 mb-2 justify-content-center">
+                                <input type="text" id="user_id" className="form-control col-6" placeholder='Enter Account Number' />
                             </div>
 
                             <div className="row d-flex justify-content-center">
-                                <button className="btn btn-outline-secondary col-md-4 mt-3"> Search </button>
+                                <button className="btn btn-outline-secondary col-md-2 mt-3"> Search </button>
                             </div>
                         </div>
                     </div>
@@ -179,12 +180,16 @@ const CustomerKyc = () => {
                                 <tr>
                                     <th scope="col">Acc no.</th>
                                     <th scope="col">PAN_Card</th>
+                                    <th scope="col">AadharNo</th>
+                                    <th scope="col">Acc HolderName</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>8098987767878978</td>
                                     <td>BDPPL8756R</td>
+                                    <td>8098987767878</td>
+                                    <td>John Deo</td>
                                 </tr>
                             </tbody>
                         </table>

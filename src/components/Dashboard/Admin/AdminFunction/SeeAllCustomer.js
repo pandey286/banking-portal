@@ -6,6 +6,7 @@ import "../.././Admin/admindash.css"
 import { GiHamburgerMenu, GiGoldBar } from "react-icons/gi";
 import { BiLogOut, BiTransfer } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
+import { ImUserMinus } from "react-icons/im";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle } from "react-icons/fa";
 import { BiSearchAlt } from "react-icons/bi";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
@@ -162,10 +163,9 @@ const AllCustomer = () => {
                     </nav>
 
                     <div className="row d-flex justify-content-center">
-
                         <div className="card col-md-4 me-3 ">
-                            <div className="card-header fw-bold text-dark bg-light fs-4">
-                                Search User
+                            <div className="card-header fw-bold text-light bg-dark fs-6 ">
+                                Search User <BiSearchAlt />
                             </div>
                             <div className="card-body d-flex row">
                                 <div className=" mb-2">
@@ -181,14 +181,14 @@ const AllCustomer = () => {
                         </div>
 
                         <div className="card col-md-4 ms-3">
-                            <div className="card-header fw-bold text-dark bg-light  fs-4">
-                                Delete User By Account Number<BiSearchAlt />
+                            <div className="card-header fw-bold text-light bg-dark ">
+                                Delete User By Account Number  <ImUserMinus />
                             </div>
                             <div className="card-body d-flex row">
-                                <div className=" mb-2">
+                                <div className=" my-4">
                                     <input type="text" id="userId" className="form-control col-6" placeholder='Enter Account Number' />
                                 </div>
-                                <div className="row d-flex justify-content-center">
+                                <div className="row d-flex justify-content-center my-2">
                                     <button className="btn btn-outline-danger shadow mb-3 col-md-4 mt-3 "> Delete </button>
                                 </div>
                             </div>

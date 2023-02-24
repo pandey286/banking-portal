@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../Navbar';
 import LogImg from './images/LogImg1.gif';
@@ -40,7 +40,7 @@ function Login() {
 
     const [accountData, setAccountData] = useState();
 
-    const handleSubmit =  (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         setErrorMessage('');
 
@@ -57,37 +57,37 @@ function Login() {
             setErrorMessage('Password must be at least 6 characters long');
         }
         else {
-            axios.post(url , formData)
-            .then((res) => {
-                console.log(res.status)
-                console.log(res.data);
-                axios.get(`http://localhost:8080/api/customers/${formData.userName}`, {
-                    headers: {
-                        'Authorization': `Bearer ${res.data}`
-                    }
+            axios.post(url, formData)
+                .then((res) => {
+                    console.log(res.status)
+                    console.log(res.data);
+                    axios.get(`http://localhost:8080/api/customers/${formData.userName}`, {
+                        headers: {
+                            'Authorization': `Bearer ${res.data}`
+                        }
+                    })
+                        .then((res) => {
+                            console.log(res.status);
+                            setCookie('userinfo', res.data, 7);
+                            localStorage.setItem('accountInfo', JSON.stringify(res.data))
+                            setAccountData(res.data)
+                            console.log(accountData)
+                        })
+                        .catch((err) => {
+                            console.log(url + formData.userName);
+                            console.log(err);
+                        })
+                    swal("Success", "Login Successfull", "success");
+                    // setIsLoggedIn(true)
+                    window.location.href = "/userdash"
                 })
-                    .then((res) => {
-                        console.log(res.status);
-                        setCookie('userinfo',res.data,7);
-                        localStorage.setItem('accountInfo',JSON.stringify(res.data))
-                        setAccountData(res.data)
-                        console.log(accountData)
-                    })
-                    .catch((err) => {
-                        console.log(url + formData.userName);
-                        console.log(err);
-                    })
-                swal("Success", "Login Successfull", "success");
-                // setIsLoggedIn(true)
-                window.location.href = "/userdash"
-            })
-            .catch((err) => {
-                console.log("Error", err);
-                swal("Error", "Invalid Credentials", "error");
-            })
-            }
+                .catch((err) => {
+                    console.log("Error", err);
+                    swal("Error", "Invalid Credentials", "error");
+                })
+        }
 
-        
+
     };
 
 

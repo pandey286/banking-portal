@@ -23,7 +23,9 @@ const ViewTrans = () => {
         setSidebarOpen(!sidebarOpen);
     }
 
+
     const [info, setInfo] = useState({});
+    const [transData, setTransData] = useState([]);
 
     useEffect(() => {
         const storedData = JSON.parse(localStorage.getItem('accountInfo'));
@@ -34,22 +36,19 @@ const ViewTrans = () => {
 
     console.log(info);
 
-    const [transData, setTransData] = useState([]);
-
     useEffect(() => {
-        axios
-            .get(`http://localhost:8080/api/transactions/viewTransactions/${info.userAccountNumber}`)
-            .then((response) => {
-                console.log(response.data);
-                setTransData(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-
-    }, []);
-
-
+        if (info.userAccountNumber) {
+            axios
+                .get(`http://localhost:8080/api/transactions/viewTransactions/${info.userAccountNumber}`)
+                .then((response) => {
+                    console.log(response.data);
+                    setTransData(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    }, [info]);
 
     const tableRef = useRef(null);
 
