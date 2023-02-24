@@ -53,32 +53,6 @@ const Beneficiaries = () => {
     const url = "http://localhost:8080/api/transactions/beneficiary"
 
 
-
-    // const [beneData, setbeneData] = useState([]);
-    // const [info, setInfo] = useState({});
-
-    // useEffect(() => {
-    //     const storedData = JSON.parse(localStorage.getItem('accountInfo'));
-    //     if (storedData) {
-    //         setInfo(storedData);
-    //     }
-    // }, []);
-
-    // console.log(info);
-
-    // useEffect(() => {
-    //     axios
-    //         .get(`http://localhost:8080/api/transactions/details/${info.userAccountNumber}`)
-    //         .then((response) => {
-    //             console.log(response.data);
-    //             setbeneData(response.data);
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //         });
-
-    // }, []);
-
     const [beneData, setbeneData] = useState([]);
     const [info, setInfo] = useState({});
 

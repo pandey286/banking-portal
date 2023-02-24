@@ -3,27 +3,24 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
-import { GiHamburgerMenu,GiGoldBar } from "react-icons/gi";
+import { GiHamburgerMenu, GiGoldBar } from "react-icons/gi";
 import { BiLogOut, BiTransfer } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle } from "react-icons/fa";
-
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 import { RiLuggageDepositFill } from 'react-icons/ri'
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import _ from "lodash";
 
-
-
+const pageSize = 6;
 
 const AllTransactions = () => {
-
+    // To Trigger the Menu
     const [sidebarOpen, setSidebarOpen] = useState(false);
-
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     };
-
     // Get data from cookies
     const getCookie = (name) => {
         let nameEQ = name + "=";
@@ -35,31 +32,14 @@ const AllTransactions = () => {
         }
         return null;
     }
-
     const [adminData, setAdminData] = useState(getCookie("adminData"));
     useEffect(() => {
         const cookieValue = JSON.parse(getCookie("adminData"));
         setAdminData(cookieValue);
     }, []);
 
-    const [transData, setTransData] = useState([]);
-    useEffect(() => {
-        axios
-            .get("http://localhost:8080/api/transactions/all-transactions")
-            .then((response) => {
-                console.log(response.data);
-                setTransData(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-
-    }, []);
-
-
 
     const tableRef = useRef(null);
-
     const generatePdf = () => {
         const doc = new jsPDF();
         const imgData = "https://www.goodreturns.in/img/2019/11/csbbanklogo-1574336687.jpeg";
@@ -68,6 +48,29 @@ const AllTransactions = () => {
         doc.autoTable({ html: "#my-table" });
         doc.save("All_Transactions.pdf");
     };
+
+    // Pagination Part
+    const [posts, setposts] = useState();
+    const [pageinated, setPaginated] = useState();
+    const [currentPage, setCurrentPage] = useState(1)
+    useEffect(() => {
+        axios.get(`http://localhost:8080/api/transactions/all-transactions`).then(res => {
+            console.log(res.data);
+            setposts(res.data);
+            setPaginated(_(res.data).slice(0).take(pageSize).value())
+        })
+    }, [])
+    const pageCount = posts ? Math.ceil(posts.length / pageSize) : 0;
+    if (pageCount === 1) return null;
+    const pages = _.range(1, pageCount + 1)
+
+    const pagination = (pageNo) => {
+        setCurrentPage(pageNo);
+        const startIndex = (pageNo - 1) * pageSize;
+        const pageinated = _(posts).slice(startIndex).take(pageSize).value();
+        setPaginated(pageinated);
+    }
+
 
     return (
         <>
@@ -101,13 +104,13 @@ const AllTransactions = () => {
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/all-transactions">
-                            <BiTransfer className="me-3 mt-1" />
+                                <BiTransfer className="me-3 mt-1" />
                                 <span>All Transactions</span>
                             </Link>
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/transactions-date">
-                            <BiTransfer className="me-3 mt-1" />
+                                <BiTransfer className="me-3 mt-1" />
                                 <span>Transactions By Date</span>
                             </Link>
                         </li>
@@ -165,7 +168,7 @@ const AllTransactions = () => {
                     <div className="text-center fs-2 mb-5 fw-bold">All the Transactions</div>
                     <div className="col data-table mt-4">
                         <table className="table bg-white shadow-sm  text-center table-hover userTable" ref={tableRef} id="my-table">
-                            <thead  className="table-dark">
+                            <thead className="table-dark">
                                 <tr>
                                     <th scope="col">Trans Type</th>
                                     <th scope="col">Trans Status</th>
@@ -179,25 +182,34 @@ const AllTransactions = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {transData.map((data) => (
-                                    <tr key={data.id}>
-                                        <td>{data.transType}</td>
-                                        <td>{data.transStatus}</td>
-                                        <td>{data.transAmount}</td>
-                                        <td>{data.currBalance}</td>
-                                        <td>{data.prevBalance}</td>
-                                        <td>{data.beneAccountNumber}</td>
-                                        <td>{data.userAccountNumber}</td>
-                                        <td>{data.transDate}</td>
-                                        <td>{data.beneficiaryName}</td>
-                                    </tr>))}
+                                {!pageinated ? ("No Data Found") : (pageinated.map((post, index) => (
+                                    <tr key={index}>
+                                        <td>{post.transType}</td>
+                                        <td>{post.transStatus}</td>
+                                        <td>{post.transAmount}</td>
+                                        <td>{post.currBalance}</td>
+                                        <td>{post.prevBalance}</td>
+                                        <td>{post.beneAccountNumber}</td>
+                                        <td>{post.userAccountNumber}</td>
+                                        <td>{post.transDate}</td>
+                                        <td>{post.beneficiaryName}</td>
+                                    </tr>
+                                )))}
                             </tbody>
                         </table>
+                        <nav className="d-flex justify-content-end">
+                            <ul className="pagination">
+                                {
+                                    pages.map((page) => (
+                                        <li className={page === currentPage ? "page-item active" : "page-item"}><p className="page-link" onClick={() => pagination(page)} >{page}</p></li>
+                                    ))
+                                }
+                            </ul>
+                        </nav>
                         <div className="col-md-6 text-start">
                             <button type="submit" className="btn btn-outline-success shadow p-1 mb-5 rounded-1 justify-content-center" onClick={generatePdf}>
                                 Generate Pdf</button>
                         </div>
-
                     </div>
                 </div>
             </div>

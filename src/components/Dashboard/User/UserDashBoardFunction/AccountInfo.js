@@ -18,14 +18,6 @@ const AccountInfo = () => {
         setSidebarOpen(!sidebarOpen);
     }
 
-    // Get user info
-
-    // const info = new Object();
-
-    // info = Object.entries((JSON.parse(localStorage.getItem('accountInfo'))))[0];
-
-    // const info  = localStorage.getItem('accountInfo');
-
     const [info, setInfo] = useState({});
 
     useEffect(() => {

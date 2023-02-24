@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Nav from '../Navbar';
 import './style.css'
 import RegPho from "./image/RegImage1.gif"
@@ -17,6 +17,24 @@ const Register = () => {
     }
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
   }
+
+      // Get data from cookies
+      const getCookie = (name) => {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    const [Data, setData] = useState(getCookie("userData"));
+    useEffect(() => {
+        const cookieValue = JSON.parse(getCookie("userData"));
+        setData(cookieValue);
+    }, []);
 
 
   const [formData, setFormData] = useState({
@@ -81,7 +99,7 @@ const Register = () => {
       to: formData.email,
       subject: "Welcome to PSL Bank",
       body: `Thank You Registering with PSL Bank Online Platform. PSL Family is happy to have a new family member.Your Register Email is
-      ${formData.email} and Password is ${formData.password}. Can You Also send as PhotoCopy of AdharCard:${formData.userAadharNo} and Pan Number: ${formData.userPAN} on this Email: pandeyprashant953@gmail.com`,
+      ${formData.email} and Password is ${Data.password}. Can You Also send as PhotoCopy of AdharCard:${formData.userAadharNo} and Pan Number: ${formData.userPAN} on this Email: pandeyprashant953@gmail.com`,
     })
   };
 
@@ -98,7 +116,7 @@ const Register = () => {
       const response = await axios.post(url, formData);
       swal({
         title: "Registeration Succesfully!! ",
-        text: "You will also get mail if you successfully register",
+        text: "You will also get mail if you successfully register.",
         icon: "success",
       });
 
