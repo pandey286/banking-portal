@@ -50,6 +50,7 @@ const UserDashBoard = () => {
             const response = await axios.post(url, transData);
             swal("Success", "Transaction Successful", "success");
             console.log(response.data);
+            window.location.href = "/login"
         } catch (error) {
             swal("Failed", "Transaction Failed", "danger");
             console.error(error);
