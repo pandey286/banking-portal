@@ -38,6 +38,7 @@ import CustomerKyc from "./components/Dashboard/Admin/AdminFunction/CustomerKyc"
 import AllTransactions from "./components/Dashboard/Admin/AdminFunction/AllTransactions";
 import Upload from "./components/Dashboard/User/UserDashBoardFunction/Upload";
 import TransactionData from "./components/Dashboard/Admin/AdminFunction/TransactionByData";
+import AccAndIfsc from './components/Dashboard/Admin/AdminFunction/UserByAccIFSC';
 
 
 
@@ -76,6 +77,7 @@ function App(props) {
           <Route path="/admindash/customer-card" element={<CustomerCard />} />
           <Route path="/admindash/deposit" element={<DepositInUser />} />
           <Route path="/admindash/customer-query" element={<UserContacts />} />
+          <Route path="/admindash/accNo-Ifsc" element={<AccAndIfsc />} />
 
           {/* User-Routes */}
           <Route path="/userdash/viewtrans" element={<ViewTrans/>}/>

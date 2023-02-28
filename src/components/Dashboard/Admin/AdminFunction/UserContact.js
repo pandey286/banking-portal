@@ -76,6 +76,12 @@ const UserContacts = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link className="list-item d-flex" to="/admindash/accNo-Ifsc">
+                                <BsPeopleFill className="me-3 mt-1" />
+                                <span>Search AccountNo and IFSC</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link className="list-item d-flex" to="/admindash/customer-kyc">
                                 <FaQuestionCircle className="me-3 mt-1" />
                                 <span>Customer Kyc Details</span>

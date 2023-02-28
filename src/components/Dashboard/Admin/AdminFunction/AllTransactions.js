@@ -13,14 +13,16 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import _ from "lodash";
 
-const pageSize = 6;
+const pageSize = 5;
 
 const AllTransactions = () => {
+
     // To Trigger the Menu
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     };
+
     // Get data from cookies
     const getCookie = (name) => {
         let nameEQ = name + "=";
@@ -40,6 +42,7 @@ const AllTransactions = () => {
 
 
     const tableRef = useRef(null);
+
     const generatePdf = () => {
         const doc = new jsPDF();
         const imgData = "https://www.goodreturns.in/img/2019/11/csbbanklogo-1574336687.jpeg";
@@ -97,6 +100,12 @@ const AllTransactions = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link className="list-item d-flex" to="/admindash/accNo-Ifsc">
+                                <BsPeopleFill className="me-3 mt-1" />
+                                <span>Search AccountNo and IFSC</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link className="list-item d-flex" to="/admindash/customer-kyc">
                                 <FaQuestionCircle className="me-3 mt-1" />
                                 <span>Customer Kyc Details</span>
@@ -104,13 +113,13 @@ const AllTransactions = () => {
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/all-transactions">
-                                <BiTransfer className="me-3 mt-1" />
+                            <BiTransfer className="me-3 mt-1" />
                                 <span>All Transactions</span>
                             </Link>
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/transactions-date">
-                                <BiTransfer className="me-3 mt-1" />
+                            <BiTransfer className="me-3 mt-1" />
                                 <span>Transactions By Date</span>
                             </Link>
                         </li>

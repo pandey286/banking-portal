@@ -66,9 +66,6 @@ const TransactionData = () => {
     }, [formData]);
     
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-    };
 
     const tableRef = useRef(null);
 
@@ -106,6 +103,12 @@ const TransactionData = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link className="list-item d-flex" to="/admindash/accNo-Ifsc">
+                                <BsPeopleFill className="me-3 mt-1" />
+                                <span>Search AccountNo and IFSC</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link className="list-item d-flex" to="/admindash/customer-kyc">
                                 <FaQuestionCircle className="me-3 mt-1" />
                                 <span>Customer Kyc Details</span>
@@ -113,13 +116,13 @@ const TransactionData = () => {
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/all-transactions">
-                                <BiTransfer className="me-3 mt-1" />
+                            <BiTransfer className="me-3 mt-1" />
                                 <span>All Transactions</span>
                             </Link>
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/transactions-date">
-                                <BiTransfer className="me-3 mt-1" />
+                            <BiTransfer className="me-3 mt-1" />
                                 <span>Transactions By Date</span>
                             </Link>
                         </li>
@@ -200,9 +203,6 @@ const TransactionData = () => {
                                 </div>
                             </div>
 
-                        </div>
-                        <div className="row d-flex justify-content-center">
-                            <button className="btn btn-outline-secondary col-md-4 mt-3 mb-3" onClick={handleSubmit}> Search </button>
                         </div>
                     </div>
                     <div className="col data-table mt-4">

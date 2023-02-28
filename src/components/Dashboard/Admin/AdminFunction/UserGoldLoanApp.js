@@ -18,6 +18,15 @@ const UserGoldLoanApp = () => {
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     };
+    const [emailData, setEmailData] = useState({
+        to: '',
+        subject: '',
+        body: ''
+    });
+
+
+    const notificationurl = "http://localhost:8080/api/v1/notifications"
+
 
     // Get data from cookies
     const getCookie = (name) => {
@@ -37,6 +46,17 @@ const UserGoldLoanApp = () => {
         setAdminData(cookieValue);
     }, []);
 
+    const [goldInfo, setGoldInfo] = useState({});
+
+    useEffect(() => {
+        const storedData = JSON.parse(localStorage.getItem('goldData'));
+        if (storedData) {
+            setGoldInfo(storedData);
+        }
+      }, []);
+      
+    console.log(goldInfo);
+
     const [goldLoanData, setgoldData] = useState([]);
 
     useEffect(() => {
@@ -51,6 +71,68 @@ const UserGoldLoanApp = () => {
         });
       
     }, []);
+
+    console.log(goldLoanData);
+
+    const sendApprovalEmail = async () => {
+        const emailData = {
+          to: goldInfo.email,
+          subject: `Gold Loan Application Approved`,
+          body: `Dear ${goldInfo.userFullName},
+      
+          We are pleased to inform you that your application for a gold loan has been approved. The details of your loan are as follows:
+      
+          Gold Weight: ${goldInfo.goldweight} gm
+          Loan Amount: Rs. ${goldInfo.goldloanAmountInRupees}
+      
+          Thank you for choosing PSL Bank for your financial needs.
+      
+          Best regards,
+          The PSL Bank Team`
+        };
+      
+        try {
+          const response = await axios.post(notificationurl, emailData);
+          console.log(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      
+      const sendDenialEmail = async () => {
+        // First delete the record from backend
+        try {
+          await axios.delete(`http://localhost:8080/api/users/goldloan-application/${goldInfo.id}`);
+          console.log(`Gold loan request with ID ${goldInfo.id} deleted successfully`);
+        } catch (error) {
+          console.error(`Error deleting gold loan request with ID ${goldInfo.id}:`, error);
+          return; // exit the function if delete request fails
+        }
+      
+        // If delete request was successful, send email notification
+        const emailData = {
+          to: goldInfo.email,
+          subject: `Gold Loan Application Denied`,
+          body: `Dear ${goldInfo.userFullName},
+      
+          We regret to inform you that your application for a gold loan has been denied. 
+      
+          Thank you for considering PSL Bank for your financial needs.
+      
+          Best regards,
+          The PSL Bank Team`
+        };
+      
+        try {
+          const response = await axios.post(notificationurl, emailData);
+          console.log(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      
+
+      
 
 
     return (
@@ -75,6 +157,12 @@ const UserGoldLoanApp = () => {
                             <Link className="list-item d-flex" to="/admindash/allcustomer">
                                 <BsPeopleFill className="me-3 mt-1" />
                                 <span>All Customer</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/accNo-Ifsc">
+                                <BsPeopleFill className="me-3 mt-1" />
+                                <span>Search AccountNo and IFSC</span>
                             </Link>
                         </li>
                         <li>
@@ -175,8 +263,8 @@ const UserGoldLoanApp = () => {
                                         <td>{data.userAddress}</td>
                                         
                                         <td>
-                                            <button type="button" className="btn-sm btn btn-success m-1"> Approve</button>
-                                            <button type="button" className="btn-sm btn btn-danger m-1"> Deny </button>
+                                            <button type="button" className="btn-sm btn btn-success m-1" onClick={sendApprovalEmail}> Approve</button>
+                                            <button type="button" className="btn-sm btn btn-danger m-1" onClick={sendDenialEmail}> Deny </button>
                                         </td>
                                     </tr>))}
                                     </tbody>

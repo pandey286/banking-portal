@@ -117,7 +117,7 @@ const GoldLoanApp = () => {
         event.preventDefault();
         try {
             const response = await axios.post(goldloanUrl, formData);
-            setCookie("goldData", JSON.stringify(response.data), 7);
+            localStorage.setItem('goldData', JSON.stringify(response.data)); // add gold loan data to local storage
             swal({
                 title: "GoldLoan application succesfully submitted!! ",
                 text: "You have successfully applied for Goldloan",
@@ -134,7 +134,7 @@ const GoldLoanApp = () => {
             console.error(error);
         }
     };
-
+    
     return (
 
         <div className="wrapper">

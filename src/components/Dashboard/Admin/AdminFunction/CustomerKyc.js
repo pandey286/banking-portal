@@ -73,6 +73,12 @@ const CustomerKyc = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link className="list-item d-flex" to="/admindash/accNo-Ifsc">
+                                <BsPeopleFill className="me-3 mt-1" />
+                                <span>Search AccountNo and IFSC</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link className="list-item d-flex" to="/admindash/customer-kyc">
                                 <FaQuestionCircle className="me-3 mt-1" />
                                 <span>Customer Kyc Details</span>
@@ -80,13 +86,13 @@ const CustomerKyc = () => {
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/all-transactions">
-                                <BiTransfer className="me-3 mt-1" />
+                            <BiTransfer className="me-3 mt-1" />
                                 <span>All Transactions</span>
                             </Link>
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/transactions-date">
-                                <BiTransfer className="me-3 mt-1" />
+                            <BiTransfer className="me-3 mt-1" />
                                 <span>Transactions By Date</span>
                             </Link>
                         </li>

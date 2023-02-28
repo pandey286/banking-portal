@@ -1,6 +1,5 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import axios from "axios";
-import { useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
 import { GiHamburgerMenu,GiGoldBar } from "react-icons/gi";
@@ -9,7 +8,9 @@ import { BsPeopleFill } from "react-icons/bs";
 import { RiLuggageDepositFill } from 'react-icons/ri'
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms,FaQuestionCircle } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
+import _ from "lodash";
 
+const pageSize = 10;
 
 const CustomerCard = () => {
 
@@ -18,6 +19,8 @@ const CustomerCard = () => {
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     };
+
+
     // Get data from cookies
     const getCookie = (name) => {
         let nameEQ = name + "=";
@@ -35,6 +38,7 @@ const CustomerCard = () => {
         const cookieValue = JSON.parse(getCookie("adminData"));
         setAdminData(cookieValue);
     }, []);
+    
     
     
     const [CardData, setCardData] = useState([]);
@@ -73,6 +77,12 @@ const CustomerCard = () => {
                             <Link className="list-item d-flex" to="/admindash/allcustomer">
                                 <BsPeopleFill className="me-3 mt-1" />
                                 <span>All Customer</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/accNo-Ifsc">
+                                <BsPeopleFill className="me-3 mt-1" />
+                                <span>Search AccountNo and IFSC</span>
                             </Link>
                         </li>
                         <li>

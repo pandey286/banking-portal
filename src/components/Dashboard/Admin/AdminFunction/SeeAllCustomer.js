@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-import { useState, useEffect } from "react";
+import React, { useRef,useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
@@ -55,6 +54,7 @@ const AllCustomer = () => {
 
     }, []);
 
+    
 
 
     const tableRef = useRef(null);
@@ -93,6 +93,12 @@ const AllCustomer = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link className="list-item d-flex" to="/admindash/accNo-Ifsc">
+                                <BsPeopleFill className="me-3 mt-1" />
+                                <span>Search AccountNo and IFSC</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link className="list-item d-flex" to="/admindash/customer-kyc">
                                 <FaQuestionCircle className="me-3 mt-1" />
                                 <span>Customer Kyc Details</span>
@@ -100,13 +106,13 @@ const AllCustomer = () => {
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/all-transactions">
-                                <BiTransfer className="me-3 mt-1" />
+                            <BiTransfer className="me-3 mt-1" />
                                 <span>All Transactions</span>
                             </Link>
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/transactions-date">
-                                <BiTransfer className="me-3 mt-1" />
+                            <BiTransfer className="me-3 mt-1" />
                                 <span>Transactions By Date</span>
                             </Link>
                         </li>
@@ -163,25 +169,8 @@ const AllCustomer = () => {
                     </nav>
 
                     <div className="row d-flex justify-content-center">
-                        <div className="card col-md-4 me-3 ">
-                            <div className="card-header fw-bold text-light bg-dark fs-6 ">
-                                Search User <BiSearchAlt />
-                            </div>
-                            <div className="card-body d-flex row">
-                                <div className=" mb-2">
-                                    <input type="text" id="acc_no" className="form-control col-6" placeholder='Enter account number' />
-                                </div>
-                                <div className=" mb-2">
-                                    <input type="text" id="ifsc_no" className="form-control col-6" placeholder='Enter ifsc code' />
-                                </div>
-                                <div className="row d-flex justify-content-center">
-                                    <button className="btn btn-outline-info shadow mb-3 col-md-4 mt-3"> Search </button>
-                                </div>
-                            </div>
-                        </div>
-
                         <div className="card col-md-4 ms-3">
-                            <div className="card-header fw-bold text-light bg-dark ">
+                            <div className="card-header fw-bold text-dark">
                                 Delete User By Account Number  <ImUserMinus />
                             </div>
                             <div className="card-body d-flex row">
@@ -207,7 +196,7 @@ const AllCustomer = () => {
                                     <th scope="col">PAN_Card</th>
                                     <th scope="col">Contact_Info</th>
                                     <th scope="col">DOB</th>
-                                    <th scope="col">Gender</th>
+                                    <th scope="col">Bank IFSC</th>
                                     <th scope="col">Address</th>
 
                                 </tr>
@@ -222,7 +211,7 @@ const AllCustomer = () => {
                                         <td>{data.userPAN}</td>
                                         <td>{data.userPhoneNo}</td>
                                         <td>{data.userDOB}</td>
-                                        <td>{data.userGender}</td>
+                                        <td>{data.userIFSC}</td>
                                         <td>{data.userAddress}</td>
 
 
