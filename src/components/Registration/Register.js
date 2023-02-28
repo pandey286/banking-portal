@@ -114,16 +114,14 @@ const Register = () => {
     event.preventDefault();
     try {
       const response = await axios.post(url, formData);
+      const notification = await axios.post(notificationurl, emailData)
       swal({
         title: "Registeration Succesfully!! ",
         text: "You will also get mail if you successfully register.",
         icon: "success",
       });
-
       // Set data in cookies
       setCookie("userData", JSON.stringify(response.data), 7);
-      const notification = await axios.post(notificationurl, emailData)
-
       console.log(response.data);
     } catch (error) {
       console.error(error);

@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
-import { GiHamburgerMenu,GiGoldBar } from "react-icons/gi";
+import { GiHamburgerMenu, GiGoldBar } from "react-icons/gi";
 import { BiLogOut, BiTransfer } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle } from "react-icons/fa";
@@ -46,6 +46,9 @@ const UserGoldLoanApp = () => {
         setAdminData(cookieValue);
     }, []);
 
+    const [approvedLoanData, setApprovedLoanData] = useState([]);
+
+
     const [goldInfo, setGoldInfo] = useState({});
 
     useEffect(() => {
@@ -53,32 +56,46 @@ const UserGoldLoanApp = () => {
         if (storedData) {
             setGoldInfo(storedData);
         }
-      }, []);
-      
+    }, []);
+
     console.log(goldInfo);
 
     const [goldLoanData, setgoldData] = useState([]);
 
     useEffect(() => {
         axios
-        .get("http://localhost:8080/api/users/all-users-gold-loan-request")
-        .then((response) => {
-          console.log(response.data);
-          setgoldData(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      
+            .get("http://localhost:8080/api/users/all-users-gold-loan-request")
+            .then((response) => {
+                const approvedLoans = response.data.filter((loan) => loan.status === "Approved");
+                setgoldData(response.data);
+                setApprovedLoanData(approvedLoans);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
+
+
+    useEffect(() => {
+        axios
+            .get("http://localhost:8080/api/users/all-users-gold-loan-request")
+            .then((response) => {
+                console.log(response.data);
+                setgoldData(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
     }, []);
 
     console.log(goldLoanData);
 
     const sendApprovalEmail = async () => {
         const emailData = {
-          to: goldInfo.email,
-          subject: `Gold Loan Application Approved`,
-          body: `Dear ${goldInfo.userFullName},
+            to: goldInfo.email,
+            subject: `Gold Loan Application Approved`,
+            body: `Dear ${goldInfo.userFullName},
       
           We are pleased to inform you that your application for a gold loan has been approved. The details of your loan are as follows:
       
@@ -90,30 +107,30 @@ const UserGoldLoanApp = () => {
           Best regards,
           The PSL Bank Team`
         };
-      
+
         try {
-          const response = await axios.post(notificationurl, emailData);
-          console.log(response.data);
+            const response = await axios.post(notificationurl, emailData);
+            console.log(response.data);
         } catch (error) {
-          console.error(error);
+            console.error(error);
         }
-      };
-      
-      const sendDenialEmail = async () => {
+    };
+
+    const sendDenialEmail = async () => {
         // First delete the record from backend
         try {
-          await axios.delete(`http://localhost:8080/api/users/goldloan-application/${goldInfo.id}`);
-          console.log(`Gold loan request with ID ${goldInfo.id} deleted successfully`);
+            await axios.delete(`http://localhost:8080/api/users/goldloan-application/${goldInfo.id}`);
+            console.log(`Gold loan request with ID ${goldInfo.id} deleted successfully`);
         } catch (error) {
-          console.error(`Error deleting gold loan request with ID ${goldInfo.id}:`, error);
-          return; // exit the function if delete request fails
+            console.error(`Error deleting gold loan request with ID ${goldInfo.id}:`, error);
+            return; // exit the function if delete request fails
         }
-      
+
         // If delete request was successful, send email notification
         const emailData = {
-          to: goldInfo.email,
-          subject: `Gold Loan Application Denied`,
-          body: `Dear ${goldInfo.userFullName},
+            to: goldInfo.email,
+            subject: `Gold Loan Application Denied`,
+            body: `Dear ${goldInfo.userFullName},
       
           We regret to inform you that your application for a gold loan has been denied. 
       
@@ -122,17 +139,17 @@ const UserGoldLoanApp = () => {
           Best regards,
           The PSL Bank Team`
         };
-      
-        try {
-          const response = await axios.post(notificationurl, emailData);
-          console.log(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      
 
-      
+        try {
+            const response = await axios.post(notificationurl, emailData);
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+
+
 
 
     return (
@@ -173,13 +190,13 @@ const UserGoldLoanApp = () => {
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/all-transactions">
-                            <BiTransfer className="me-3 mt-1" />
+                                <BiTransfer className="me-3 mt-1" />
                                 <span>All Transactions</span>
                             </Link>
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/transactions-date">
-                            <BiTransfer className="me-3 mt-1" />
+                                <BiTransfer className="me-3 mt-1" />
                                 <span>Transactions By Date</span>
                             </Link>
                         </li>
@@ -261,15 +278,40 @@ const UserGoldLoanApp = () => {
                                         <td>{data.goldweight}</td>
                                         <td>{data.goldloanAmountInRupees}</td>
                                         <td>{data.userAddress}</td>
-                                        
+
                                         <td>
                                             <button type="button" className="btn-sm btn btn-success m-1" onClick={sendApprovalEmail}> Approve</button>
                                             <button type="button" className="btn-sm btn btn-danger m-1" onClick={sendDenialEmail}> Deny </button>
                                         </td>
                                     </tr>))}
-                                    </tbody>
+                            </tbody>
                         </table>
                     </div>
+
+                    <div className="card mt-3">
+                        <div className="card-header">Approved Loans</div>
+                        <div className="card-body">
+                            <table className="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>User Name</th>
+                                        <th>Loan Amount</th>
+                                        <th>Gold Weight</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {approvedLoanData.map((loan) => (
+                                        <tr key={loan.id}>
+                                            <td>{loan.userFullName}</td>
+                                            <td>{loan.goldloanAmountInRupees}</td>
+                                            <td>{loan.goldweight} gm</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </>

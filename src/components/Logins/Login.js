@@ -27,6 +27,12 @@ function Login() {
         password: '',
     });
 
+    const [mail, setMail] = useState({
+        to: "",
+        subject: "",
+        text: ""
+    })
+
 
     const handleChange = event => {
         setFormData({
@@ -36,59 +42,67 @@ function Login() {
 
     };
 
-    const url = "http://localhost:8080/api/customers/login"
 
     const [accountData, setAccountData] = useState();
 
     const handleSubmit = (event) => {
+
+        const url = "http://localhost:8080/api/customers/login";
+        const urlAuth = "http://localhost:8080/api/customers/authenticate";
+        const mailUrl = "http://localhost:8080/api/v1/notifications";
+
         event.preventDefault();
         setErrorMessage('');
 
-        if (!formData.userName) {
-            setErrorMessage('UserName is required');
-        }
-        else if (!formData.password) {
-            setErrorMessage('Password is required');
-        }
-        else if (!formData.userName || !formData.password) {
+        if (!formData.userName || !formData.password) {
             setErrorMessage('UserName and password are required');
-        }
+        } 
         else if (formData.password.length < 6) {
             setErrorMessage('Password must be at least 6 characters long');
-        }
-        else {
+        } else {
+            // send post request using axios
             axios.post(url, formData)
-                .then((res) => {
-                    console.log(res.status)
-                    console.log(res.data);
-                    axios.get(`http://localhost:8080/api/customers/${formData.userName}`, {
-                        headers: {
-                            'Authorization': `Bearer ${res.data}`
-                        }
-                    })
-                        .then((res) => {
-                            console.log(res.status);
-                            setCookie('userinfo', res.data, 7);
-                            localStorage.setItem('accountInfo', JSON.stringify(res.data))
-                            setAccountData(res.data)
-                            console.log(accountData)
+                .then(res => {
+                    const token = res.data.token;
+                    setCookie("token", token, 7);
+
+                    const authConfig = {
+                        headers: { Authorization: `Bearer ${token}` },
+                    };
+
+                    axios.get(urlAuth, authConfig)
+                        .then(res => {
+                            console.log(res);
+                            setFormData(res.data);
+                            swal({
+                                title: "Login Successful",
+                                text: "You have logged in to your account",
+                                icon: "success"
+                            })
+                                .then(() => {
+                                    axios.post(mailUrl, mail)
+                                    axios.get(`http://localhost:8080/api/customers/${formData.userName}`)
+                                    localStorage.setItem('accountInfo', JSON.stringify(res.data))
+                                    setAccountData(res.data)
+                                    console.log(accountData)
+                                    window.location.href = "/userdash"
+                                });
                         })
-                        .catch((err) => {
-                            console.log(url + formData.userName);
-                            console.log(err);
-                        })
-                    swal("Success", "Login Successfull", "success");
-                    // setIsLoggedIn(true)
-                    window.location.href = "/userdash"
+                        .catch(error => {
+                            console.log(error);
+                            swal({
+                                title: "Login Failed!",
+                                text: "Check your credentials!",
+                                icon: "warning",
+                                dangerMode: true,
+                            });
+                        });
                 })
-                .catch((err) => {
-                    console.log("Error", err);
-                    swal("Error", "Invalid Credentials", "error");
-                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
-
-
-    };
+    }
 
 
 
@@ -104,10 +118,6 @@ function Login() {
                         <h2 className='text-center p-3 '>Please Login Here</h2><br />
                         <span className='text-center fs-1'><FaUserCircle /></span>
                         <form>
-                            {/* <div className="p-3 mb-3 col align-self-center">
-                                <input type="email" className="form-control shadow-sm  " id="userId" aria-describedby="EmailId" name='email' onChange={handleChange}
-                                    placeholder="Enter Your Registered Email" />
-                            </div> */}
                             <div className="p-3 mb-3 col align-self-center">
                                 <input type="text" className="form-control shadow-sm  " id="userId" aria-describedby="UserName" name='userName' onChange={handleChange}
                                     placeholder="Enter Your UserName" />

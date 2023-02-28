@@ -7,11 +7,11 @@ import { BiLogOut, BiTransfer } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
 import { ImUserMinus } from "react-icons/im";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle } from "react-icons/fa";
-import { BiSearchAlt } from "react-icons/bi";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 import { RiLuggageDepositFill } from 'react-icons/ri'
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import swal from "sweetalert";
 
 
 const AllCustomer = () => {
@@ -53,6 +53,31 @@ const AllCustomer = () => {
             });
 
     }, []);
+
+    const [formData, setFormData] = useState({
+        userAccountNumber: '',
+    });
+
+    const handleChange = event => {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value
+        });
+    };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const url = `http://localhost:8080/api/customers/removeUser/${formData.userAccountNumber}`;
+        // console.log(url);
+        try {
+          const response = await axios.delete(url);
+          console.log(response.data);
+          setUserData(response.data);
+          swal("Success", `User with Account Number ${formData.userAccountNumber} has been delete successfully pls refresh`, "success");
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    console.log(userData);
 
     
 
@@ -175,10 +200,10 @@ const AllCustomer = () => {
                             </div>
                             <div className="card-body d-flex row">
                                 <div className=" my-4">
-                                    <input type="text" id="userId" className="form-control col-6" placeholder='Enter Account Number' />
+                                    <input type="text" id="userId" className="form-control col-6" placeholder='Enter Account Number' name="userAccountNumber" onChange={handleChange}/>
                                 </div>
                                 <div className="row d-flex justify-content-center my-2">
-                                    <button className="btn btn-outline-danger shadow mb-3 col-md-4 mt-3 "> Delete </button>
+                                    <button className="btn btn-outline-danger shadow mb-3 col-md-4 mt-3 " onClick={handleSubmit}> Delete </button>
                                 </div>
                             </div>
                         </div>

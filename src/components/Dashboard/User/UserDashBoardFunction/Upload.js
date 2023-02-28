@@ -1,16 +1,13 @@
 import React, { useRef, useState, useEffect } from "react";
-import { AiFillCloseCircle, AiFillCheckCircle } from "react-icons/ai";
-import { GrTransaction } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import "../user.css"
 import { GiHamburgerMenu, GiGoldBar } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
-import { FaAddressCard } from "react-icons/fa";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionCircle, FaUserPlus } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico";
 import "jspdf-autotable";
 import axios from "axios";
-
+import swal from "sweetalert";
 
 
 const Upload = () => {
@@ -29,22 +26,70 @@ const Upload = () => {
         }
     }, []);
 
-    const [uploadedImage, setUploadedImage] = useState(null);
 
-    console.log(info);
-    const handleImageUpload = (event) => {
+
+    const [aadharImg, setAadharImg] = useState(null);
+    const [panImg, setPanImg] = useState(null);
+
+    const handleAadharImgUpload = (event) => {
         const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            setAadharImg(reader.result);
+        };
+    };
+
+    const handlePanImgUpload = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            setPanImg(reader.result);
+        };
+    };
+
+    const addKyc = (event) => {
+        event.preventDefault();
+        const url = `http://localhost:8080/api/customers/add-kyc/${info.userAccountNumber}`;
+
         const formData = new FormData();
-        formData.append('image', file);
-        axios.post('/api/upload-image', formData)
-            .then(response => {
-                console.log(response.data);
-                setUploadedImage(URL.createObjectURL(file));
+        formData.append("aadharImg", dataURLtoFile(aadharImg, 'aadharImg.png'));
+        formData.append("panImg", dataURLtoFile(panImg, 'panImg.png'));
+
+        axios.put(url, formData)
+            .then(res => {
+                console.log(res.data)
+                setAadharImg(null)
+                setPanImg(null)
+                swal({
+                    title: "Updated Successfully",
+                    text: "You have registered your account",
+                    icon: "success"
+                })
             })
-            .catch(error => {
-                console.error(error);
-            });
+            .catch(err => {
+                console.log(err);
+                swal({
+                    title: "Not Updated",
+                    text: "Invalid Data!",
+                    icon: "warning",
+                    dangerMode: true,
+                });
+            })
     }
+
+    const dataURLtoFile = (dataurl, filename) => {
+        const arr = dataurl.split(',');
+        const mime = arr[0].match(/:(.*?);/)[1];
+        const bstr = atob(arr[1]);
+        let n = bstr.length;
+        const u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, { type: mime });
+    };
 
 
 
@@ -137,33 +182,35 @@ const Upload = () => {
                         </div>
                     </nav>
                     <div className="m-5" id="page-content">
-
-                    </div>
-                    <div className="row">
-                        <div className="col-lg-12 grid-margin stretch-card align-middle">
-                            <div className="card">
-                                <div className="card-header bg-secondary fs-1 fw-bold text-white bg-dark">
-                                    Upload Aadhar Card and PAN Card <FaAddressCard />
+                        <p className="fw-bold mb-2 ms-4"><i className="fa fa-user me-2"></i> Welcome {info.userName}</p>
+                        <div className='alert alert-info m-4' role='alert'>Upload Aadhaar / PAN Docs ("Should be under 60KB")</div>
+                        <div className="cur-bal bg-white p-4 m-4">
+                            <div className="row">
+                                <div className="col">
+                                    <p className="ms-2">Upload Aadhaar : </p>
+                                    <input type="file" className="p-2" name="userAadharImg" onChange={handleAadharImgUpload} />
+                                    {aadharImg ? (
+                                        <img src={aadharImg} alt="Aadhaar" className="mt-4" width="300" />
+                                    ) : (
+                                        ""
+                                    )}
                                 </div>
-                                <div className="card-body row  d-flex ">
-                                    <div className="form-outline col-md-6 mb-4">
-                                        <input type="file" id="aadhar" className="form-control form-control-lg" placeholder='Aadhar Card' name="email" onChange={handleImageUpload} />
-                                        <button className="btn btn-outline-secondary col-md-4 mt-3">Upload</button>
-                                    </div>
-                                    <div className="form-outline col-md-6 mb-4">
-                                        <input type="file" id="pan" className="form-control form-control-lg" placeholder='PAN Card' name="email" onChange={handleImageUpload} />
-                                        <button className="btn btn-outline-secondary col-md-4 mt-3">Upload</button>
-                                    </div>
+                                <div className="col">
+                                    <p className="ms-2">Upload PAN : </p>
+                                    <input type="file" className="p-2" name="userPanImg" onChange={handlePanImgUpload} />
+                                    {panImg ? (
+                                        <img src={panImg} alt="PAN" className="mt-4" width="300" />
+                                    ) : (
+                                        ""
+                                    )}
                                 </div>
                             </div>
+                        </div>
+                        <div className="text-center">
+                            <button className="btn btn-sm btn-primary text-center p-3 text-uppercase" onClick={addKyc}>Upload</button>
+                        </div>
 
-                        </div>
-                        <div class="d-grid gap-2 col-6 mx-auto">
-                            <button class="btn btn-outline-primary" type="button" onClick={handleImageUpload}>Upload</button>
-                        </div>
                     </div>
-
-
                 </div>
             </div>
         </>

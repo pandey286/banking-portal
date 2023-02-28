@@ -88,7 +88,7 @@ function App(props) {
           <Route path="/userdash/goldloanApp" element={<GoldLoanApp/>}/>
           <Route path="/userdash/faq" element={<Faq/>}/>
           <Route path="/userdash/KYC" element={<Upload/>}/>
-          <Route path="/dummy" element={<Dummy/>}/>
+          {/* <Route path="/dummy" element={<Dummy/>}/> */}
         </Routes>
       </BrowserRouter>
     </>
