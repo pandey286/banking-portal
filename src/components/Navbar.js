@@ -34,7 +34,7 @@ const Navbar = () => {
                             <button className="btn btn-outline-primary dropdown-toggle m-2 shadow mb-2" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                                 <small className='me-5'>LOGIN</small>
                             </button>
-                            <ul className="dropdown-menu dropdown-menu pe-2" aria-labelledby="dropdownMenuButton2">
+                            <ul className="dropdown-menu dropdown-menu-dark " aria-labelledby="dropdownMenuButton2">
                                 <li className='pe-2 text-center'><a className="dropdown-item" href="/login"> <small className='me-3'>User Login </small> </a></li>
                                 <li className='pe-2 text-center'><a className="dropdown-item" href="/adminlogin"> <small className='me-3'>Admin Login </small> </a></li>
                             </ul>

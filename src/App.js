@@ -39,6 +39,8 @@ import AllTransactions from "./components/Dashboard/Admin/AdminFunction/AllTrans
 import Upload from "./components/Dashboard/User/UserDashBoardFunction/Upload";
 import TransactionData from "./components/Dashboard/Admin/AdminFunction/TransactionByData";
 import AccAndIfsc from './components/Dashboard/Admin/AdminFunction/UserByAccIFSC';
+import Neft from './components/Dashboard/Admin/AdminFunction/neft';
+import ApprovedLoan from "./components/Dashboard/Admin/AdminFunction/ApprovedLoan";
 
 
 
@@ -76,8 +78,10 @@ function App(props) {
           <Route path="/admindash/usergoldloan-app" element={<UserGoldLoanApp/>} />
           <Route path="/admindash/customer-card" element={<CustomerCard />} />
           <Route path="/admindash/deposit" element={<DepositInUser />} />
+          <Route path="/admindash/neft" element={<Neft />} />
           <Route path="/admindash/customer-query" element={<UserContacts />} />
           <Route path="/admindash/accNo-Ifsc" element={<AccAndIfsc />} />
+          <Route path="/admindash/approved-loan" element={<ApprovedLoan />} />
 
           {/* User-Routes */}
           <Route path="/userdash/viewtrans" element={<ViewTrans/>}/>

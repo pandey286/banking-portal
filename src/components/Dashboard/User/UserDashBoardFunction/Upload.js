@@ -26,6 +26,7 @@ const Upload = () => {
         }
     }, []);
 
+    console.log(info.userAccountNumber)
 
 
     const [aadharImg, setAadharImg] = useState(null);
@@ -48,16 +49,16 @@ const Upload = () => {
             setPanImg(reader.result);
         };
     };
+    // const url = `http://localhost:8080/api/customers/upload-kyc/${info.userAccountNumber}`;
 
-    const addKyc = (event) => {
+    const uploadKyc = (event) => {
         event.preventDefault();
-        const url = `http://localhost:8080/api/customers/add-kyc/${info.userAccountNumber}`;
 
         const formData = new FormData();
         formData.append("aadharImg", dataURLtoFile(aadharImg, 'aadharImg.png'));
         formData.append("panImg", dataURLtoFile(panImg, 'panImg.png'));
 
-        axios.put(url, formData)
+        axios.put(`http://localhost:8080/api/customers/upload-kyc/${info.userAccountNumber}`, formData)
             .then(res => {
                 console.log(res.data)
                 setAadharImg(null)
@@ -182,12 +183,14 @@ const Upload = () => {
                         </div>
                     </nav>
                     <div className="m-5" id="page-content">
-                        <p className="fw-bold mb-2 ms-4"><i className="fa fa-user me-2"></i> Welcome {info.userName}</p>
-                        <div className='alert alert-info m-4' role='alert'>Upload Aadhaar / PAN Docs ("Should be under 60KB")</div>
+                        <div class="alert alert-warning" role="alert">
+                            <span className="fw-bold fs-4">Please Upload Your Aadhar & Pan Card Over Here</span>
+                        </div>
+                        <p className="fw-bold mb-2 ms-4 fs-3"> <FaUserAlt /> Welcome {info.userName}</p>
                         <div className="cur-bal bg-white p-4 m-4">
                             <div className="row">
                                 <div className="col">
-                                    <p className="ms-2">Upload Aadhaar : </p>
+                                    <p className="ms-2 fw-bold fs-4">Upload Aadhaar : </p>
                                     <input type="file" className="p-2" name="userAadharImg" onChange={handleAadharImgUpload} />
                                     {aadharImg ? (
                                         <img src={aadharImg} alt="Aadhaar" className="mt-4" width="300" />
@@ -196,7 +199,7 @@ const Upload = () => {
                                     )}
                                 </div>
                                 <div className="col">
-                                    <p className="ms-2">Upload PAN : </p>
+                                    <p className="ms-2 fw-bold fs-4">Upload PAN : </p>
                                     <input type="file" className="p-2" name="userPanImg" onChange={handlePanImgUpload} />
                                     {panImg ? (
                                         <img src={panImg} alt="PAN" className="mt-4" width="300" />
@@ -207,7 +210,7 @@ const Upload = () => {
                             </div>
                         </div>
                         <div className="text-center">
-                            <button className="btn btn-sm btn-primary text-center p-3 text-uppercase" onClick={addKyc}>Upload</button>
+                            <button className="btn btn-sm btn-outline-primary shadow text-center p-2 text-uppercase" onClick={uploadKyc}>Upload</button>
                         </div>
 
                     </div>

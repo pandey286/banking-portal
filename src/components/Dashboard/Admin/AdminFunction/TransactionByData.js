@@ -139,9 +139,21 @@ const TransactionData = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link className="list-item d-flex" to="/admindash/approved-loan">
+                                <FaWpforms className="me-3 mt-1" />
+                                <span>Approved Loan</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link className="list-item d-flex" to="/admindash/deposit">
                                 <RiLuggageDepositFill className="me-3 mt-1" />
                                 <span>Deposit In User Account</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/neft">
+                                <RiLuggageDepositFill className="me-3 mt-1" />
+                                <span>Upload a Neft File</span>
                             </Link>
                         </li>
                         <li>

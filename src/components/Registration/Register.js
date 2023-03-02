@@ -99,7 +99,7 @@ const Register = () => {
       to: formData.email,
       subject: "Welcome to PSL Bank",
       body: `Thank You Registering with PSL Bank Online Platform. PSL Family is happy to have a new family member.Your Register Email is
-      ${formData.email} and Password is ${Data.password}. Can You Also send as PhotoCopy of AdharCard:${formData.userAadharNo} and Pan Number: ${formData.userPAN} on this Email: pandeyprashant953@gmail.com`,
+      ${formData.email} and Password is ${Data.password}. Can You Also send as PhotoCopy of AdhaarCard:${formData.userAadhaarNo} and Pan Number: ${formData.userPAN} on this Email: pandeyprashant953@gmail.com`,
     })
   };
 
@@ -114,7 +114,6 @@ const Register = () => {
     event.preventDefault();
     try {
       const response = await axios.post(url, formData);
-      const notification = await axios.post(notificationurl, emailData)
       swal({
         title: "Registeration Succesfully!! ",
         text: "You will also get mail if you successfully register.",
@@ -122,6 +121,7 @@ const Register = () => {
       });
       // Set data in cookies
       setCookie("userData", JSON.stringify(response.data), 7);
+      const notification = await axios.post(notificationurl, emailData)
       console.log(response.data);
     } catch (error) {
       console.error(error);

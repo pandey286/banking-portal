@@ -8,6 +8,7 @@ import { BiLogOut } from "react-icons/bi";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaRupeeSign, FaWpforms, FaQuestionCircle, FaUserPlus } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 import axios from 'axios';
+import { swal } from 'sweetalert';
 
 const Beneficiaries = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -84,8 +85,19 @@ const Beneficiaries = () => {
         event.preventDefault();
         try {
             const response = await axios.post(url, formData);
+            swal({
+                title: "Beneficiary Added  successfully",
+                text: "Please Refresh Or Login Again",
+                icon: "success"
+            })
             console.log(response.data);
         } catch (error) {
+            swal({
+                title: "Beneficiary Addition Failed",
+                text: "Please Try Again later",
+                icon: "warning",
+                dangerMode: true
+            })
             console.error(error);
         }
     };

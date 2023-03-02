@@ -1,33 +1,28 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import "../.././Admin/admindash.css"
 import { GiHamburgerMenu, GiGoldBar } from "react-icons/gi";
 import { BiLogOut, BiTransfer } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
+import { FcApproval } from "react-icons/fc";
 import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle } from "react-icons/fa";
 import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 import { RiLuggageDepositFill } from 'react-icons/ri'
-import axios from "axios";
-import swal from "sweetalert";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import _ from "lodash";
 
+const pageSize = 5;
 
-const UserGoldLoanApp = () => {
+const ApprovedLoan = () => {
 
+    // To Trigger the Menu
     const [sidebarOpen, setSidebarOpen] = useState(false);
-
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     };
-    const [emailData, setEmailData] = useState({
-        to: '',
-        subject: '',
-        body: ''
-    });
-
-
-    const notificationurl = "http://localhost:8080/api/v1/notifications"
-
 
     // Get data from cookies
     const getCookie = (name) => {
@@ -40,26 +35,23 @@ const UserGoldLoanApp = () => {
         }
         return null;
     }
-
     const [adminData, setAdminData] = useState(getCookie("adminData"));
     useEffect(() => {
         const cookieValue = JSON.parse(getCookie("adminData"));
         setAdminData(cookieValue);
     }, []);
 
-    const [approvedLoanData, setApprovedLoanData] = useState([]);
 
+    const tableRef = useRef(null);
 
-    const [goldInfo, setGoldInfo] = useState({});
-
-    useEffect(() => {
-        const storedData = JSON.parse(localStorage.getItem('goldData'));
-        if (storedData) {
-            setGoldInfo(storedData);
-        }
-    }, []);
-
-    console.log(goldInfo);
+    const generatePdf = () => {
+        const doc = new jsPDF();
+        const imgData = "https://www.goodreturns.in/img/2019/11/csbbanklogo-1574336687.jpeg";
+        //const pdfWidth = pdf.internal.pageSize.getWidth();
+        doc.addImage(imgData, "JPEG", 4, 4, 25, 10);
+        doc.autoTable({ html: "#my-table" });
+        doc.save("All_Transactions.pdf");
+    };
 
     const [goldLoanData, setgoldData] = useState([]);
 
@@ -67,83 +59,16 @@ const UserGoldLoanApp = () => {
         axios
             .get("http://localhost:8080/api/users/all-users-gold-loan-request")
             .then((response) => {
-                const approvedLoans = response.data.filter((loan) => loan.status === "Approved");
                 setgoldData(response.data);
-                setApprovedLoanData(approvedLoans);
             })
             .catch((error) => {
                 console.log(error);
             });
     }, []);
 
-
-
-    console.log(goldLoanData);
-
-    const sendApprovalEmail = async () => {
-        const emailData = {
-            to: goldInfo.email,
-            subject: `Gold Loan Application Approved`,
-            body: `Dear ${goldInfo.userFullName},
-      
-          We are pleased to inform you that your application for a gold loan has been approved. The details of your loan are as follows:
-      
-          Gold Weight: ${goldInfo.goldweight} gm
-          Loan Amount: Rs. ${goldInfo.goldloanAmountInRupees}
-      
-          Thank you for choosing PSL Bank for your financial needs.
-      
-          Best regards,
-          The PSL Bank Team`
-        };
-
-        try {
-            const response = await axios.post(notificationurl, emailData);
-            swal("Loan Approved", "Mail Has Been Send To User", "success");
-            console.log(response.data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    const sendDenialEmail = async () => {
-        // First delete the record from backend
-        try {
-            await axios.delete(`http://localhost:8080/api/users/goldloan-application/${goldInfo.id}`);
-            console.log(`Gold loan request with ID ${goldInfo.id} deleted successfully`);
-        } catch (error) {
-            console.error(`Error deleting gold loan request with ID ${goldInfo.id}:`, error);
-            return; // exit the function if delete request fails
-        }
-
-        // If delete request was successful, send email notification
-        const emailData = {
-            to: goldInfo.email,
-            subject: `Gold Loan Application Denied`,
-            body: `Dear ${goldInfo.userFullName},
-      
-          We regret to inform you that your application for a gold loan has been denied. 
-      
-          Thank you for considering PSL Bank for your financial needs.
-      
-          Best regards,
-          The PSL Bank Team`
-        };
-
-        try {
-            const response = await axios.post(notificationurl, emailData);
-            console.log(response.data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-
-
-
-
     return (
         <>
+
             <div className="wrapper">
                 {/* <!-- Sidebar  --> */}
                 <nav id="sidebar" className={sidebarOpen ? "active" : ""}>
@@ -197,13 +122,13 @@ const UserGoldLoanApp = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link className="list-item d-flex" to="/admindash/approved-loan">
+                            <Link className="list-item d-flex" to="/admindash/customer-loan">
                                 <FaWpforms className="me-3 mt-1" />
                                 <span>Customer Loan Application</span>
                             </Link>
                         </li>
                         <li>
-                            <Link className="list-item d-flex" to="/admindash/customer-loan">
+                            <Link className="list-item d-flex" to="/admindash/approved-loan">
                                 <FaWpforms className="me-3 mt-1" />
                                 <span>Approved Loan</span>
                             </Link>
@@ -243,7 +168,7 @@ const UserGoldLoanApp = () => {
                     </ul>
                 </nav>
 
-
+                {/* <!-- Page Content  --> */}
                 <div id="content">
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
                         <div className="container-fluid">
@@ -253,45 +178,47 @@ const UserGoldLoanApp = () => {
                             <h3><span><img className='mb-1' src={Kakashi} width="30px" /></span><strong>PSL Bank Ltd.</strong></h3>
                         </div>
                     </nav>
-
-                    <div>
-                        <table className="table table-hover table-responsive">
-                            <thead className="table-dark">
-                                <tr>
-                                    <th scope="col">FullName </th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Phone Number </th>
-                                    <th scope="col">Account Number</th>
-                                    <th scope="col">AadharNo </th>
-                                    <th scope="col">Gold weight(gm)</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Address</th>
-                                    <th scope="col">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {goldLoanData.map((data) => (
-                                    <tr key={data.id}>
-                                        <td>{data.userFullName}</td>
-                                        <td>{data.email}</td>
-                                        <td>{data.userPhoneNo}</td>
-                                        <td>{data.accountNo}</td>
-                                        <td>{data.aadharNo}</td>
-                                        <td>{data.goldweight}</td>
-                                        <td>{data.goldloanAmountInRupees}</td>
-                                        <td>{data.userAddress}</td>
-                                        <td>
-                                            <button type="button" className="btn-sm btn btn-outline-success m-1" onClick={sendApprovalEmail}> Approve</button>
-                                            <button type="button" className="btn-sm btn btn-outline-danger m-1" onClick={sendDenialEmail}> Deny </button>
-                                        </td>
-                                    </tr>))}
-                            </tbody>
-                        </table>
+                    <div className="text-center fs-2 mb-5 fw-bold">Approved Gold Loans<FcApproval /></div>
+                    <table className="table table-hover table-responsive" ref={tableRef} id="my-table">
+                        <thead className="table-dark">
+                            <tr>
+                                <th scope="col">FullName </th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone Number </th>
+                                <th scope="col">Account Number</th>
+                                <th scope="col">AadharNo </th>
+                                <th scope="col">Gold weight(gm)</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {goldLoanData.map((data) => (
+                                <tr key={data.id}>
+                                    <td>{data.userFullName}</td>
+                                    <td>{data.email}</td>
+                                    <td>{data.userPhoneNo}</td>
+                                    <td>{data.accountNo}</td>
+                                    <td>{data.aadharNo}</td>
+                                    <td>{data.goldweight}</td>
+                                    <td>{data.goldloanAmountInRupees}</td>
+                                    <td>{data.userAddress}</td>
+                                    <td>Approve<FcApproval /></td>
+                                </tr>))}
+                        </tbody>
+                    </table>
+                    <div className="col-md-6 text-start">
+                        <button type="submit" className="btn btn-outline-success shadow p-1 mb-5 rounded-1 justify-content-center" onClick={generatePdf}>
+                            Generate Pdf</button>
                     </div>
                 </div>
             </div>
         </>
 
     )
+
+
 }
-export default UserGoldLoanApp;
+
+export default ApprovedLoan

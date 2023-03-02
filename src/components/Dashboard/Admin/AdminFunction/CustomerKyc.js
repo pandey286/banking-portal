@@ -86,13 +86,13 @@ const CustomerKyc = () => {
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/all-transactions">
-                            <BiTransfer className="me-3 mt-1" />
+                                <BiTransfer className="me-3 mt-1" />
                                 <span>All Transactions</span>
                             </Link>
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/transactions-date">
-                            <BiTransfer className="me-3 mt-1" />
+                                <BiTransfer className="me-3 mt-1" />
                                 <span>Transactions By Date</span>
                             </Link>
                         </li>
@@ -109,9 +109,21 @@ const CustomerKyc = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link className="list-item d-flex" to="/admindash/approved-loan">
+                                <FaWpforms className="me-3 mt-1" />
+                                <span>Approved Loan</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link className="list-item d-flex" to="/admindash/deposit">
                                 <RiLuggageDepositFill className="me-3 mt-1" />
                                 <span>Deposit In User Account</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/neft">
+                                <RiLuggageDepositFill className="me-3 mt-1" />
+                                <span>Upload a Neft File</span>
                             </Link>
                         </li>
                         <li>
@@ -162,24 +174,6 @@ const CustomerKyc = () => {
                             </div>
                         </div>
                     </div>
-
-                    {/* <div className="card">
-                    <div className="card-header fw-bold text-white bg-dark fs-1">
-                                        Search User to Delete <BiSearchAlt />
-                                    </div>
-                        <div className="card-body d-flex row">
-                            <div className="col-md-6 mb-2">
-                                <input type="text" id="acc_no" className="form-control col-6" placeholder='Enter account number' />
-                            </div>
-                            <div className="col-md-6 text-start">
-                            <button type="button" className="btn-sm btn btn-danger m-1"> Delete </button>
-                            </div>
-                            </div>
-                            </div>
- */}
-
-
-
                     <div className="col data-table mt-4">
                         <table className="table bg-white shadow-sm  text-center table-hover" ref={tableRef} id="my-table">
                             <thead className="table-dark">

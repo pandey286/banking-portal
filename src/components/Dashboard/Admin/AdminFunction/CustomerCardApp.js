@@ -116,9 +116,21 @@ const CustomerCard = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link className="list-item d-flex" to="/admindash/approved-loan">
+                                <FaWpforms className="me-3 mt-1" />
+                                <span>Approved Loan</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link className="list-item d-flex" to="/admindash/deposit">
                                 <RiLuggageDepositFill className="me-3 mt-1" />
                                 <span>Deposit In User Account</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/neft">
+                                <RiLuggageDepositFill className="me-3 mt-1" />
+                                <span>Upload a Neft File</span>
                             </Link>
                         </li>
                         <li>
@@ -182,8 +194,8 @@ const CustomerCard = () => {
                                     <td>{data.userCard}</td>
                                     <td>{data.userAddress}</td>
                                     <td>
-                                        <button type="button" className="btn-sm btn btn-success m-1"> Approve</button>
-                                        <button type="button" className="btn-sm btn btn-danger m-1"> Deny </button></td>
+                                        <button type="button" className="btn-sm btn btn-outline-success m-1"> Approve</button>
+                                        <button type="button" className="btn-sm btn btn-outline-danger m-1"> Deny </button></td>
                                 </tr>))}
                             </tbody>
                         </table>
