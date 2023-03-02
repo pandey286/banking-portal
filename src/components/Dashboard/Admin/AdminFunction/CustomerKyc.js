@@ -117,7 +117,7 @@ const CustomerKyc = () => {
                         <li>
                             <Link className="list-item d-flex" to="/admindash/approved-loan">
                                 <FaWpforms className="me-3 mt-1" />
-                                <span>Approved Loan</span>
+                                <span>Approved Gold Loan</span>
                             </Link>
                         </li>
                         <li>
