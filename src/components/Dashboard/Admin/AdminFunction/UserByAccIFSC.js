@@ -224,7 +224,6 @@ const AccAndIfsc = () => {
                                     <th scope="col">DOB</th>
                                     <th scope="col">Bank IFSC</th>
                                     <th scope="col">Address</th>
-
                                 </tr>
                             </thead>
                             <tbody>

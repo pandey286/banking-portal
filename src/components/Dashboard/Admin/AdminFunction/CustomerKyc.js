@@ -11,6 +11,7 @@ import Kakashi from "../../../../images/NavbarImages/kakashi.ico"
 import { RiLuggageDepositFill } from 'react-icons/ri'
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import axios from "axios";
 
 const CustomerKyc = () => {
 
@@ -40,14 +41,43 @@ const CustomerKyc = () => {
 
 
 
+    const [formData, setFormData] = useState({
+        userAccountNumber: '',
+    });
+
+    const [userData, setUserData] = useState([]);
+    const handleChange = event => {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value
+        });
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const url = `http://localhost:8080/api/customers/user-data/${formData.userAccountNumber}`;
+        // console.log(url);
+        try {
+            const response = await axios.get(url);
+            console.log(response.data);
+            setUserData(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    console.log(userData);
+
+
     const tableRef = useRef(null);
 
     const generatePdf = () => {
         const doc = new jsPDF();
+        const imgData = "https://www.goodreturns.in/img/2019/11/csbbanklogo-1574336687.jpeg";
+        //const pdfWidth = pdf.internal.pageSize.getWidth();
+        doc.addImage(imgData, "JPEG", 4, 4, 25, 10);
         doc.autoTable({ html: "#my-table" });
-        doc.save("statement.pdf");
+        doc.save("User_Details.pdf");
     };
-
     return (
         <>
             <div className="wrapper">
@@ -165,11 +195,11 @@ const CustomerKyc = () => {
                         </div>
                         <div className="card-body row justify-content-center">
                             <div className="col-md-7 mb-2 justify-content-center">
-                                <input type="text" id="user_id" className="form-control col-6" placeholder='Enter Account Number' />
+                                <input type="text" id="user_id" className="form-control col-6" placeholder='Enter Account Number' name="userAccountNumber" onChange={handleChange} />
                             </div>
 
                             <div className="row d-flex justify-content-center">
-                                <button className="btn btn-outline-secondary col-md-2 mt-3"> Search </button>
+                                <button className="btn btn-outline-secondary col-md-2 mt-3" onClick={handleSubmit}> Search </button>
                             </div>
                         </div>
                     </div>
@@ -178,17 +208,23 @@ const CustomerKyc = () => {
                             <thead className="table-dark">
                                 <tr>
                                     <th scope="col">Acc no.</th>
+                                    <th scope="col">User_Name</th>
+                                    <th scope="col">Adhar_Card</th>
                                     <th scope="col">PAN_Card</th>
-                                    <th scope="col">AadharNo</th>
-                                    <th scope="col">Acc HolderName</th>
+                                    <th scope="col">Contact_Info</th>
+                                    <th scope="col">Bank IFSC</th>
+                                    <th scope="col">Address</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>8098987767878978</td>
-                                    <td>BDPPL8756R</td>
-                                    <td>8098987767878</td>
-                                    <td>John Deo</td>
+                                    <td>{userData.userAccountNumber}</td>
+                                    <td>{userData.userName}</td>
+                                    <td>{userData.userAadharNo}</td>
+                                    <td>{userData.userPAN}</td>
+                                    <td>{userData.userPhoneNo}</td>
+                                    <td>{userData.userIFSC}</td>
+                                    <td>{userData.userAddress}</td>
                                 </tr>
                             </tbody>
                         </table>

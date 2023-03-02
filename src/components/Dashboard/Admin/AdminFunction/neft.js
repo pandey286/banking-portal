@@ -218,7 +218,7 @@ const Neft = () => {
                                 </tr>))}
                             </tbody>
                         </table>
-                        <button className="btn-outline-primary" onClick={saveDataToDatabase}>Save Data</button>
+                        <button className="btn btn-outline-primary" onClick={saveDataToDatabase}>Save Data</button>
                     </div>  
                 </div>
             </div>
