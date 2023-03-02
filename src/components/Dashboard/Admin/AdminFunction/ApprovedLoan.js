@@ -128,6 +128,12 @@ const ApprovedLoan = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link className="list-item d-flex" to="/admindash/usergoldloan-app">
+                                <GiGoldBar className="me-3 mt-1" />
+                                <span>User Gold Loan Appliaction</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link className="list-item d-flex" to="/admindash/approved-loan">
                                 <FaWpforms className="me-3 mt-1" />
                                 <span>Approved Loan</span>
@@ -151,14 +157,7 @@ const ApprovedLoan = () => {
                                 <span>Query from User</span>
                             </Link>
                         </li>
-                        <li>
-                            <Link className="list-item d-flex" to="/admindash/usergoldloan-app">
-                                <GiGoldBar className="me-3 mt-1" />
-                                <span>User Gold Loan Appliaction</span>
-                            </Link>
-                        </li>
                     </ul>
-
                     <ul className="list-unstyled CTAs">
                         <li>
                             <Link to="/" className="logout d-flex col"><BiLogOut className="me-3 mt-1 col-3" />

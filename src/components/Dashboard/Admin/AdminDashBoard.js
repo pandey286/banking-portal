@@ -1,11 +1,11 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./admindash.css"
-import { GiHamburgerMenu,GiGoldBar } from "react-icons/gi";
+import { GiHamburgerMenu, GiGoldBar } from "react-icons/gi";
 import { BiLogOut, BiTransfer } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
-import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms,FaQuestionCircle } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaRegCreditCard, FaWpforms, FaQuestionCircle } from "react-icons/fa";
 import Kakashi from "../../../images/NavbarImages/kakashi.ico"
 import { RiLuggageDepositFill } from 'react-icons/ri'
 
@@ -74,13 +74,13 @@ const AdminDashboard = () => {
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/all-transactions">
-                            <BiTransfer className="me-3 mt-1" />
+                                <BiTransfer className="me-3 mt-1" />
                                 <span>All Transactions</span>
                             </Link>
                         </li>
                         <li>
                             <Link className="list-item d-flex" to="/admindash/transactions-date">
-                            <BiTransfer className="me-3 mt-1" />
+                                <BiTransfer className="me-3 mt-1" />
                                 <span>Transactions By Date</span>
                             </Link>
                         </li>
@@ -94,6 +94,12 @@ const AdminDashboard = () => {
                             <Link className="list-item d-flex" to="/admindash/customer-loan">
                                 <FaWpforms className="me-3 mt-1" />
                                 <span>Customer Loan Application</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="list-item d-flex" to="/admindash/usergoldloan-app">
+                                <GiGoldBar className="me-3 mt-1" />
+                                <span>User Gold Loan Appliaction</span>
                             </Link>
                         </li>
                         <li>
@@ -120,14 +126,7 @@ const AdminDashboard = () => {
                                 <span>Query from User</span>
                             </Link>
                         </li>
-                        <li>
-                            <Link className="list-item d-flex" to="/admindash/usergoldloan-app">
-                                <GiGoldBar className="me-3 mt-1" />
-                                <span>User Gold Loan Appliaction</span>
-                            </Link>
-                        </li>
                     </ul>
-
                     <ul className="list-unstyled CTAs">
                         <li>
                             <Link to="/" className="logout d-flex col"><BiLogOut className="me-3 mt-1 col-3" />
